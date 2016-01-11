@@ -1,0 +1,122 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<HTML>
+<HEAD>
+	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<TITLE>Urban Slow City </TITLE>
+	<link rel='stylesheet' type='text/css' href='/css/company.css'>
+	<script language='javascript' src='/js/common.js'></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+	<style> 
+	     .black_overlay{ 
+	         display: none; 
+	         position: absolute; 
+	         top: 0%; 
+	         left: 0%; 
+	         width: 100%; 
+	         height: 100%; 
+	         background-color: black; 
+	         z-index:1001; 
+	         -moz-opacity: 0.8; 
+	         opacity:.80; 
+	         filter: alpha(opacity=80); 
+	     } 
+	     .white_content { 
+	         display: none; 
+	         position: absolute; 
+	         top: 25%; 
+	         left: 25%; 
+	         width: 270px; 
+	         height: 520px; 
+	         padding: 16px; 
+	         border: 0; 
+	         z-index:1002; 
+	         overflow: auto; 
+	     } 
+	 </style> 
+</HEAD>
+<body leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0">
+
+	<!--menu-->
+	<jsp:include page="/main/menu.jsp" />
+	<!--//menu-->
+	
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" id="Table_01" >
+		<tr>
+			<td align="center">
+				<table width="1200" border="0" cellspacing="0" cellpadding="0" >
+				  <tr>
+				    <td align="center">
+    
+						<table width="1200" border="0" cellspacing="0" cellpadding="0">
+						  <tr>
+						    <td><br><img src="/images/main.jpg"></td>
+						  </tr>
+						  <tr>
+						  	<td>
+						  	
+						  		<div class="wrap_banner">
+									<div class="banner1">
+										<a href="javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">
+											<img src="/images/hyunmoo.jpg" alt="" />
+										</a>
+									</div>
+								<!-- 	
+									<div class="banner2">
+										<a href="/global/ko/hotel/findHtl.asp" target="_self">
+											<img src="/upload/imagePool/201412/MAIN/20141216151422372_1.jpg" alt="" />
+										</a>
+									</div>
+										
+									<div class="banner3">
+										<a href="http://www.lottehotel.com/seoul/ko/offer/eventView.asp?seq=693" target="_blank">
+											<img src="/upload/imagePool/201502/MAIN/20150217153249728_1.jpg" alt="" />
+										</a>
+									</div>
+									
+									<div class="banner4">
+										<a href="http://www.lottehotel.com/city/ulsan/ko/" target="_blank">
+											<img src="/upload/imagePool/201505/MAIN/20150504105320884_1.jpg" alt="" />
+										</a>
+									</div>
+									<!-- //wrap_banner -->
+								</div>
+						  	</td>
+						  </tr>
+						</table>
+					</td>
+				  </tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br><br><br>
+	<!--bottom-->
+	<jsp:include page="/main/bottom.jsp" />
+	<!--//bottom-->
+	
+	<div id="light" class="white_content">
+		<table>
+			<tr>
+				<td>
+					<embed src="/images/content/hyunmoo.mp4" autostart="true"  width="268" height="480"></embed >
+				</td>
+			</tr>
+			<tr height="30" bgcolor="#FFFFFF">
+				<td align="right"><a href = "javascript:void(0);" id='btnClose'>[닫기]</a>&nbsp;&nbsp;&nbsp;</td>
+			</tr>
+		</table>
+	</div>
+    <div id="fade" class="black_overlay"></div> 
+</BODY>
+
+</HTML>
+<script language="javascript" type="text/javascript" src="/js/urban.lib.js?date=1364782903"></script>
+<script>
+embed=$('#light').html();
+$('#btnClose').click(function(){
+ status=$(this).text();
+  if(status=='[닫기]'){$('#light').html(''); $(this).text('');document.getElementById('fade').style.display='none';}
+  else{$('#light').html(embed); $(this).text('[닫기]');}
+});
+</script>
