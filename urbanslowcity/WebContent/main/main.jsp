@@ -62,13 +62,22 @@
 	<!--menu-->
 	<jsp:include page="/main/menu.jsp" />
 	<!--//menu-->
-	
+	<table width="1200" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td align="center"><img src="/images/main/safecamping.jpg"/></td>
+		</tr>
+	</table>
 	<div id="container">
 		<div id="contents">
 			<div id="m_visu" class="section">
 				<div class="gallery_wrap" id="sliderImg01">
 					<div class="inner">
 						<ul class="gallery">
+							<li>
+								<a href="/main/board/view.jsp?num=436&pageNum=1&category=notice">
+									<img src="/images/main/main9.jpg" alt="어반슬로우시티맵버쉽" width="1200" height="390"/>
+								</a>
+							</li>
 							<li>
 								<a href="#">
 									<img src="/images/main/main8.jpg" alt="겨울캠핑균일가이벤트" width="1200" height="390"/>
@@ -138,7 +147,7 @@
 				  </tr>
 				  <tr>
 				    <td align="center">
-				    	<iframe width="980" height="390" src="https://www.youtube.com/embed/aqhngtNurmk?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+				    	<iframe width="980" height="390" src="https://www.youtube.com/embed/aqhngtNurmk?rel=0&amp;showinfo=0;wmode=opaque;" frameborder="0" allowfullscreen></iframe>
 				    </td>
 				  </tr>
 				  <tr>
@@ -146,7 +155,7 @@
 				  </tr>
 				  <tr>
 				    <td align="center">
-				    	<iframe width="980" height="390" src="https://www.youtube.com/embed/WJhmJ-Vue5o?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+				    	<iframe width="980" height="390" src="https://www.youtube.com/embed/WJhmJ-Vue5o?rel=0&amp;showinfo=0;wmode=opaque;" frameborder="0" allowfullscreen></iframe>
 				    </td>
 				  </tr>
 				</table>
