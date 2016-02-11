@@ -62,8 +62,13 @@ public class Board extends HttpServlet {
 						BoardVO article= new BoardVO();
 						article = list.get(i);
 						result = result + expoCont + article.getNum() + param + imgs + article.getThumbImgUrl() + imge;
-						result = result + dl + param + dt + article.getSubject() + dd;
-						result = result + article.getDescription().substring(0,80) + p;
+						result = result + dl + article.getNum() + param + dt + article.getSubject() + dd;
+						String str = article.getDescription().replaceAll("<[^>]*>", " ");
+						if(str.length() > 98){
+							result = result + str.substring(0,98) + p;
+						}else{
+							result = result + str + p;
+						}											
 						result = result + sdf.format(article.getRegDate()) + span + article.getReadCount() + spane;
 					}
 					
