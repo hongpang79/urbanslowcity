@@ -88,13 +88,14 @@
 									<img src="/images/main/main7.jpg" alt="대형화덕" width="1200" height="390"/>
 								</a>
 							</li>
+							<!-- 
 							<li>
 								<a href="/main/board/view.jsp?num=331&pageNum=1&category=notice">
 									<img src="/images/main/main6.jpg" alt="송어잡기" width="1200" height="390"/>
 								</a>
 							</li>
 							 
-							<!-- 
+							
 							<li>
 								<a href="/main/content/glamping.jsp">
 									<img src="/images/main/main5.jpg" alt="감성존" width="1200" height="390"/>
@@ -232,6 +233,7 @@
 						  		<a href="http://www.urbanslowcity.com/main/content/waterLeisureSports.jsp"><img src="/images/main/img_package.jpg"/></a>
 						  	</td>
 						  </tr>
+						  <!-- 
 						  <tr>
 						    <td colspan="3"><br><hr/></br></td>
 						  </tr>
@@ -242,6 +244,7 @@
 						  		<a href="/main/content/handicraft.jsp"><img src="/images/main/handicraft.jpg"/></a>
 						  	</td>
 						  </tr>
+						   -->
 						</table>
 					</td>
 				  </tr>
