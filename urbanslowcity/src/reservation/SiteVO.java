@@ -7,7 +7,9 @@ import java.util.Date;
  CREATE TABLE `zone_infomation` (
   `zone_no` int(3) NOT NULL auto_increment,
   `zone_name` varchar(20) default NULL,
-  `order_no` int(2) NOT NULL
+  `order_no` int(2) NOT NULL,
+  `use_start_day` date default NULL,
+  `use_end_day` date default NULL,
 ) ENGINE=MyISAM DEFAULT CHARSET=euckr;
 
 CREATE TABLE `site_information` (
@@ -43,6 +45,9 @@ CREATE TABLE `product` (
   `sale_start_day` date default NULL,
   `sale_end_day` date default NULL,
   `sale_memo` varchar(255) default NULL,
+  `flat_price` int(6) default NULL,
+  `flat_price_start_day` date default NULL,
+  `flat_price_end_day` date default NULL,
   `product_memo` varchar(255) default NULL,
   PRIMARY KEY  (`product_no`),
   UNIQUE KEY `product_product_name_uk` (`product_name`)
@@ -52,11 +57,11 @@ CREATE TABLE `product` (
 public class SiteVO {
 	
 	String zoneName,siteName,productName,useYn,saleMemo,productMemo;
-	int zoneNo,orderNo,zoneCnt,siteNo,productNo,users,maxUsers,addChildPrice,addUserPrice,sale;
+	int zoneNo,orderNo,zoneCnt,siteNo,productNo,users,maxUsers,addChildPrice,addUserPrice,sale,flatPrice;
 	int lowSeasonWeekday,lowSeasonWeekend,lowSeasonPicnic;
 	int highSeasonWeekday,highSeasonWeekend,highSeasonPicnic;
 	int middleSeasonWeekday,middleSeasonWeekend,middleSeasonPicnic;
-	Date displayStartDay,displayEndDay,saleStartDay,saleEndDay;
+	Date displayStartDay,displayEndDay,saleStartDay,saleEndDay,flatPriceStartDay,flatPriceEndDay,useStartDay,useEndDay;
 	
 	public int getLowSeasonPicnic() {
 		return lowSeasonPicnic;
@@ -244,5 +249,35 @@ public class SiteVO {
 	}
 	public void setSaleMemo(String saleMemo) {
 		this.saleMemo = saleMemo;
+	}
+	public int getFlatPrice() {
+		return flatPrice;
+	}
+	public void setFlatPrice(int flatPrice) {
+		this.flatPrice = flatPrice;
+	}
+	public Date getFlatPriceStartDay() {
+		return flatPriceStartDay;
+	}
+	public void setFlatPriceStartDay(Date flatPriceStartDay) {
+		this.flatPriceStartDay = flatPriceStartDay;
+	}
+	public Date getFlatPriceEndDay() {
+		return flatPriceEndDay;
+	}
+	public void setFlatPriceEndDay(Date flatPriceEndDay) {
+		this.flatPriceEndDay = flatPriceEndDay;
+	}
+	public Date getUseStartDay() {
+		return useStartDay;
+	}
+	public void setUseStartDay(Date useStartDay) {
+		this.useStartDay = useStartDay;
+	}
+	public Date getUseEndDay() {
+		return useEndDay;
+	}
+	public void setUseEndDay(Date useEndDay) {
+		this.useEndDay = useEndDay;
 	}
 }

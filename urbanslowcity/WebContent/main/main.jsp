@@ -74,13 +74,13 @@
 					<div class="inner">
 						<ul class="gallery">
 							<li>
-								<a href="/main/board/view.jsp?num=436&pageNum=1&category=notice">
-									<img src="/images/main/main9.jpg" alt="어반슬로우시티맵버쉽" width="1200" height="390"/>
+								<a href="/main/board/view.jsp?num=444&pageNum=1&category=notice">
+									<img src="/images/main/main10.jpg" alt="겨울캠핑균일가이벤트" width="1200" height="390"/>
 								</a>
 							</li>
 							<li>
-								<a href="#">
-									<img src="/images/main/main8.jpg" alt="겨울캠핑균일가이벤트" width="1200" height="390"/>
+								<a href="/main/board/view.jsp?num=436&pageNum=1&category=notice">
+									<img src="/images/main/main9.jpg" alt="어반슬로우시티맵버쉽" width="1200" height="390"/>
 								</a>
 							</li>
 							<li>

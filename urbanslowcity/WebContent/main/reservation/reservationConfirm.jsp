@@ -529,15 +529,18 @@ $("#productNo").change(function(){
 					saleMemo = obj.data.saleMemo;
 					saleMemo = saleMemo + " " + obj.data.sale + "%";
 				}
+				if(obj.data.flatPriceYn == "Y"){
+					saleMemo = obj.data.saleMemo;
+				}
 				
 				document.getElementById("mmemo").innerHTML="  (기준인원"+obj.data.users+"명/최대인원"+obj.data.maxUser+"명)<br>(기준인원 초과시 아동 한명당 "+number_format(obj.data.addChildPrice)+"원, 일반 한명당 "+number_format(obj.data.addUserPrice)+"원 추가)";
 				document.getElementById("allMondy").innerHTML=number_format(obj.data.payMoney)+"원";
 				document.getElementById("wday").innerHTML="-비수기<br />"
-						+"(평일 "+number_format(obj.data.lowSeasonWeekday)+"원 추가 / 주말 "+number_format(obj.data.lowSeasonWeekend)+"원 추가 / Picnic "+number_format(obj.data.lowSeasonPicnic)+"원)<br />"
+						+"(평일 "+number_format(obj.data.lowSeasonWeekday)+"원  / 주말 "+number_format(obj.data.lowSeasonWeekend)+"원  / Picnic "+number_format(obj.data.lowSeasonPicnic)+"원)<br />"
 						+"-준성수기<br />"
-						+"(평일 "+number_format(obj.data.middleSeasonWeekday)+"원 추가 / 주말 "+number_format(obj.data.middleSeasonWeekend)+"원 추가 / Picnic "+number_format(obj.data.middleSeasonPicnic)+"원)<br />"
+						+"(평일 "+number_format(obj.data.middleSeasonWeekday)+"원  / 주말 "+number_format(obj.data.middleSeasonWeekend)+"원  / Picnic "+number_format(obj.data.middleSeasonPicnic)+"원)<br />"
 						+"-성수기<br />"
-						+"(평일 "+number_format(obj.data.highSeasonWeekday)+"원 추가 / 주말 "+number_format(obj.data.highSeasonWeekend)+"원 추가 / Picnic "+number_format(obj.data.highSeasonPicnic)+"원<br />"
+						+"(평일 "+number_format(obj.data.highSeasonWeekday)+"원  / 주말 "+number_format(obj.data.highSeasonWeekend)+"원  / Picnic "+number_format(obj.data.highSeasonPicnic)+"원<br />"
 						+"<br/><font color='red'>"+saleMemo+"<br/>"+obj.data.productMemo+"</font>";
 				//$("#mmemo").val("추가 (한명 추가당 "+number_format(obj.data.addman)+"원 추가)");
 				//$("#wday").val("비수기 평일 "+number_format(obj.data.weekday)+"원 추가<br />"

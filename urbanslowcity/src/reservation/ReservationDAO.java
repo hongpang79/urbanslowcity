@@ -81,12 +81,12 @@ public class ReservationDAO {
 	}
 	
 	// zone별 site개수
-	public Vector<SiteVO> getZoneInformation(){
+	public Vector<SiteVO> getZoneInformation(String ym){
 		Vector<SiteVO> countSite = new Vector<SiteVO>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "select z.zone_name, count(*) as zone_cnt from zone_information z, site_information s where z.zone_no = s.zone_no group by z.zone_name order by z.order_no";
+		String SQL = "select z.zone_name, count(*) as zone_cnt from zone_information z, site_information s where z.zone_no = s.zone_no and use_start_day <= '"+ym+"-01' and use_end_day >= '"+ym+"-28' group by z.zone_name order by z.order_no";
 		try{
 			conn = ConnectionUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
@@ -259,6 +259,9 @@ public class ReservationDAO {
 				site.setSaleStartDay(rs.getDate("sale_start_day"));
 				site.setSaleEndDay(rs.getDate("sale_end_day"));
 				site.setSaleMemo(rs.getString("sale_memo"));
+				site.setFlatPrice(rs.getInt("flat_price"));
+				site.setFlatPriceStartDay(rs.getDate("flat_price_start_day"));
+				site.setFlatPriceEndDay(rs.getDate("flat_price_end_day"));
 				site.setProductMemo(rs.getString("product_memo"));
 			}
 		}catch(Exception e){
@@ -308,7 +311,7 @@ public class ReservationDAO {
 	}
 	
 	// 선택한 방에 기간별 가격(성수기,주말등에 따른 변동 가격정리)
-	public String payMoney(String saleYn, SiteVO site, HttpServletRequest request){
+	public String payMoney(String saleYn, String flatPriceYn, SiteVO site, HttpServletRequest request){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -341,7 +344,7 @@ public class ReservationDAO {
 //			String[] da = {"일","월","화","수","목","금","토"};
 			Calendar chooseCal = Calendar.getInstance();
 			chooseCal.set(Integer.parseInt(chooseDate.substring(0,4)),Integer.parseInt(chooseDate.substring(4,6))-1,Integer.parseInt(chooseDate.substring(6,8)));
-			int[] price = new int[maxRange];
+//			int[] price = new int[maxRange];
 //			String[] days = new String[maxRange];
 			int payMoney = 0;
 			
@@ -350,7 +353,7 @@ public class ReservationDAO {
 			pstmt = conn.prepareStatement(SQL);
 			String seasonCode = "L"; 
 //			System.out.println("maxRange = " + maxRange);
-			if(maxRange == 0){
+			if(maxRange == 0){	//피크닉인경우
 				String chkDate = chooseCal.get(Calendar.YEAR)+"-"+((chooseCal.get(Calendar.MONTH)+1) < 10 ? "0"+(chooseCal.get(Calendar.MONTH)+1) : chooseCal.get(Calendar.MONTH)+1) +"-"+chooseCal.get(Calendar.DATE);
 				int day = chooseCal.get(Calendar.DAY_OF_WEEK);	// 선택날에 해당하는 요일 [일요일=1 1~7]
 				boolean holiday = util.CommonUtil.holidayCheckAfterDay(chooseDate); //선택날 다음날이 공휴일이면 피크닉불가
@@ -384,73 +387,81 @@ public class ReservationDAO {
 				}
 			}else{
 				for( int i=0; i<maxRange ; i++ ){
-					//int chkDate = Integer.parseInt(chooseCal.get(Calendar.YEAR)+""+((chooseCal.get(Calendar.MONTH)+1) < 10 ? "0"+(chooseCal.get(Calendar.MONTH)+1) : chooseCal.get(Calendar.MONTH)+1) +""+chooseCal.get(Calendar.DATE));
-					String chkDate = chooseCal.get(Calendar.YEAR)+"-"+((chooseCal.get(Calendar.MONTH)+1) < 10 ? "0"+(chooseCal.get(Calendar.MONTH)+1) : chooseCal.get(Calendar.MONTH)+1) +"-"+chooseCal.get(Calendar.DATE);
-					int day = chooseCal.get(Calendar.DAY_OF_WEEK);	// 선택날에 해당하는 요일 [일요일=1 1~7]
-//					System.out.print(day+" ");
-//					days[i] = da[day-1];
-					
-					boolean holiday = util.CommonUtil.holidayCheckAfterDay(chooseDate); //선택날 다음날이 공휴일이면 주말가격임.
-					if( holiday){
-						day = 8;
-					}
-					
-					chooseCal.add(Calendar.DAY_OF_MONTH, 1);
-//					System.out.print(chooseCal.DAY_OF_MONTH+" ");
-					
-					pstmt.setString(1, chkDate);
-					pstmt.setString(2, chkDate);
-					rs = pstmt.executeQuery();
-					
-					if( rs.next() ){
-						seasonCode = rs.getString("season_code");
-					}
-					
-					if( day == 7 || day == 8){	// 금요일 또는 토요일 (주말), 국경일     ---   금요일 (10/31까지 평일가격으로) day == 6 ||
-						if(seasonCode.equals("L")){
-							price[i] = site.getLowSeasonWeekend();
-							payMoney = payMoney + site.getLowSeasonWeekend();
-						}else if(seasonCode.equals("H")){
-							price[i] = site.getHighSeasonWeekend();
-							payMoney = payMoney + site.getHighSeasonWeekend();
-						}else if(seasonCode.equals("M")){
-							price[i] = site.getLowSeasonWeekday();
-							payMoney = payMoney + site.getMiddleSeasonWeekend();
-						}
+					if(flatPriceYn.equals("Y")){ //균일가 기간에는 평일/주말 체크로직 없이 일괄 적용
+						payMoney = payMoney + site.getFlatPrice();
+						
 					}else{
-						if(seasonCode.equals("L")){
-							price[i] = site.getLowSeasonWeekday();
-							payMoney = payMoney + site.getLowSeasonWeekday();
-						}else if(seasonCode.equals("H")){
-							price[i] = site.getHighSeasonWeekday();
-							payMoney = payMoney + site.getHighSeasonWeekday();
-						}else if(seasonCode.equals("M")){
-							price[i] = site.getHighSeasonWeekday();
-							payMoney = payMoney + site.getMiddleSeasonWeekday();
+						
+						
+						//int chkDate = Integer.parseInt(chooseCal.get(Calendar.YEAR)+""+((chooseCal.get(Calendar.MONTH)+1) < 10 ? "0"+(chooseCal.get(Calendar.MONTH)+1) : chooseCal.get(Calendar.MONTH)+1) +""+chooseCal.get(Calendar.DATE));
+						String chkDate = chooseCal.get(Calendar.YEAR)+"-"+((chooseCal.get(Calendar.MONTH)+1) < 10 ? "0"+(chooseCal.get(Calendar.MONTH)+1) : chooseCal.get(Calendar.MONTH)+1) +"-"+chooseCal.get(Calendar.DATE);
+						int day = chooseCal.get(Calendar.DAY_OF_WEEK);	// 선택날에 해당하는 요일 [일요일=1 1~7]
+	//					System.out.print(day+" ");
+	//					days[i] = da[day-1];
+						
+						boolean holiday = util.CommonUtil.holidayCheckAfterDay(chooseDate); //선택날 다음날이 공휴일이면 주말가격임.
+						if( holiday){
+							day = 8;
 						}
-					}
-					
-					/*
-					if( chkDate >= sSea && chkDate <= eSea ){	// 성수기
-						if( day == 6 || day == 7 ){	// 금요일 또는 토요일 (주말)
-							price[i] = site.getHighSeasonWeekend();
-							payMoney = payMoney + site.getHighSeasonWeekend();
-						}else{ // 성수기 평일
-							price[i] = site.getHighSeasonWeekday();
-							payMoney = payMoney + site.getHighSeasonWeekday();
+						
+						chooseCal.add(Calendar.DAY_OF_MONTH, 1);
+	//					System.out.print(chooseCal.DAY_OF_MONTH+" ");
+						
+						pstmt.setString(1, chkDate);
+						pstmt.setString(2, chkDate);
+						rs = pstmt.executeQuery();
+						
+						if( rs.next() ){
+							seasonCode = rs.getString("season_code");
 						}
-					}else{	// 비수기
-						if( day == 6 || day == 7 ){	// 금요일 또는 토요일 (주말)
-							price[i] = site.getLowSeasonWeekend();
-							payMoney = payMoney + site.getLowSeasonWeekend();
-						}else{ // 비수기 평일
-							price[i] = site.getLowSeasonWeekday();
-							payMoney = payMoney + site.getLowSeasonWeekday();
+						
+						if( day == 7 || day == 8){	// 금요일 또는 토요일 (주말), 국경일     ---   금요일 (10/31까지 평일가격으로) day == 6 ||
+							if(seasonCode.equals("L")){
+//								price[i] = site.getLowSeasonWeekend();
+								payMoney = payMoney + site.getLowSeasonWeekend();
+							}else if(seasonCode.equals("H")){
+//								price[i] = site.getHighSeasonWeekend();
+								payMoney = payMoney + site.getHighSeasonWeekend();
+							}else if(seasonCode.equals("M")){
+//								price[i] = site.getLowSeasonWeekday();
+								payMoney = payMoney + site.getMiddleSeasonWeekend();
+							}
+						}else{
+							if(seasonCode.equals("L")){
+//								price[i] = site.getLowSeasonWeekday();
+								payMoney = payMoney + site.getLowSeasonWeekday();
+							}else if(seasonCode.equals("H")){
+//								price[i] = site.getHighSeasonWeekday();
+								payMoney = payMoney + site.getHighSeasonWeekday();
+							}else if(seasonCode.equals("M")){
+//								price[i] = site.getHighSeasonWeekday();
+								payMoney = payMoney + site.getMiddleSeasonWeekday();
+							}
 						}
-					}
-					*/
-					
-				} // for 문끝
+						
+						/*
+						if( chkDate >= sSea && chkDate <= eSea ){	// 성수기
+							if( day == 6 || day == 7 ){	// 금요일 또는 토요일 (주말)
+								price[i] = site.getHighSeasonWeekend();
+								payMoney = payMoney + site.getHighSeasonWeekend();
+							}else{ // 성수기 평일
+								price[i] = site.getHighSeasonWeekday();
+								payMoney = payMoney + site.getHighSeasonWeekday();
+							}
+						}else{	// 비수기
+							if( day == 6 || day == 7 ){	// 금요일 또는 토요일 (주말)
+								price[i] = site.getLowSeasonWeekend();
+								payMoney = payMoney + site.getLowSeasonWeekend();
+							}else{ // 비수기 평일
+								price[i] = site.getLowSeasonWeekday();
+								payMoney = payMoney + site.getLowSeasonWeekday();
+							}
+						}
+						*/
+						
+					} // for 문끝
+				}
+				
 				if(saleYn.equals("Y")){
 					int isale = site.getSale();
 					isale = (payMoney * isale) / 100;

@@ -43,6 +43,9 @@ int sale = 0;
 String saleStartDay = "";
 String saleEndDay = "";
 String saleMemo = "";
+int flatPrice = 0;
+String flatPriceStartDay = "";
+String flatPriceEndDay = "";
 String productMemo = "";
 String msg = "";
 int rtn = 0;
@@ -76,6 +79,9 @@ if(step.equals("new")){
 	saleStartDay =product.getSaleStartDay()==null?"":transFormat.format(product.getSaleStartDay());
 	saleEndDay = product.getSaleEndDay()==null?"":transFormat.format(product.getSaleEndDay());
 	saleMemo = product.getSaleMemo();
+	flatPrice = product.getFlatPrice();
+	flatPriceStartDay = product.getFlatPriceStartDay()==null?"":transFormat.format(product.getFlatPriceStartDay());;
+	flatPriceEndDay = product.getFlatPriceEndDay()==null?"":transFormat.format(product.getFlatPriceEndDay());;
 	productMemo = product.getProductMemo();
 	
 	//siteList = ProductDAO.getInstance().selectSiteList(zoneNo); 
@@ -143,7 +149,7 @@ $(document).ready(
 );
 	
 $(function() {
-	  $( "#datepicker1, #datepicker2, #datepicker3, #datepicker4" ).datepicker({
+	  $( "#datepicker1, #datepicker2, #datepicker3, #datepicker4, #datepicker5, #datepicker6" ).datepicker({
 	    dateFormat: 'yy-mm-dd',
 	    prevText: '이전 달',
 	    nextText: '다음 달',
@@ -308,6 +314,13 @@ $(function() {
 			<input type="radio" name="useYn" value="N" <% if(useYn.equals("N")){ %> checked <%} %>/>진열안함</td>
 	</tr>
 	<tr>
+		<th>균일가</th>
+		<td><input type="text" name="flatPrice" size="18" style="text-align:right;padding-right:1px;" value="<%=flatPrice %>"> 원</td>
+		<th>균일가기간</th>
+		<td><input type="text" id="datepicker5" name="flatPriceStartDay" size="12" value="<%=flatPriceStartDay %>" /> ~
+			<input type="text" id="datepicker6" name="flatPriceEndDay" size="12" value="<%=flatPriceEndDay %>" /></td>
+	</tr>
+	<tr>
 		<th>sale</th>
 		<td><input type="text" name="sale" size="6" style="text-align:right;padding-right:1px;" value="<%=sale%>"> %</td>
 		<th>sale기간</th>
@@ -315,7 +328,7 @@ $(function() {
             <input type="text" id="datepicker4" name="saleEndDay" size="12" value="<%=saleEndDay%>" /></td>
 	</tr>
 	<tr>
-		<th>sale설명</th>
+		<th>sale/균일가 설명</th>
 		<td colspan="3"><textarea cols="70" rows="12" name="saleMemo" id="saleMemo" style="padding:10px;"><%=saleMemo.replace("\r\n","<br/>") %></textarea></td>
 	</tr>
 	<tr>

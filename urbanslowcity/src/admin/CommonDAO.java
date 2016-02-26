@@ -639,18 +639,44 @@ public class CommonDAO {
 			if(cmd.equals("insert")){
 				String zoneName = request.getParameter("zoneName");
 				int orderNo = Integer.parseInt((String) request.getParameter("orderNo"));
+				String useStartDay = request.getParameter("useStartDay");
+				String useEndDay = request.getParameter("useEndDay");
 				
 				SQL = "UPDATE zone_information SET order_no = order_no+1 WHERE order_no >= ?";
 				pstmt = conn.prepareStatement(SQL);
 				pstmt.setInt(1, orderNo);
 				rtn = pstmt.executeUpdate();
 				
-				SQL = "INSERT INTO zone_information(zone_name, order_no) VALUES (?,?) ";
+				SQL = "INSERT INTO zone_information(zone_name, order_no, use_start_day, use_end_day) VALUES (?,?,?,?) ";
 				pstmt = conn.prepareStatement(SQL);
 				pstmt.setString(1, zoneName);
 				pstmt.setInt(2, orderNo);
+				pstmt.setString(3, useStartDay);
+				pstmt.setString(4, useEndDay);
 				
 				msg = "저장되었습니다.";
+				
+			}else if(cmd.equals("edit")){
+				int zoneNo = Integer.parseInt((String) request.getParameter("zoneNoOrg"));
+				String zoneName = request.getParameter("zoneName");
+				int orderNo = Integer.parseInt((String) request.getParameter("orderNoOrg"));
+				String useStartDay = request.getParameter("useStartDay");
+				String useEndDay = request.getParameter("useEndDay");
+				
+				SQL = "UPDATE zone_information SET order_no = order_no+1 WHERE order_no >= ?";
+				pstmt = conn.prepareStatement(SQL);
+				pstmt.setInt(1, orderNo);
+				rtn = pstmt.executeUpdate();
+				
+				SQL = "UPDATE zone_information SET zone_name=?, order_no=?, use_start_day=?, use_end_day=? WHERE zone_no=?";
+				pstmt = conn.prepareStatement(SQL);
+				pstmt.setString(1, zoneName);
+				pstmt.setInt(2, orderNo);
+				pstmt.setString(3, useStartDay);
+				pstmt.setString(4, useEndDay);
+				pstmt.setInt(5, zoneNo);
+				
+				msg = "수정되었습니다.";
 			
 			}else if(cmd.equals("delete")){
 				int zoneNo = Integer.parseInt((String) request.getParameter("zoneNo"));

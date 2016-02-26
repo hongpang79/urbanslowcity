@@ -72,6 +72,9 @@ public class ProductDAO {
 					product.setSale(rs.getInt("sale"));
 					product.setSaleStartDay(rs.getDate("sale_start_day"));
 					product.setSaleEndDay(rs.getDate("sale_end_day"));
+					product.setFlatPrice(rs.getInt("flat_price"));
+					product.setFlatPriceStartDay(rs.getDate("flat_price_start_day"));
+					product.setFlatPriceEndDay(rs.getDate("flat_price_end_day"));
 					product.setUseYn(rs.getString("use_yn"));
 					product.setProductMemo(rs.getString("product_memo"));
 					product.setSaleMemo(rs.getString("sale_memo"));
@@ -127,6 +130,9 @@ public class ProductDAO {
 					product.setSaleStartDay(rs.getDate("sale_start_day"));
 					product.setSaleEndDay(rs.getDate("sale_end_day"));
 					product.setSaleMemo(rs.getString("sale_memo"));
+					product.setFlatPrice(rs.getInt("flat_price"));
+					product.setFlatPriceStartDay(rs.getDate("flat_price_start_day"));
+					product.setFlatPriceEndDay(rs.getDate("flat_price_end_day"));
 					product.setProductMemo(rs.getString("product_memo"));
 				}while(rs.next());
 			}
@@ -146,7 +152,7 @@ public class ProductDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String SQL = "SELECT zone_no, zone_name, order_no  FROM zone_information " +
+		String SQL = "SELECT zone_no, zone_name, order_no, use_start_day, use_end_day  FROM zone_information " +
 	             "ORDER BY order_no ASC";
 //				System.out.println("[ProductDAO][selectZoneList] SQL = " + SQL);
 		try{
@@ -161,6 +167,8 @@ public class ProductDAO {
 					zone.setZoneNo(rs.getInt("zone_no"));
 					zone.setZoneName(rs.getString("zone_name"));
 					zone.setOrderNo(rs.getInt("order_no"));
+					zone.setUseStartDay(rs.getDate("use_start_day"));
+					zone.setUseEndDay(rs.getDate("use_end_day"));
 					zones.add(zone);
 				}while(rs.next());
 			}
@@ -275,6 +283,9 @@ public class ProductDAO {
 		String saleStartDay = "";
 		String saleEndDay = "";
 		String saleMemo = "";
+		int flatPrice = 0;
+		String flatPriceStartDay = "";
+		String flatPriceEndDay = "";
 		String productMemo = "";
 		
 		String SQL = "";
@@ -306,6 +317,9 @@ public class ProductDAO {
 				saleStartDay = request.getParameter("saleStartDay")==""?null:request.getParameter("saleStartDay");
 				saleEndDay = request.getParameter("saleEndDay")==""?null:request.getParameter("saleEndDay");
 				saleMemo = request.getParameter("saleMemo");
+				flatPrice = Integer.parseInt((String)request.getParameter("flatPrice"));
+				flatPriceStartDay = request.getParameter("flatPriceStartDay")==""?null:request.getParameter("flatPriceStartDay");
+				flatPriceEndDay = request.getParameter("flatPriceEndDay")==""?null:request.getParameter("flatPriceEndDay");
 				productMemo = request.getParameter("productMemo");
 			}
 		
@@ -313,8 +327,8 @@ public class ProductDAO {
 				SQL = "INSERT INTO product (product_name,zone_no,site_no,site_name,users,max_users,add_child_price,add_user_price,"
 			        + "low_season_weekday,low_season_weekend,low_season_picnic,middle_season_weekday,middle_season_weekend,middle_season_picnic,"
 			        + "high_season_weekday,high_season_weekend,high_season_picnic,display_start_day,display_end_day,"
-			        + "use_yn,sale,sale_start_day,sale_end_day,sale_memo,product_memo) "
-					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			        + "use_yn,sale,sale_start_day,sale_end_day,sale_memo,flat_price,flat_price_start_day,flat_price_end_day,product_memo) "
+					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				conn = ConnectionUtil.getConnection();
 				pstmt = conn.prepareStatement(SQL);
 				pstmt.setString(1, productName);
@@ -341,7 +355,10 @@ public class ProductDAO {
 				pstmt.setString(22, saleStartDay);
 				pstmt.setString(23, saleEndDay);
 				pstmt.setString(24, saleMemo);
-				pstmt.setString(25, productMemo);
+				pstmt.setInt(25, flatPrice);
+				pstmt.setString(26, flatPriceStartDay);
+				pstmt.setString(27, flatPriceEndDay);
+				pstmt.setString(28, productMemo);
 				
 				rtn = pstmt.executeUpdate();
 				
@@ -350,7 +367,7 @@ public class ProductDAO {
 				SQL = "UPDATE product SET product_name=?, zone_no=?, site_no=?, site_name=?, users=?, max_users=?,  " 
 				    + "add_child_price=?, add_user_price=?, low_season_weekday=?, low_season_weekend=?, low_season_picnic=?, "
 				    + "middle_season_weekday=?, middle_season_weekend=?, middle_season_picnic=?, high_season_weekday=?, high_season_weekend=?, high_season_picnic=?, "
-				    + "display_start_day=?, display_end_day=?, use_yn=?, sale=?, sale_start_day=?, sale_end_day=?, sale_memo=?, product_memo=? "
+				    + "display_start_day=?, display_end_day=?, use_yn=?, sale=?, sale_start_day=?, sale_end_day=?, sale_memo=?, flat_price=?,flat_price_start_day=?,flat_price_end_day=?, product_memo=? "
 				    + "WHERE product_no = ?";
 				
 				conn = ConnectionUtil.getConnection();
@@ -379,8 +396,11 @@ public class ProductDAO {
 				pstmt.setString(22, saleStartDay);
 				pstmt.setString(23, saleEndDay);
 				pstmt.setString(24, saleMemo);
-				pstmt.setString(25, productMemo);
-				pstmt.setInt(26, productNo);
+				pstmt.setInt(25, flatPrice);
+				pstmt.setString(26, flatPriceStartDay);
+				pstmt.setString(27, flatPriceEndDay);
+				pstmt.setString(28, productMemo);
+				pstmt.setInt(29, productNo);
 				
 				rtn = pstmt.executeUpdate();
 				

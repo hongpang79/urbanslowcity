@@ -55,6 +55,8 @@ CREATE TABLE `zone_information` (
   `zone_no` int(3) NOT NULL auto_increment,
   `zone_name` varchar(20) default NULL,
   `order_no` int(2) NOT NULL,
+  `use_start_day` date default NULL,
+  `use_end_day` date default NULL,
   PRIMARY KEY  (`zone_no`)
 ) ENGINE=MyISAM DEFAULT CHARSET=euckr;
 
@@ -143,6 +145,9 @@ CREATE TABLE `product` (
   `sale_start_day` date default NULL,
   `sale_end_day` date default NULL,
   `sale_memo` varchar(255) default NULL,
+  `flat_price` int(6) default NULL,
+  `flat_price_start_day` date default NULL,
+  `flat_price_end_day` date default NULL,
   `product_memo` varchar(255) default NULL,
   PRIMARY KEY  (`product_no`)
 ) ENGINE=MyISAM DEFAULT CHARSET=euckr;
@@ -457,5 +462,21 @@ insert into popup values('layer_pop1','position:absolute; width:387px;left:26%;m
 insert into popup values('layer_pop0','position:absolute; width:387px;left:26%;margin-left:-200px; top:250px; z-index:1', '/images/notice.jpg','event_notice0','<area shape="rect" coords="333,229,379,239" href="javascript:pop_close(\'layer_pop0\');" />','입금자 찾기','N',now(),now());
 insert into popup values('layer_pop2','position:absolute; width:387px;left:26%;margin-left:-200px; top:250px; z-index:1', '/images/main/IMG_5939_popup.jpg','event_notice0','<area shape="rect" coords="401,550,430,565" href="javascript:pop_close(\'layer_pop2\');" /><area shape="rect" coords="2,1,430,546" href="/main/board/view.jsp?num=396&pageNum=1&category=notice" />','클캠이벤트','N',now(),now());
 insert into popup values('layer_pop3','position:absolute; width:433px;left:26%;margin-left:-200px; top:250px; z-index:1', '/images/main/SOLOCAMP.jpg','event_notice3','<area shape="rect" coords="395,638,433,650" href="javascript:pop_close(\'layer_pop3\');" /><area shape="rect" coords="2,2,433,637" href="/main/board/view.jsp?num=429&pageNum=1&category=notice" />','솔캠이벤트','N',now(),now());
-insert into popup values('layer_pop4','position:absolute; width:433px;left:26%;margin-left:-200px; top:250px; z-index:1', '/images/main/membershippopup.jpg','event_notice4','<area shape="rect" coords="368,391,408,408" href="javascript:pop_close(\'layer_pop4\');" /><area shape="rect" coords="2,1,415,387" href="/main/board/view.jsp?num=436&pageNum=1&category=notice" />','맴버쉽','Y',now(),now());
+insert into popup values('layer_pop4','position:absolute; width:433px;left:26%;margin-left:500px; top:450px; z-index:1', '/images/main/membershippopup.jpg','event_notice4','<area shape="rect" coords="368,391,408,408" href="javascript:pop_close(\'layer_pop4\');" /><area shape="rect" coords="2,1,415,387" href="/main/board/view.jsp?num=436&pageNum=1&category=notice" />','맴버쉽','Y',now(),now());
+insert into popup values('layer_pop5','position:absolute; width:433px;left:26%;margin-left:0px; top:450px; z-index:1', '/images/main/201603event_popup.jpg','event_notice5','<area shape="rect" coords="447,403,488,418" href="javascript:pop_close(\'layer_pop5\');" /><area shape="rect" coords="0,1,487,400" href="/main/board/view.jsp?num=436&pageNum=1&category=notice" />','2016특가이벤트','Y',now(),now());
 
+
+
+/**
+ALTER TABLE `urbanslowcity`.`product` 
+CHANGE COLUMN `product_no` `product_no` INT(3) NOT NULL ,
+ADD COLUMN `flat_price` INT(6) NULL DEFAULT NULL AFTER `product_memo`,
+ADD COLUMN `flat_price_start_day` DATE NULL DEFAULT NULL AFTER `flat_price`,
+ADD COLUMN `flat_price_end_day` DATE NULL DEFAULT NULL AFTER `flat_price_start_day`,
+ADD COLUMN `productcol` VARCHAR(45) NULL AFTER `flat_price_end_day`;
+update product set flat_price = '99000' , flat_price_start_day = '2016-03-01', flat_price_end_day = '2016-03-31';
+
+ALTER TABLE `urbanslowcity`.`zone_information` 
+ADD COLUMN `use_start_day` DATE NULL DEFAULT NULL AFTER `order_no`,
+ADD COLUMN `use_end_day` DATE NULL DEFAULT NULL AFTER `use_start_day`;
+update zone_information set use_start_day = '2015-06-01', use_end_day = '2024-12-31';

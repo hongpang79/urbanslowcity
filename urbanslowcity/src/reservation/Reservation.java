@@ -47,6 +47,7 @@ public class Reservation extends HttpServlet {
 			TimeZone tz = TimeZone.getTimeZone("GMT+09:00");
 			rightNow.setTimeZone(tz);
 			String currentDay = sdf.format(rightNow.getTime()); 
+//			System.out.println("currentDay : "+ currentDay);
 			
 			String nowYear = currentDay.substring(0,4);
 			String nowMonth = currentDay.substring(4,6);
@@ -66,9 +67,11 @@ public class Reservation extends HttpServlet {
 			request.setAttribute("year",year);
 			request.setAttribute("month",month);
 			
+			String ym = year + "-" + month;
+			
 			ReservationDAO action = new ReservationDAO();
 			Vector<SeasonVO> seasons = action.getSeason(request); // 성수기 기간
-			Vector<SiteVO> zone = action.getZoneInformation();
+			Vector<SiteVO> zone = action.getZoneInformation(ym);
 			if( zone == null ) {
 				path = "/main/reservation/information.jsp";
 			}
@@ -113,19 +116,29 @@ public class Reservation extends HttpServlet {
 			//action.getDepositInformation(request); // 계좌정보
 //			Vector<SeasonVO> season = action.getSeason(request); // 성수기 기간
 			SiteVO site = action.getSiteForNo(productNo); // site
+			int curd = Integer.parseInt(chooseDate);
 			String saleYn = "N";
 			if(site.getSaleStartDay() != null){
 				String ssd = sdf.format(site.getSaleStartDay());
 				String sed = sdf.format(site.getSaleEndDay());
 				int issd = Integer.parseInt(ssd);
 				int ised = Integer.parseInt(sed);
-				int curd = Integer.parseInt(chooseDate);
 				if(issd <= curd && ised >= curd){
 					saleYn = "Y";
 				}
 			}
+			String flatPriceYn = "N";
+			if(site.getFlatPriceStartDay() != null){
+				String fsd = sdf.format(site.getFlatPriceStartDay());
+				String fed = sdf.format(site.getFlatPriceEndDay());
+				int ifsd = Integer.parseInt(fsd);
+				int ifed = Integer.parseInt(fed);
+				if(ifsd <= curd && ifed >= curd){
+					flatPriceYn = "Y";
+				}
+			}
 			
-			String payMoney = action.payMoney(saleYn, site, request);
+			String payMoney = action.payMoney(saleYn, flatPriceYn, site, request);
 			
 			Map<String,String> resultMap = new HashMap<String,String>();
 			resultMap.put("productNo", Integer.toString(site.getProductNo()));
@@ -146,6 +159,7 @@ public class Reservation extends HttpServlet {
 			resultMap.put("highSeasonPicnic", Integer.toString(site.getHighSeasonPicnic()));
 			resultMap.put("sale", Integer.toString(site.getSale()));
 			resultMap.put("saleYn", saleYn);
+			resultMap.put("flatPriceYn", flatPriceYn);
 			resultMap.put("saleMemo", site.getSaleMemo());
 			resultMap.put("productMemo", site.getProductMemo());
 			resultMap.put("payMoney", payMoney);

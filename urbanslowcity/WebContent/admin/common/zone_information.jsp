@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.Vector" %>
 <%@ page import="java.text.NumberFormat" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="reservation.SiteVO" %>
 <%@ page import="admin.CommonDAO" %>
 <%@ page import="admin.ProductDAO" %>
 <%
 request.setCharacterEncoding("UTF-8");
 NumberFormat nf = NumberFormat.getInstance();
+SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 String cmd = request.getParameter("cmd")==null?"list":request.getParameter("cmd");
 String msg = "";
@@ -22,7 +24,9 @@ if(!cmd.equals("list")){
 <link rel='stylesheet' type='text/css' href='/admin/css/admin.css'>
 <script language=javascript src='/admin/js/common.js'></script>
 <script language=javascript src='/admin/js/admin.js'></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
 </head>
 
 <body bgcolor='#FFFFFF' topmargin='0' leftmargin='0'>
@@ -108,6 +112,34 @@ function numnberCheck()
 	}
 }
 
+function editZone(zoneNo,zoneName,orderNo,useStartDay,useEndDay)
+{
+	var f = document.addform;
+
+	document.addform.cmd.value = 'edit';
+	document.getElementsByName( 'zoneNoOrg' )[0].value = zoneNo;
+	document.getElementsByName( 'zoneName' )[0].value = zoneName;
+	document.getElementsByName( 'orderNoOrg' )[0].value = orderNo;
+	document.getElementsByName( 'useStartDay' )[0].value = useStartDay;
+	document.getElementsByName( 'useEndDay' )[0].value = useEndDay;
+	
+}
+
+$(function() {
+	  $( "#datepicker1, #datepicker2" ).datepicker({
+	    dateFormat: 'yy-mm-dd',
+	    prevText: '이전 달',
+	    nextText: '다음 달',
+	    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	    dayNames: ['일','월','화','수','목','금','토'],
+	    dayNamesShort: ['일','월','화','수','목','금','토'],
+	    dayNamesMin: ['일','월','화','수','목','금','토'],
+	    showMonthAfterYear: true,
+	    yearSuffix: '년'
+	  });
+	});
+	
 </script>
 <!--본문 타이틀------------------------------------------------------------>
 <ul class="content_title">
@@ -133,7 +165,9 @@ function numnberCheck()
 						<thead>
 						<tr height='28'>
 							<th width='250' align="center">ZONE</th>
-							<th width='200' align="center">정렬순서</th>
+							<th width='80' align="center">정렬순서</th>
+							<th align="center">사용시작일자</th>
+							<th align="center">사용종료일자</th>
 							<th width='150' align="center">선택</th>
 						</tr>
 						</thead>
@@ -149,6 +183,8 @@ function numnberCheck()
 		int zoneNo = 0;
 		String zoneName = "";
 		int orderNo = 0;
+		String useStartDay = "";
+		String useEndDay = "";
 		
 		SiteVO zone = null;
 		for(int i=0; i<vZone.size(); i++){
@@ -156,12 +192,17 @@ function numnberCheck()
 			zoneNo = zone.getZoneNo();
 			zoneName = zone.getZoneName();
 			orderNo = zone.getOrderNo();
+			useStartDay = transFormat.format(zone.getUseStartDay());
+			useEndDay = transFormat.format(zone.getUseEndDay());
 			
 %>						
 					<tr height='28'>
 						<td width='250' align="center"><%=zoneName %></td>
-						<td width='200' align="center"><%=orderNo %></td>
+						<td width='80' align="center"><%=orderNo %></td>
+						<td align="center"><%=useStartDay %></td>
+						<td align="center"><%=useEndDay %></td>
 						<td width='150' align="center">
+							<a href="javascript:;" onclick="editZone('<%=zoneNo %>','<%=zoneName %>',<%=orderNo %>,'<%=useStartDay %>','<%=useEndDay %>')">수정</a>
 							<a href="javascript:;" onclick="javascript:deleteCheck('<%=zoneNo %>','<%=orderNo%>')">삭제</a>
 						</td>
 					</tr>
@@ -183,6 +224,7 @@ function numnberCheck()
 					<table border='1' cellpadding='0' cellspacing='0' width='800' style='border-collapse:collapse' bordercolor='cccccc'>
 					<form name='addform' method='post' action='/admin/common/zone_information.jsp' onSubmit='return formCheck()'>
 					<input type='hidden' name='cmd' value='insert'>
+					<input type='hidden' id='zoneNoOrg' name='zoneNoOrg'>
 						<tr height='28'>
 							<td class='tbsbj' width='140'>ZONE NAME</td>
 							<td class='tbcont'>
@@ -190,13 +232,20 @@ function numnberCheck()
 							</td>
 							<td class='tbsbj'>정렬 순서</td>
 							<td height='28' class='tbcont'>
-								<input type='text' id='orderNo' size='30' name='orderNo' value="" onkeyDown="javascript:numnberCheck()">
+								<input type='text' id='orderNoOrg' size='10' name='orderNoOrg' value="" onkeyDown="javascript:numnberCheck()">
+							</td>
+						</tr>
+						<tr height='28'>
+							<td class='tbsbj' width='140'>사용기간</td>
+							<td class='tbcont' colspan="3">
+								<input type="text" id="datepicker1" name="useStartDay" size="12" value="" /> ~
+								<input type="text" id="datepicker2" name="useEndDay" size="12" value="" /> 
 							</td>
 						</tr>
 					</table>
 					<br>
 					<div style='width:800' align='center'>
-						<input type="submit" name="add_submit" value="추가하기" style="cursor:hand">
+						<input type="submit" name="add_submit" value="저장하기" style="cursor:hand">
 					</div>
 
 					</form>
@@ -209,7 +258,8 @@ function numnberCheck()
 				<tr><Td style='color:585858;line-height:180%;padding-left:20'>
 						<b>[사용안내]</b><br>
 						<b class=ol>ㆍ</b> 등록하고자 하는 ZONE NAME을 입력 후 정렬순서를 입력 해 주십시오.<br>
-						<b class=ol>ㆍ</b> 정렬순서에 따라 예약화면에 순서대로 표시됩니다.
+						<b class=ol>ㆍ</b> 정렬순서에 따라 예약화면에 순서대로 표시됩니다.<br>
+						<b class=ol>ㆍ</b> 사용기간은 년도와 월까지만 적용되며 일자는 무시됩니다.(월단위로 기간이 등록된다고 생각하시면 됩니다.)
 				    </td>
 				</tr>
 			</table>
