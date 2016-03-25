@@ -54,6 +54,7 @@ public class Reservation extends HttpServlet {
 			
 			String year = (request.getParameter("y") == null ? nowYear : request.getParameter("y"));
 			String month = (request.getParameter("m") == null ? nowMonth : request.getParameter("m"));
+			
 			month = Integer.parseInt(month) < 10 ? "0"+month : month;
 			
 			if( Integer.parseInt(year) < 1981 || year.length() > 4 ){

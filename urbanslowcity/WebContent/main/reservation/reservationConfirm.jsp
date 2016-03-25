@@ -527,7 +527,7 @@ $("#productNo").change(function(){
 				var saleMemo = "";
 				if(obj.data.saleYn == "Y"){
 					saleMemo = obj.data.saleMemo;
-					saleMemo = saleMemo + " " + obj.data.sale + "%";
+					//saleMemo = saleMemo + " " + obj.data.sale + "%";
 				}
 				if(obj.data.flatPriceYn == "Y"){
 					saleMemo = obj.data.saleMemo;

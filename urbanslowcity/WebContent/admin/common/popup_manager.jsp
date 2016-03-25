@@ -47,9 +47,9 @@ function deleteCheck(layerId)
 }
 
 function callPopup(layerId){
-	var action = "UPDATE";
+	var action = "update";
 	if(layerId == "NEW"){
-		action = "INSERT";
+		action = "insert";
 	}
 	var url = "/admin/common/popup_form.jsp?action="+action+"&layerId="+layerId;
 	url = encodeURI(url);
@@ -90,7 +90,7 @@ function callPopup(layerId){
 			<tr>
 				<td>
 					<table class="product_table" align="center">
-					  <form name='bankinfo' method='post' action='/admin/common/holyday_information.jsp'>
+					  <form name='bankinfo' method='post' action='/admin/common/popup_manager.jsp'>
 						<input type='hidden' name='cmd' value=''>
 						<input type='hidden' name='layerId' value=''>
 						<input type='hidden' name='displayStartDay' value=''>

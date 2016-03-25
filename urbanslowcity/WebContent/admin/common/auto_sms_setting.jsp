@@ -61,15 +61,15 @@ $(document).ready(
 <ul class="desc">
 	<li style='padding-left:6'>자동 발송할 항목들을 선택하고 그에 해당하는 SMS 문자 메시지를 등록하고 관리하는 곳입니다. <br>
 				여기에서 설정한 내용대로 예약자에게 자동으로 메시지가 전송됩니다.<br>
-				<font color="red"><b>메세지는 최대 90Bytes까지 전송 가능합니다.</b></font><br/>
-                <font color="red"><b>변수를 사용하는 경우, 실제 발송 시 메세지 길이를 확인하여 90Bytes 이상인 경우 발송되지 않을 수 있습니다.</b></font><br/>
+				<font color="red"><b>메세지는 최대 90Bytes까지 전송 가능합니다.</b></font><br>
+                <font color="red"><b>변수를 사용하는 경우, 실제 발송 시 메세지 길이를 확인하여 90Bytes 이상인 경우 발송되지 않을 수 있습니다.</b></font><br>
     </li>
 </ul>
-				
+
 <table border=1 cellpadding=7 cellspacing=0 width=800 style='border-collapse:collapse' bordercolor='D3D3D3'>
-<form name="frmAutoSmsSetup" method="POST">
-<input type="hidden" name="set_mode" value="setup">
-<input type="hidden" id="msg" name="msg" value="<%=msg%>">
+<form name="frmAutoSmsSetup" method="post">
+	<input type="hidden" name="set_mode" value="setup"/>
+	<input type="hidden" id="msg" name="msg" value="<%=msg%>"/>
 	<col width='20%'></col>
 	<col width='30%'></col>
 	<col width='30%'></col>

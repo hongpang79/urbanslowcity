@@ -9,12 +9,23 @@
 </head>
 
 <body bgcolor='#FFFFFF' topmargin='0' leftmargin='0'>
-<!-- common Top End //-->                    
-	
+<!-- common Top End //-->
+<script language=javascript type="text/JavaScript" src='/admin/js/admin.js'></script>
+<script language=javascript src='/admin/js/common.js'></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script language=javascript>
+$(document).ready(
+	function() {
+		if($("#msg").val().length > 0){
+			alert($("#msg").val());
+	}
+});	
+</script>
+
 	 <!-- 상단 TOP Menu S -->
      <jsp:include page="/admin/common/menu_top.jsp" />
-     <!-- 상단 TOP Menu E -->
-    
+     <!-- 상단 TOP Menu E -->	 
+         
 <script type="text/javascript">
 
 function _create_remote_frame(target_id)
@@ -108,63 +119,30 @@ function view(value,target)
 	}
 }
 
-function photo_select(form_name,outer,admin_img,img_priview,admin_use_2)
-{
-	var img_src = document.getElementById(admin_img).value;
-	document.getElementById(img_priview).src = img_src;
-	var obj = document.getElementById(img_priview);
-
-	if( obj.src.indexOf('gif') == -1 && obj.src.indexOf('jpg') == -1 && obj.src.indexOf('jpge') == -1 && obj.src.indexOf('png') == -1)
-	{
-		alert('허용하지 않은 파일 타입니다.');
-		document[form_name].reset();
-		return false;
-	}
-
-
-	document.getElementById(outer).style.display='block';
-
-	/*if (obj.height > 35)
-	{
-		document.getElementById(outer).style.display='none';
-		alert('이미지 사이즈가 너무 큽니다. 이미지의 최대높이는 27px 입니다.');
-		document[form_name].reset();
-		document.getElementById(admin_use_2).checked = true;
-	}
-	else
-	{
-		document.getElementById(outer).style.display='none';
-	}*/
-	document.getElementById(outer).style.display='none';
-}
-
-
-
 </script>
-<table border=0 cellpadding=0 cellspacing=0 width=993>
-	<tr valign=top>
-		<td width=175 bgcolor=F7F7F7>
-			<!--왼쪽 타이틀------------------------------------------------->
-			<jsp:include page="/admin/common/menu_left.jsp" />
-			<!--//왼쪽 타이틀------------------------------------------------->
-    
-		</td>
-		<td width=18><img src=/admin/img/e.gif width=18></td>
-		<td>
-			<!-본문 타이틀------------------------------------------------------------>
-			<table border=0 cellpadding=0 cellspacing=0 width=800>
-				<tr style='padding:22 0 2 0' valign=bottom>
-					<td class='stitle'><img src=../img/bl_stitle.gif>&nbsp;운영자설정</td>
-					<td align='right' class=history>사이트관리>사이트 운영관리>운영자설정</td></tr>
-				<tr><td colspan=2 height=1 bgcolor=D9D9D9></td></tr>
-			</table>
+<table border=0 cellpadding=0 cellspacing=0 width=800>
+		<tr valign=top>
+			<td width=175 bgcolor=F7F7F7>
+				<!--왼쪽 타이틀------------------------------------------------->
+				<jsp:include page="/admin/common/menu_left.jsp" />
+				<!--//왼쪽 타이틀------------------------------------------------->
+			</td>
+			<td width=18><img src=/admin/img/e.gif width=18></td>
+			<td width="100%">
+			<td align="left" width="50%">
+<!-- 본문 타이틀------------------------------------------------------------>
+
+<ul class="content_title">
+	<li>운영자설정</li>
+	<li class="location">캠핑장관리>기본정보>운영자설정</li>
+</ul>
 
 			<!--본문 내용 시작--------------------------------------------------------->
 			<table border=0 cellpadding=0 cellspacing=0 width=800>
 				<tr style='padding:17 0 2 0' valign=bottom>
 					<td><img src=../img/bl_blue.gif><b>대표운영자</b></td>
 					<td align='right'>
-						<img src="http://img.cafe24.com/images/ec_admin/btn/tbtn_bg_021.gif" align="absmiddle" class="imp"><input type="button" value="대표운영자 정보수정하기" class="bt_a31 tmb12" onClick="displayMemberInfo('1'); return false;">
+						<img src="/admin/img/tbtn_bg_021.gif" align="absmiddle" class="imp"><input type="button" value="대표운영자 정보수정하기" class="bt_a31 tmb12" onClick="displayMemberInfo('1'); return false;">
 					</td>
 				</tr>
 			</table>
@@ -175,7 +153,7 @@ function photo_select(form_name,outer,admin_img,img_priview,admin_use_2)
 					<td width='13%'>builderdemo04</td><!--id-->
 					<td width='10%' bgcolor=f7f7f7>이름</td>
 					<td width='12%'>관리자</td>
-					<td width='10%' bgcolor=f7f7f7>E-mail</td>
+					<td width='10%' bgcolor=f7f7f7>Mobile</td>
 					<td width=15%></td>
 				</tr>
 			</table>

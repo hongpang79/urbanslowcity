@@ -83,12 +83,13 @@
 									<img src="/images/main/main9.jpg" alt="어반슬로우시티맵버쉽" width="1200" height="390"/>
 								</a>
 							</li>
+							<!-- 
 							<li>
 								<a href="#">
 									<img src="/images/main/main7.jpg" alt="대형화덕" width="1200" height="390"/>
 								</a>
 							</li>
-							<!-- 
+							
 							<li>
 								<a href="/main/board/view.jsp?num=331&pageNum=1&category=notice">
 									<img src="/images/main/main6.jpg" alt="송어잡기" width="1200" height="390"/>
@@ -118,12 +119,13 @@
 									<img src="/images/main/main2.jpg" alt="summer패키지" width="1200" height="390"/>
 								</a>
 							</li>
+							-->	
 							<li>
-								<a href="#">
+								<a href="/main/board/view.jsp?num=169&pageNum=1&category=notice">
 									<img src="/images/main/main3.jpg" alt="크루즈요트럭서리투어" width="1200" height="390"/>
 								</a>
 							</li>
-							-->	
+							
 								
 							<a href="#" class="links_prev btn">
 									<img alt="이전" src="/images/main/links_prev.png" />

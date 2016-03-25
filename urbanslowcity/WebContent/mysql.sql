@@ -60,64 +60,66 @@ CREATE TABLE `zone_information` (
   PRIMARY KEY  (`zone_no`)
 ) ENGINE=MyISAM DEFAULT CHARSET=euckr;
 
-INSERT INTO `zone_information` VALUES (1,'레인보우',1);
-INSERT INTO `zone_information` VALUES (2,'블랙쉘타',2);
-INSERT INTO `zone_information` VALUES (3,'유니온잭',3);
-INSERT INTO `zone_information` VALUES (4,'빅돔',4);
-INSERT INTO `zone_information` VALUES (5,'스파하우스',5);
-INSERT INTO `zone_information` VALUES (6,'리스토어차량',6);
-INSERT INTO `zone_information` VALUES (7,'셀프존',7);
+INSERT INTO `zone_information` VALUES (1,'레인보우',1,'2015-06-01','2024-05-31');
+INSERT INTO `zone_information` VALUES (2,'블랙쉘타',2,'2015-06-01','2024-05-31');
+INSERT INTO `zone_information` VALUES (3,'유니온잭',3,'2015-06-01','2024-05-31');
+INSERT INTO `zone_information` VALUES (4,'빅돔',4,'2015-06-01','2024-05-31');
+INSERT INTO `zone_information` VALUES (5,'스파하우스',5,'2015-06-01','2024-05-31');
+INSERT INTO `zone_information` VALUES (6,'리스토어차량',6,'2015-06-01','2024-05-31');
+INSERT INTO `zone_information` VALUES (7,'셀프존',7,'2015-06-01','2024-05-31');
 
 CREATE TABLE `site_information` (
   `zone_no` int(3) NOT NULL,
   `site_no` int(3) NOT NULL auto_increment,
   `site_name` varchar(20) default NULL,
+  `use_start_day` date default NULL,
+  `use_end_day` date default NULL,
   PRIMARY KEY  (`site_no`)
 ) ENGINE=MyISAM DEFAULT CHARSET=euckr;
 
-INSERT INTO `site_information` VALUES (1,1,'레인보우1');
-INSERT INTO `site_information` VALUES (1,2,'레인보우2');
-INSERT INTO `site_information` VALUES (1,3,'레인보우3');
-INSERT INTO `site_information` VALUES (1,4,'레인보우4');
-INSERT INTO `site_information` VALUES (1,5,'레인보우5');
-INSERT INTO `site_information` VALUES (2,6,'블랙1');
-INSERT INTO `site_information` VALUES (2,7,'블랙2');
-INSERT INTO `site_information` VALUES (2,8,'블랙3');
-INSERT INTO `site_information` VALUES (2,9,'블랙4');
-INSERT INTO `site_information` VALUES (2,10,'블랙5');
-INSERT INTO `site_information` VALUES (3,11,'유니온잭1');
-INSERT INTO `site_information` VALUES (3,12,'유니온잭2');
-INSERT INTO `site_information` VALUES (3,13,'유니온잭3');
-INSERT INTO `site_information` VALUES (3,14,'유니온잭4');
-INSERT INTO `site_information` VALUES (4,15,'빅돔1');
-INSERT INTO `site_information` VALUES (4,16,'빅돔2');
-INSERT INTO `site_information` VALUES (4,17,'빅돔3');
-INSERT INTO `site_information` VALUES (4,18,'빅돔4');
-INSERT INTO `site_information` VALUES (4,19,'빅돔5');
-INSERT INTO `site_information` VALUES (4,20,'빅돔6');
-INSERT INTO `site_information` VALUES (5,21,'스파하우스1');
-INSERT INTO `site_information` VALUES (5,27,'스파하우스2');
-INSERT INTO `site_information` VALUES (6,22,'리스토어차량1');
-INSERT INTO `site_information` VALUES (6,23,'리스토어차량2');
-INSERT INTO `site_information` VALUES (6,24,'리스토어차량3');
-INSERT INTO `site_information` VALUES (6,25,'리스토어차량4');
-INSERT INTO `site_information` VALUES (6,26,'리스토어차량5');
-INSERT INTO `site_information` VALUES (7,28,'셀프1');
-INSERT INTO `site_information` VALUES (7,29,'셀프2');
-INSERT INTO `site_information` VALUES (7,30,'셀프3');
+INSERT INTO `site_information` VALUES (1,1,'레인보우1','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (1,2,'레인보우2','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (1,3,'레인보우3','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (1,4,'레인보우4','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (1,5,'레인보우5','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (2,6,'블랙1','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (2,7,'블랙2','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (2,8,'블랙3','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (2,9,'블랙4','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (2,10,'블랙5','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (3,11,'유니온잭1','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (3,12,'유니온잭2','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (3,13,'유니온잭3','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (3,14,'유니온잭4','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (4,15,'빅돔1','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (4,16,'빅돔2','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (4,17,'빅돔3','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (4,18,'빅돔4','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (4,19,'빅돔5','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (4,20,'빅돔6','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (5,21,'스파하우스1','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (5,27,'스파하우스2','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (6,22,'리스토어차량1','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (6,23,'리스토어차량2','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (6,24,'리스토어차량3','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (6,25,'리스토어차량4','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (6,26,'리스토어차량5','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (7,28,'셀프1','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (7,29,'셀프2','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (7,30,'셀프3','2015-06-01','2024-05-31');
 
-INSERT INTO `site_information` VALUES (7,31,'셀프4');
-INSERT INTO `site_information` VALUES (7,32,'셀프5');
-INSERT INTO `site_information` VALUES (7,33,'셀프6');
-INSERT INTO `site_information` VALUES (7,34,'셀프7');
-INSERT INTO `site_information` VALUES (7,35,'셀프8');
-INSERT INTO `site_information` VALUES (7,36,'셀프9');
-INSERT INTO `site_information` VALUES (7,37,'셀프10');
-INSERT INTO `site_information` VALUES (7,38,'셀프11');
-INSERT INTO `site_information` VALUES (7,39,'셀프12');
-INSERT INTO `site_information` VALUES (7,40,'셀프13');
-INSERT INTO `site_information` VALUES (7,41,'셀프14');
-INSERT INTO `site_information` VALUES (7,42,'셀프15');
+INSERT INTO `site_information` VALUES (7,31,'셀프4','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (7,32,'셀프5','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (7,33,'셀프6','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (7,34,'셀프7','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (7,35,'셀프8','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (7,36,'셀프9','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (7,37,'셀프10','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (7,38,'셀프11','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (7,39,'셀프12','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (7,40,'셀프13','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (7,41,'셀프14','2015-06-01','2024-05-31');
+INSERT INTO `site_information` VALUES (7,42,'셀프15','2015-06-01','2024-05-31');
 
 CREATE TABLE `product` (
   `product_no` int(3) NOT NULL auto_increment,
@@ -141,11 +143,11 @@ CREATE TABLE `product` (
   `display_start_day` date default NULL,
   `display_end_day` date default NULL,
   `use_yn` varchar(1) default 'Y', 	/*사용여부*/
-  `sale` int(2) default NULL,
+  `sale` int(2) default NULL, /*sale*/
   `sale_start_day` date default NULL,
   `sale_end_day` date default NULL,
   `sale_memo` varchar(255) default NULL,
-  `flat_price` int(6) default NULL,
+  `flat_price` int(6) default NULL, /*균일가*/
   `flat_price_start_day` date default NULL,
   `flat_price_end_day` date default NULL,
   `product_memo` varchar(255) default NULL,

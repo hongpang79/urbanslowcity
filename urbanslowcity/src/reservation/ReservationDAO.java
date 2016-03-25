@@ -118,7 +118,7 @@ public class ReservationDAO {
 	               + "(select reservation_day, zone_name, count(*) as wait_cnt from reservation_day where reservation_month = '"+year+month+"' and pay_status = 'W' group by reservation_day, zone_name) b "
 	               + "on a.reservation_day = b.reservation_day and a.zone_name = b.zone_name left outer join "
 	               + "(select reservation_day, zone_name, count(*) as complite_cnt from reservation_day where reservation_month = '"+year+month+"' and pay_status = 'C' group by reservation_day, zone_name) c "
-	               + "on a.reservation_day = c.reservation_day and a.zone_name = c.zone_name INNER JOIN (SELECT zone_name FROM zone_information) z ON a.zone_name = z.zone_name "
+	               + "on a.reservation_day = c.reservation_day and a.zone_name = c.zone_name INNER JOIN (SELECT zone_name FROM zone_information WHERE use_start_day <= '"+year+"-"+month+"-01' and use_end_day >= '"+year+"-"+month+"-28') z ON a.zone_name = z.zone_name "
 	               + "where reservation_month = '"+year+month+"' group by a.reservation_day, a.zone_name order by a.reservation_day, a.zone_name";
 		//System.out.println("reservationDateZone : " + SQL);
 		try{
@@ -195,7 +195,7 @@ public class ReservationDAO {
 				+ "from product s LEFT OUTER JOIN "
 				+ "(select site_no from reservation_day where zone_name = ? and reservation_day between ? and DATE_FORMAT(ADDDATE(?,?),'%Y%m%d') and pay_status <> 'R') d "
 				+ "on s.site_no = d.site_no where s.zone_no = (select zone_no from zone_information where zone_name = ?) and use_yn = 'Y' "
-				+ "and display_start_day <= ? and display_end_day >= ? and high_season_picnic <> ? and d.site_no is null";
+				+ "and display_start_day <= ? and display_end_day >= ? and high_season_picnic <> ? and d.site_no is null Order by product_no";
 //		System.out.println("SQL => " + SQL);
 //		System.out.println("param => " + zoneName + ";"+ resDate + ";"+sNight);
 		try{
@@ -415,7 +415,19 @@ public class ReservationDAO {
 							seasonCode = rs.getString("season_code");
 						}
 						
-						if( day == 7 || day == 8){	// 금요일 또는 토요일 (주말), 국경일     ---   금요일 (10/31까지 평일가격으로) day == 6 ||
+						if( day == 6 && Integer.parseInt(chooseDate.substring(4,6))==4){ //일시적으로 4월의 금요일도 주말편입
+							if(seasonCode.equals("L")){
+//								price[i] = site.getLowSeasonWeekend();
+								payMoney = payMoney + site.getLowSeasonWeekend();
+							}else if(seasonCode.equals("H")){
+//								price[i] = site.getHighSeasonWeekend();
+								payMoney = payMoney + site.getHighSeasonWeekend();
+							}else if(seasonCode.equals("M")){
+//								price[i] = site.getLowSeasonWeekday();
+								payMoney = payMoney + site.getMiddleSeasonWeekend();
+							}
+							
+						}else if( day == 7 || day == 8){	// 금요일 또는 토요일 (주말), 국경일     ---   금요일 (10/31까지 평일가격으로) day == 6 ||
 							if(seasonCode.equals("L")){
 //								price[i] = site.getLowSeasonWeekend();
 								payMoney = payMoney + site.getLowSeasonWeekend();

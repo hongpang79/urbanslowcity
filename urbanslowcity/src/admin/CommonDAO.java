@@ -463,6 +463,39 @@ public class CommonDAO {
 		return popups;
 	}
 	
+	public PopupVO getPopup(String layerId){
+		PopupVO popup = new PopupVO();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String SQL = "SELECT * FROM popup WHERE layer_id='"+layerId+"'";
+//				System.out.println("[CommonDAO][getPopup] SQL = " + SQL);
+		try{
+			conn = ConnectionUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+
+			if( rs.next() ){				
+				popup.setLayerId(rs.getString("layer_id"));
+				popup.setStyle(rs.getString("style"));
+				popup.setUseYn(rs.getString("use_yn"));
+				popup.setAlt(rs.getString("alt"));
+				popup.setArea(rs.getString("area"));
+				popup.setImgSrc(rs.getString("img_src"));
+				popup.setUsemapId(rs.getString("usemap_id"));
+				popup.setDisplayStartDay(rs.getDate("display_start_day"));
+				popup.setDisplayEndDay(rs.getDate("display_end_day"));					
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rs,pstmt,conn);
+		}
+		return popup;
+	}
+	
 	public String processPopup(HttpServletRequest request){
 		String msg = "";
 		int rtn = 0;
@@ -551,7 +584,7 @@ public class CommonDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String SQL = "SELECT z.zone_name, s.* FROM site_information s, zone_information z WHERE s.zone_no = z.zone_no ";
+		String SQL = "SELECT z.zone_name, s.* FROM site_information s, zone_information z WHERE s.zone_no = z.zone_no ORDER BY s.zone_no, s.site_no ";
 //			System.out.println("[CommonDAO][selectSiteList] SQL = " + SQL);
 		try{
 			conn = ConnectionUtil.getConnection();
