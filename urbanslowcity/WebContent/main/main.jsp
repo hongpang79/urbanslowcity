@@ -18,7 +18,7 @@
 	<script type="text/javascript" src="/js/jquery.flexslider.js"></script>
 	<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
 	<script type="text/javascript">
-
+	
 //	if(-1 != navigator.userAgent.indexOf("MSIE"))
 //    { 
 //		location.href="/main/main_IE.jsp";
@@ -75,15 +75,21 @@
 						<ul class="gallery">
 							<li>
 								<a href="/main/board/view.jsp?num=444&pageNum=1&category=notice">
-									<img src="/images/main/main10.jpg" alt="겨울캠핑균일가이벤트" width="1200" height="390"/>
+									<img src="/images/main/main10.jpg" alt="캠핑균일가이벤트" width="1200" height="390"/>
 								</a>
 							</li>
+							<li>
+								<a href="#">
+									<img src="/images/main/main11.jpg" alt="5월가정의달이벤트" width="1200" height="390"/>
+								</a>
+							</li>
+							<!--
 							<li>
 								<a href="/main/board/view.jsp?num=436&pageNum=1&category=notice">
 									<img src="/images/main/main9.jpg" alt="어반슬로우시티맵버쉽" width="1200" height="390"/>
 								</a>
 							</li>
-							<!-- 
+							 
 							<li>
 								<a href="#">
 									<img src="/images/main/main7.jpg" alt="대형화덕" width="1200" height="390"/>
@@ -102,11 +108,13 @@
 									<img src="/images/main/main5.jpg" alt="감성존" width="1200" height="390"/>
 								</a>
 							</li>
+							-->
 							<li>
 								<a href="#">
 									<img src="/images/main/main4.jpg" alt="불금 이벤트" width="1200" height="390"/>
 								</a>
 							</li>
+							<!-- 
 							<li>
 								<a href="#">
 									<img src="/images/main/main1.jpg" alt="가을 이벤트" width="1200" height="390"/>

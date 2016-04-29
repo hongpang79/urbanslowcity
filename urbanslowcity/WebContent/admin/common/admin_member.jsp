@@ -157,87 +157,20 @@ function view(value,target)
 					<td width=15%></td>
 				</tr>
 			</table>
-
-			<div id="rpstn_html"></div>
-
-
-
+	
+			<br><br>
 			
-
-
-
-            
-            <script language="JavaScript" type="text/JavaScript">
-            <!--
-
-                //서브밋 하기전에 폼 검사
-                function valid_form(form)
-                {
-
-                    var flag=0;
-
-                    l=form.elements.length;
-
-                    for (i=0;i<l;i++) {
-                        if (form.elements[i].checked) {
-                            flag++;
-                        }
-                    }
-
-                    if (flag < 1) {
-                        alert('체크박스를 선택해주셔야 합니다!');
-                        return false;
-                    } else {
-
-                        if(confirm('부운영자를 정말 삭제하시겠습니까?')) {
-                            form.submit();
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    }
-
-                }
-
-                //모두 선택
-                function select_chk()
-                {
-
-                    var is_status = true;
-                    if(document.frm.allbox.checked) is_status = false;
-                    for (var i=0;i<document.frm.elements.length;i++) {
-                        var e = document.frm.elements[i];
-                        if(is_status) e.checked=false;
-                        else e.checked=true;
-                    }
-                    if(is_status) document.frm.allbox.checked=false;
-                    else document.frm.allbox.checked=true;
-
-                }
-
-            -->
-            </script>
-            
-
-
-            <FORM METHOD=POST NAME='frm' >
-                                        <input type=hidden name='do' value='del_admin'>
-                            <input type=hidden name='admin_total_num' value='0'>
+			<FORM METHOD=POST NAME='frm' >
+            	<input type=hidden name='do' value='del_admin'>
+            	<input type=hidden name='admin_total_num' value='0'>
             <!--부운영자 목록-->
             <table border=0 cellpadding=0 cellspacing=0 width=800>
                 <tr style='padding:0 0 2 0' valign=bottom>
                     <td><img src=../img/bl_blue.gif><b>부운영자 목록</b></td>
                 </tr>
-                <tr>
-                    <td>
-                                                    <a href='/admin/site/site_admin.php'><img src='../img/img_subman_tab_01_on.gif'></a>
-                            <a href='/admin/site/site_admin.php?mode=agency'   style='display:none;' ><img src='../img/img_subman_tab_02_off.gif'></a>
-                                            </td>
-                </tr>
             </table>
             <table border=1 cellpadding=0 cellspacing=0 width=800 style='border-collapse:collapse;' bordercolor=D3D3D3>
                 <tr height='28' align='center'>
-                    <td class='tbctr' width=7%><!--input name=allbox type=checkbox onClick='select_chk();'-->삭제대상</td>
                     <td class='tbctr' width=6%>번호</td>
                     <td class='tbctr' width=11%>아이디</td>
                     <td class='tbctr' width=8%>담당자</td>
@@ -245,7 +178,7 @@ function view(value,target)
                     <td class='tbctr' width=14%>이메일</td>
                     <td class='tbctr' width=14%>레벨상태</td>
                     <td class='tbctr' width=8%>접근허용</td>
-                    <td class='tbctr' width=12%>상세보기/수정</td>
+                    <td class='tbctr' width=19%>수정/삭제</td>
                 </tr>
             
             </table><br>
@@ -275,66 +208,32 @@ function view(value,target)
 				</tr>
 				<tr height='28'>
 					<td class='tbcont'>레벨 1(대표운영자)</td>
-					<td class='tbcont'>빌더 관리자 어드민 전체</td>
+					<td class='tbcont'>어드민 전체</td>
 					<td class='tbcont'>대표 운영자에게만 주어지는 권한입니다.</td>
 				</tr>
 				<tr height='28'>
 					<td class='tbcont'>레벨 2(운영관리)</td>
-					<td class='tbcont'>1. 사이트관리>사이트운영관리>운영자설정 메뉴의 접근 불가<br>
-                        2. 템플릿관리 메뉴의 접근 불가
+					<td class='tbcont'>1. 캠핑장관리  메뉴 전체<br>
+                        2. 예약상품관리 메뉴 전체<br>
+                        3. 예약관리 메뉴 전체<br>
+                        4. 공지/게시관리 메뉴 전체
                     </td>
-					<td class='tbcont'>1,2번을 제외한 빌더 전체를 관리할 수 있는 운영권한입니다.</td>
+					<td class='tbcont'>전체 사이트를 관리할 수 있는 운영권한입니다.</td>
 				</tr>
 				<tr height='28'>
-					<td class='tbcont'>레벨 3(내부/디자이너)</td>
+					<td class='tbcont'>레벨 3(예약/게시판 관리)</td>
 					<td class='tbcont'>
-						1. 페이지관리<br>
-						2. 컴포넌트관리<br>
-						3. 템플릿관리>템플릿정보>보유템플릿 목록><br>&nbsp;&nbsp;&nbsp;(접근가능 템플릿 목록만 활성)</td>
-					<td class='tbcont'>운영할 디자인 템플릿의 디자인을 수정/편집할 수 있는 권한을 가진 디자인 관리 부 운영자입니다.</td>
-				</tr>
-				<tr height='28'>
-					<td class='tbcont'>레벨 4(내부/디자이너2)</td>
-					<td class='tbcont'>1. 페이지관리<br>
-						2. 컴포넌트관리<br>
-						3. 나의서비스관리>도메인관리<br>
-						4. 사이트관리>회원가입관리>회원가입항목설정<br>
-						5. 사이트관리>메일관리>전체메일보내기<br>
-						6. 템플릿관리>템플릿정보>보유템플릿 목록><br>&nbsp;&nbsp;&nbsp;(접근가능 템플릿 목록만 활성)</td>
-					<td class='tbcont'>레벨3보다 접근가능한 메뉴가 확대된 권한을 가진 디자인 관리 부 운영자입니다.</td>
-				</tr>
-				<tr height='28'>
-					<td class='tbcont'>레벨 5(C/S관리)</td>
-					<td class='tbcont'>1. 사이트관리> 회원가입관리<br>
-					2. 사이트관리>메일관리<br>
-					3. 사이트관리>SMS 관리<br>
-					4. 사이트관리>접속자통계</td>
+						1. 예약관리 메뉴 전체<br>
+						2. 공기/게시관리 메뉴 전체<br>
 					<td class='tbcont'>사이트 운영시 사이트 이용자인 회원들과 관련된 대 고객 서비스 업무를 담당하는 권한을 가진 부 운영자입니다.</td>
-				</tr>
-				<tr height='28'>
-					<td class='tbcont'>레벨 6(외부/디자이너1)</td>
-					<td class='tbcont'>1. 페이지관리<br>2. 컴포넌트관리</td>
-					<td class='tbcont'>외부에서 등록된 부 운영자로 구매한 디자인 템플릿의 유지보수를 목적으로 템플릿에 접근할 수 있는 부 운영자입니다.</td>
-				</tr>
-				<tr height='28'>
-					<td class='tbcont'>레벨 7(외부/디자이너2)</td>
-					<td class='tbcont'>1. 페이지관리<br>
-					2. 컴포넌트관리<br>
-					3. 나의서비스관리>도메인관리<br>
-					4. 사이트관리>회원가입관리>회원가입항목설정<br>
-					5. 사이트관리>메일관리>전체메일보내기<br>
-					<td class='tbcont'>레벨6 보다 접근가능한 메뉴가 확대된 권한을 가진 디자인 관리 권한입니다.</td>
 				</tr>
 			</table>
 			</div>
 
 			<table border=3 cellpadding=7 cellspacing=0 width=800 bordercolor=ECD08A style='margin-top:40'>
-				<tr><Td style='color:585858;line-height:180%;padding-left:20'>
+				<tr><td style='color:585858;line-height:180%;padding-left:20'>
 						<b>[사용안내]</b><br>
 						<b class=ol>ㆍ</b>운영자 접근권한 레벨에 따라 해당 메뉴의 접근이 통제됩니다.<br>
-						                                                <b class=ol>ㆍ</b>디자인센터(d.cafe24.com)에서 구매한 디자인 템플릿인 경우, 디자인센터(d.cafe24.com)에서 부여된 접근권한자는 자동으로
-                                                유지보수계약에 의해 자동 등록된 부 운영자 목록에 추가됩니다.<br>
-                                                						<b class=ol>ㆍ</b>내부 등록 부 운영자 중 접근권한이 레벨 3(내부/디자이너)와 레벨4(내부/디자이너2)는  템플릿 1개 또는 다수개의 템플릿을 운영할 수 있습니다.
 					</td>
 				</tr>
 			</table>

@@ -347,6 +347,7 @@ public class ReservationDAO {
 //			int[] price = new int[maxRange];
 //			String[] days = new String[maxRange];
 			int payMoney = 0;
+			int flatMoney = 0;
 			
 			conn = ConnectionUtil.getConnection();
 			String SQL = "select * from season where cast(concat(date_format(now(),'%Y-'),start_season) as date) <= cast(? as date) and cast(concat(date_format(now(),'%Y-'),end_season) as date) >= cast(? as date)";
@@ -387,10 +388,10 @@ public class ReservationDAO {
 				}
 			}else{
 				for( int i=0; i<maxRange ; i++ ){
-					if(flatPriceYn.equals("Y")){ //균일가 기간에는 평일/주말 체크로직 없이 일괄 적용
-						payMoney = payMoney + site.getFlatPrice();
-						
-					}else{
+//					if(flatPriceYn.equals("Y")){ //균일가 기간에는 평일/주말 체크로직 없이 일괄 적용
+//						payMoney = payMoney + site.getFlatPrice();
+//						
+//					}else{
 						
 						
 						//int chkDate = Integer.parseInt(chooseCal.get(Calendar.YEAR)+""+((chooseCal.get(Calendar.MONTH)+1) < 10 ? "0"+(chooseCal.get(Calendar.MONTH)+1) : chooseCal.get(Calendar.MONTH)+1) +""+chooseCal.get(Calendar.DATE));
@@ -415,7 +416,21 @@ public class ReservationDAO {
 							seasonCode = rs.getString("season_code");
 						}
 						
-						if( day == 6 && Integer.parseInt(chooseDate.substring(4,6))==4){ //일시적으로 4월의 금요일도 주말편입
+//						if( day == 6 && Integer.parseInt(chooseDate.substring(4,6))==4){ //일시적으로 4월의 금요일도 평일편입
+//							if(seasonCode.equals("L")){
+////								price[i] = site.getLowSeasonWeekend();
+//								payMoney = payMoney + site.getLowSeasonWeekday();
+//							}else if(seasonCode.equals("H")){
+////								price[i] = site.getHighSeasonWeekend();
+//								payMoney = payMoney + site.getHighSeasonWeekday();
+//							}else if(seasonCode.equals("M")){
+////								price[i] = site.getLowSeasonWeekday();
+//								payMoney = payMoney + site.getMiddleSeasonWeekday();
+//							}
+						if( day == 6 && flatPriceYn.equals("Y")){	// 금요일 균일가 이벤트
+							payMoney = payMoney + site.getFlatPrice();
+							flatMoney = flatMoney + site.getFlatPrice();
+						}else if( day == 6 || day == 7 || day == 8){	// 금요일 또는 토요일 (주말), 국경일전날  
 							if(seasonCode.equals("L")){
 //								price[i] = site.getLowSeasonWeekend();
 								payMoney = payMoney + site.getLowSeasonWeekend();
@@ -426,18 +441,7 @@ public class ReservationDAO {
 //								price[i] = site.getLowSeasonWeekday();
 								payMoney = payMoney + site.getMiddleSeasonWeekend();
 							}
-							
-						}else if( day == 7 || day == 8){	// 금요일 또는 토요일 (주말), 국경일     ---   금요일 (10/31까지 평일가격으로) day == 6 ||
-							if(seasonCode.equals("L")){
-//								price[i] = site.getLowSeasonWeekend();
-								payMoney = payMoney + site.getLowSeasonWeekend();
-							}else if(seasonCode.equals("H")){
-//								price[i] = site.getHighSeasonWeekend();
-								payMoney = payMoney + site.getHighSeasonWeekend();
-							}else if(seasonCode.equals("M")){
-//								price[i] = site.getLowSeasonWeekday();
-								payMoney = payMoney + site.getMiddleSeasonWeekend();
-							}
+
 						}else{
 							if(seasonCode.equals("L")){
 //								price[i] = site.getLowSeasonWeekday();
@@ -449,6 +453,7 @@ public class ReservationDAO {
 //								price[i] = site.getHighSeasonWeekday();
 								payMoney = payMoney + site.getMiddleSeasonWeekday();
 							}
+
 						}
 						
 						/*
@@ -472,11 +477,12 @@ public class ReservationDAO {
 						*/
 						
 					} // for 문끝
-				}
+//				}
 				
 				if(saleYn.equals("Y")){
 					int isale = site.getSale();
-					isale = (payMoney * isale) / 100;
+					int saleMoney = payMoney - flatMoney;
+					isale = (saleMoney * isale) / 100;
 					payMoney = payMoney - isale;
 				}
 				money = Integer.toString(payMoney);

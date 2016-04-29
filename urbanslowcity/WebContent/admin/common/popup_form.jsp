@@ -188,8 +188,8 @@ function numnberCheck()
 				<tr height='28'>
 					<td class='tbsbj'>이미지</td>
 					<td colspan="3" height='28' class='tbcont'>
-						<input title="input" type='file' id='imgSrc' name="imgSrc" style="border:1px solid #EAEAEA;height:20px;" maxlength="80" size="80" value=""/>
-						<%=imgSrc %>
+						<input title="input" type='text' id='imgSrc' name="imgSrc" style="border:1px solid #EAEAEA;height:20px;" maxlength="50" size="50" value="<%=imgSrc%>"/>
+							<a href="javascript:WinOpen('/admin/common/popupFileUploader.jsp?target=imgSrc','file_upload','384','270','false')"><img src="/admin/img/common/file_upload.gif"/></a>
 					</td>
 				</tr>
 				<tr height='28'>

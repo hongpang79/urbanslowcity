@@ -215,11 +215,11 @@
 																		
 																		if( zone != null )
 																			for( int j=0; j<zone.size();j++ ){	// Zone 갯수만큼 루프
-																				bluRed = 1;
+																				bluRed = 2;
 																				String thisDate = ""+year+(month < 10 ? "0"+month : month)+((count-1) < 10 ? "0"+(count-1) : (count-1));
 																				if(reservationDate.size() > 0){
 																					usedZone = "0";
-																					bluRed = 1;
+																					bluRed = 2;
 																					for(int k=0; k<reservationDate.size(); k+=6){	// 예약날짜 만큼 루프
 																						//System.out.println("i = " + reservationDate.size());
 																						//System.out.println("1 : "+ reservationDate.get(k)+reservationDate.get(k+1));
@@ -231,6 +231,8 @@
 																								usedZone = zone.get(j).getZoneName()+"("+reservationDate.get(k+3)+"/"+reservationDate.get(k+2)+")";
 																								if(reservationDate.get(k+3).equals("0")){
 																									bluRed = 0;
+																								}else if(!reservationDate.get(k+3).equals(reservationDate.get(k+2))){
+																									bluRed = 1;
 																								}
 																								break;
 																							//}else{
@@ -252,6 +254,10 @@
 																				if(bluRed == 0){
 																		%>											
 																					<li class="s03"><font color="red"><b id="noLink"><%=usedZone %></b></font></li>
+																			<%	
+																				}else if(bluRed == 1){
+																		%>
+																					<li class="s01"><font color="#2F9D27"><b id="link" onClick="javascript:chooseRoom('<%=cLinkF%>','<%=cLinkB%>')"><%=usedZone %></b></font></li>
 																			<%			
 																				}else{
 																		%>											

@@ -13,7 +13,11 @@
   
 			@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
   
-		</style>        
+		</style> 
+		<script Language=javascript>
+			var ref = document.referrer;
+			console.log("[into] : " + ref);
+		</script>     
     </head>
     <body id="page">
       <a href="/main/main.jsp">
