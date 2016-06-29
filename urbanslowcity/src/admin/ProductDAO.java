@@ -436,5 +436,157 @@ public class ProductDAO {
 	    }
 		return x;
 	}
+	
+	// Product 이름출력
+	public String selectProductList(String productNos){
+		String productNames = "";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String SQL = "SELECT product_name FROM product WHERE product_no IN (" + productNos +")";
+//		System.out.println("[ProductDAO][selectProductList] SQL = " + SQL);
+		
+		try{
+			conn = ConnectionUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+
+			int rCnt = 0;
+			if( rs.next() ){
+				do{
+					productNames = productNames + ", " + rs.getString("product_name");
+					rCnt++;
+				}while(rs.next());
+				
+				productNames = "[ 선택한 상품수 : " + rCnt + " ]" + productNames;
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rs,pstmt,conn);
+		}
+		return productNames;
+	}
+	
+	public int modifyProducts(HttpServletRequest request) throws ServletException,IOException{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		request.setCharacterEncoding("UTF-8");
+		String step = request.getParameter("step");
+		
+		int rtn = 0;
+		String productNos = "";
+		int users = 0;
+		int maxUsers = 0;
+		int addChildPrice = 0;
+		int addUserPrice = 0;
+		int lowSeasonWeekday = 0;
+		int lowSeasonWeekend = 0;
+		int lowSeasonPicnic = 0;
+		int middleSeasonWeekday = 0;
+		int middleSeasonWeekend = 0;
+		int middleSeasonPicnic = 0;
+		int highSeasonWeekday = 0;
+		int highSeasonWeekend = 0;
+		int highSeasonPicnic = 0;
+		String displayStartDay = "";
+		String displayEndDay = "";
+		String useYn = "";
+		int sale = 0;
+		String saleStartDay = "";
+		String saleEndDay = "";
+		String saleMemo = "";
+		int flatPrice = 0;
+		String flatPriceStartDay = "";
+		String flatPriceEndDay = "";
+		String productMemo = "";
+		
+		String SQL = "";
+		try {
+			if(step == null){
+				step = "select";
+			}else{
+				productNos = (String)request.getParameter("productNos");
+				users = Integer.parseInt((String)request.getParameter("users"));
+				maxUsers = Integer.parseInt((String)request.getParameter("maxUsers"));
+				addChildPrice = Integer.parseInt((String)request.getParameter("addChildPrice"));
+				addUserPrice = Integer.parseInt((String)request.getParameter("addUserPrice"));
+				lowSeasonWeekday = Integer.parseInt((String)request.getParameter("lowSeasonWeekday"));
+				lowSeasonWeekend = Integer.parseInt((String)request.getParameter("lowSeasonWeekend"));
+				lowSeasonPicnic = Integer.parseInt((String)request.getParameter("lowSeasonPicnic"));
+				middleSeasonWeekday = Integer.parseInt((String)request.getParameter("middleSeasonWeekday"));
+				middleSeasonWeekend = Integer.parseInt((String)request.getParameter("middleSeasonWeekend"));
+				middleSeasonPicnic = Integer.parseInt((String)request.getParameter("middleSeasonPicnic"));
+				highSeasonWeekday = Integer.parseInt((String)request.getParameter("highSeasonWeekday"));
+				highSeasonWeekend = Integer.parseInt((String)request.getParameter("highSeasonWeekend"));
+				highSeasonPicnic = Integer.parseInt((String)request.getParameter("highSeasonPicnic"));
+				displayStartDay = request.getParameter("displayStartDay")==""?null:request.getParameter("displayStartDay");
+				displayEndDay = request.getParameter("displayEndDay")==""?null:request.getParameter("displayEndDay");
+				useYn = request.getParameter("useYn");
+				sale = Integer.parseInt((String)request.getParameter("sale"));
+				saleStartDay = request.getParameter("saleStartDay")==""?null:request.getParameter("saleStartDay");
+				saleEndDay = request.getParameter("saleEndDay")==""?null:request.getParameter("saleEndDay");
+				saleMemo = request.getParameter("saleMemo");
+				flatPrice = Integer.parseInt((String)request.getParameter("flatPrice"));
+				flatPriceStartDay = request.getParameter("flatPriceStartDay")==""?null:request.getParameter("flatPriceStartDay");
+				flatPriceEndDay = request.getParameter("flatPriceEndDay")==""?null:request.getParameter("flatPriceEndDay");
+				productMemo = request.getParameter("productMemo");
+			}
+		
+			if(step.equals("update")){
+				SQL = "UPDATE product SET users=?, max_users=?, add_child_price=?, add_user_price=?, " 
+				    + "low_season_weekday=?, low_season_weekend=?, low_season_picnic=?, "
+				    + "middle_season_weekday=?, middle_season_weekend=?, middle_season_picnic=?, "
+				    + "high_season_weekday=?, high_season_weekend=?, high_season_picnic=?, "
+				    + "display_start_day=?, display_end_day=?, use_yn=?, "
+				    + "sale=?, sale_start_day=?, sale_end_day=?, sale_memo=?, "
+				    + "flat_price=?,flat_price_start_day=?,flat_price_end_day=?, product_memo=? "
+				    + "WHERE product_no IN ("+ productNos +")";
+				
+//				System.out.println("[ProductDAO][modifyProducts] SQL = " + SQL);
+				
+				conn = ConnectionUtil.getConnection();
+				pstmt = conn.prepareStatement(SQL);
+				pstmt.setInt(1, users);
+				pstmt.setInt(2, maxUsers);
+				pstmt.setInt(3, addChildPrice);
+				pstmt.setInt(4, addUserPrice);
+				pstmt.setInt(5, lowSeasonWeekday);
+				pstmt.setInt(6, lowSeasonWeekend);
+				pstmt.setInt(7, lowSeasonPicnic);
+				pstmt.setInt(8, middleSeasonWeekday);
+				pstmt.setInt(9, middleSeasonWeekend);
+				pstmt.setInt(10, middleSeasonPicnic);
+				pstmt.setInt(11, highSeasonWeekday);
+				pstmt.setInt(12, highSeasonWeekend);
+				pstmt.setInt(13, highSeasonPicnic);
+				pstmt.setString(14, displayStartDay);
+				pstmt.setString(15, displayEndDay);
+				pstmt.setString(16, useYn);
+				pstmt.setInt(17, sale);
+				pstmt.setString(18, saleStartDay);
+				pstmt.setString(19, saleEndDay);
+				pstmt.setString(20, saleMemo);
+				pstmt.setInt(21, flatPrice);
+				pstmt.setString(22, flatPriceStartDay);
+				pstmt.setString(23, flatPriceEndDay);
+				pstmt.setString(24, productMemo);
+				
+				rtn = pstmt.executeUpdate();
+				
+			}
+//			System.out.println("[ProductDAO][modifyProducts] rtn = " + rtn);
+		} catch(Exception ex) {
+	        ex.printStackTrace();
+	    } finally {
+	    	close(rs,pstmt,conn);
+	    }
+		
+		return rtn;
+	}
 
 }

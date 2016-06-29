@@ -3,7 +3,11 @@
 <head>
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>로그인 페이지</title>
+
+<title>UrbanSlowCity 관리</title>
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
 
 <script language="JavaScript" type="text/JavaScript">
     function setCookie( name, value, expiredays )

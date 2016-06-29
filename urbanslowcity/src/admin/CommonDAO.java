@@ -671,7 +671,7 @@ public class CommonDAO {
 			conn = ConnectionUtil.getConnection();
 			if(cmd.equals("insert")){
 				String zoneName = request.getParameter("zoneName");
-				int orderNo = Integer.parseInt((String) request.getParameter("orderNo"));
+				int orderNo = Integer.parseInt((String) request.getParameter("orderNoOrg"));
 				String useStartDay = request.getParameter("useStartDay");
 				String useEndDay = request.getParameter("useEndDay");
 				

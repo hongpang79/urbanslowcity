@@ -4,8 +4,7 @@
 	    	
 	    	<table width="1200" border="0" cellspacing="0" cellpadding="0">
 	  			<tr>
-	    			<td align="center">
-	    
+	    			<td align="center">    
 						<table width='1000' border='0' align="center" cellpadding='0' cellspacing='0'>
 	 						<tr>
 	  							<td><a href="/index.jsp"><img src="/images/menu_01.png" alt="home" border="0" onMouseOver="this.src='/images/menu_over_01.png'"onmouseout="this.src='/images/menu_01.png'"></a></td>

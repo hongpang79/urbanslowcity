@@ -11,8 +11,8 @@ try{
 	if( !checkAdmin.equals("admin") ){
 %>
 	<script language='javascript'>
-		alert("관리자권한이 없습니다.");
-		location.href='/admin/login.jsp';
+		//alert("관리자권한이 없습니다.");
+		//location.href='/admin/login.jsp';
 	</script>
 <%
 	}

@@ -249,6 +249,7 @@ $(function() {
 	<tr>
 		<th>상품명</th>
 		<td colspan="3"><input type="text" id="productName" name="productName" size="30" value="<%=productName%>"></td>
+	</tr>
 	<tr>
 		<th>Zone</th>
 		<td>

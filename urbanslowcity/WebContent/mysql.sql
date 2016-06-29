@@ -146,11 +146,11 @@ CREATE TABLE `product` (
   `sale` int(2) default NULL, /*sale*/
   `sale_start_day` date default NULL,
   `sale_end_day` date default NULL,
-  `sale_memo` varchar(255) default NULL,
+  `sale_memo` varchar(512) default NULL,
   `flat_price` int(6) default NULL, /*균일가*/
   `flat_price_start_day` date default NULL,
   `flat_price_end_day` date default NULL,
-  `product_memo` varchar(255) default NULL,
+  `product_memo` varchar(512) default NULL,
   PRIMARY KEY  (`product_no`)
 ) ENGINE=MyISAM DEFAULT CHARSET=euckr;
 
@@ -252,6 +252,15 @@ INSERT INTO `product` VALUES (152, '감성5', 6, 174, '감성5', 4, 4, 10000, 20
 INSERT INTO `product` VALUES (153, '감성6', 6, 175, '감성6', 4, 4, 10000, 20000, 96000, 96000, 70000, 126000, 180000, 100000, 176000, 230000, 150000, '2016-05-04', '2024-12-31', 'Y', 20, '2016-05-04', '2016-05-31', '5월 가정의 달 20%할인 이벤트 (평일 140,800원 / 주말 184,000원)<br/><불금이벤트 (평일요금)<br/><br/>', '난방비 25,000원 별도', 140800, '2016-05-04', '2016-05-31', NULL);
 INSERT INTO `product` VALUES (154, '감성7', 6, 176, '감성7', 4, 4, 10000, 20000, 96000, 96000, 70000, 126000, 180000, 100000, 176000, 230000, 150000, '2016-05-04', '2024-12-31', 'Y', 20, '2016-05-04', '2016-05-31', '5월 가정의 달 20%할인 이벤트 (평일 140,800원 / 주말 184,000원)<br/><불금이벤트 (평일요금)<br/><br/>', '난방비 25,000원 별도', 140800, '2016-05-04', '2016-05-31', NULL);
 INSERT INTO `product` VALUES (155, '감성8', 6, 177, '감성8', 4, 4, 10000, 20000, 96000, 96000, 70000, 126000, 180000, 100000, 176000, 230000, 150000, '2016-05-04', '2024-12-31', 'Y', 20, '2016-05-04', '2016-05-31', '5월 가정의 달 20%할인 이벤트 (평일 140,800원 / 주말 184,000원)<br/><불금이벤트 (평일요금)<br/><br/>', '난방비 25,000원 별도', 140800, '2016-05-04', '2016-05-31', NULL);
+
+update `product` set sale_memo = '5~6월 캠핑시즌 이벤트!!<br/><br/>* 주말(토), 공휴일 전날 20%할인 (250,000원 → 200,000원)<br/>* 평일(일~금) 균일가 (190,000원 →  115,000원)<br/><br/>'
+                    ,flat_price = '115000'
+                    ,flat_price_start_day = '2016-05-01'
+                    ,flat_price_end_day = '2016-06-30'
+                 where zone_no = '4';
+                     
+
+
 CREATE TABLE `reservation` (
   `reservation_no` int(11) NOT NULL auto_increment,
   `product_no` int(3) NOT NULL

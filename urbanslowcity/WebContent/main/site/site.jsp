@@ -267,7 +267,7 @@
 								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/union10.jpg" data-fancybox-group="union" title=""></a>
 								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/union11.jpg" data-fancybox-group="union" title=""></a>
 								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/union12.jpg" data-fancybox-group="union" title=""></a>
-								
+<!-- 								
 								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/grand1.jpg" data-fancybox-group="grand" title=""><img src="/images/site/grand.jpg" width="480" height="300" alt="" /></a>
 								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/grand2.jpg" data-fancybox-group="grand" title=""></a>
 								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/grand3.jpg" data-fancybox-group="grand" title=""></a>
@@ -319,6 +319,18 @@
 								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5496.JPG" data-fancybox-group="tipi2" title=""></a>
 								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5497.JPG" data-fancybox-group="tipi2" title=""></a>
 								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5488.JPG" data-fancybox-group="tipi2" title=""></a>
+-->																
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5477.JPG" data-fancybox-group="tipizone" title="티피1"><img src="/images/site/sen/tipizone.jpg" width="480" height="300" alt="" /></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5478.JPG" data-fancybox-group="tipizone" title="티피1"></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5479.JPG" data-fancybox-group="tipizone" title="티피1"></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5483.JPG" data-fancybox-group="tipizone" title="티피1"></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5487.JPG" data-fancybox-group="tipizone" title="티피1"></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/tipi_2.jpg" data-fancybox-group="tipizone" title="티피2"></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/tipi_2-1.jpg" data-fancybox-group="tipizone" title="티피2"></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/tipi_2-2.jpg" data-fancybox-group="tipizone" title="티피2"></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/tipi_2-3.jpg" data-fancybox-group="tipizone" title="티피2"></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/tipi_3.png" data-fancybox-group="tipizone" title="티피3"></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/tipi_3-1.png" data-fancybox-group="tipizone" title="티피3"></a>
 																
 								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/spa1.jpg" data-fancybox-group="spa" title=""><img src="/images/site/spa.jpg" width="480" height="300" alt="" /></a>
 								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/spa2.jpg" data-fancybox-group="spa" title=""></a>
@@ -337,15 +349,15 @@
 								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/spa/IMG_7323.jpg" data-fancybox-group="spa" title=""></a>
 								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/spa/IMG_7325.jpg" data-fancybox-group="spa" title=""></a>
 								
-								<a class="fancybox" href="/images/content/g1.jpg" data-fancybox-group="self" title=""><img src="/images/content/camping.jpg" width="480" height="300" alt="" /></a>
-								<a class="fancybox" href="/images/content/g3.jpg" data-fancybox-group="self" title=""></a>
-								<a class="fancybox" href="/images/content/g7.jpg" data-fancybox-group="self" title=""></a>
-								<a class="fancybox" href="/images/content/g8.jpg" data-fancybox-group="self" title=""></a>
-								<a class="fancybox" href="/images/content/camping/IMG_4925.JPG" data-fancybox-group="self" title=""></a>
-								<a class="fancybox" href="/images/content/camping/IMG_4926.JPG" data-fancybox-group="self" title=""></a>
-								<a class="fancybox" href="/images/content/camping/IMG_4929.JPG" data-fancybox-group="self" title=""></a>
-								<a class="fancybox" href="/images/content/camping/IMG_4930.JPG" data-fancybox-group="self" title=""></a>
-								<a class="fancybox" href="/images/content/camping/IMG_4932.JPG" data-fancybox-group="self" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/content/g1.jpg" data-fancybox-group="self" title=""><img src="/images/content/camping.jpg" width="480" height="300" alt="" /></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/content/g3.jpg" data-fancybox-group="self" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/content/g7.jpg" data-fancybox-group="self" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/content/g8.jpg" data-fancybox-group="self" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/content/camping/IMG_4925.JPG" data-fancybox-group="self" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/content/camping/IMG_4926.JPG" data-fancybox-group="self" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/content/camping/IMG_4929.JPG" data-fancybox-group="self" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/content/camping/IMG_4930.JPG" data-fancybox-group="self" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/content/camping/IMG_4932.JPG" data-fancybox-group="self" title=""></a>
 							  </td>
 						  </tr>
 						  

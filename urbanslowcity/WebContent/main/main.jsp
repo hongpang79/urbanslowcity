@@ -9,6 +9,9 @@
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<TITLE>Urban Slow City </TITLE>
+	<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+	<link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
 	<link rel='stylesheet' type='text/css' href='/css/company.css'>
 	<link href="/css/main.css" rel="stylesheet" type="text/css" />
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -74,16 +77,27 @@
 					<div class="inner">
 						<ul class="gallery">
 							<li>
-								<a href="/main/board/view.jsp?num=444&pageNum=1&category=notice">
-									<img src="/images/main/main10.jpg" alt="캠핑균일가이벤트" width="1200" height="390"/>
+								<a href="/main/board/view.jsp?num=683&pageNum=1&category=notice">
+									<img src="/images/main/main14.jpg" alt="유아풀장개장" width="1200" height="390"/>
 								</a>
 							</li>
+							<li>
+								<a href="/main/board/view.jsp?num=682&pageNum=1&category=notice">
+									<img src="/images/main/main13.jpg" alt="섬머패키지" width="1200" height="390"/>
+								</a>
+							</li>
+							<li>
+								<a href="/main/board/view.jsp?num=603&pageNum=1&category=notice">
+									<img src="/images/main/main12.jpg" alt="캠핑균일가이벤트" width="1200" height="390"/>
+								</a>
+							</li>
+							<!--
 							<li>
 								<a href="#">
 									<img src="/images/main/main11.jpg" alt="5월가정의달이벤트" width="1200" height="390"/>
 								</a>
 							</li>
-							<!--
+							
 							<li>
 								<a href="/main/board/view.jsp?num=436&pageNum=1&category=notice">
 									<img src="/images/main/main9.jpg" alt="어반슬로우시티맵버쉽" width="1200" height="390"/>
@@ -108,12 +122,13 @@
 									<img src="/images/main/main5.jpg" alt="감성존" width="1200" height="390"/>
 								</a>
 							</li>
-							-->
+							
 							<li>
 								<a href="#">
 									<img src="/images/main/main4.jpg" alt="불금 이벤트" width="1200" height="390"/>
 								</a>
 							</li>
+							-->
 							<!-- 
 							<li>
 								<a href="#">
@@ -154,20 +169,18 @@
 			<td align="center">
 				<table width="1200" border="0" cellspacing="0" cellpadding="0" >
 				  <tr>
-				    <td colspan="3"><br><hr/></br></td>
+				    <td><br><hr/></br></td>
 				  </tr>
 				  <tr>
-				    <td align="center">
-				    	<iframe width="980" height="390" src="https://www.youtube.com/embed/aqhngtNurmk?rel=0&amp;showinfo=0;wmode=opaque;" frameborder="0" allowfullscreen></iframe>
-				    </td>
-				  </tr>
-				  <tr>
-				    <td colspan="3"></br></td>
-				  </tr>
-				  <tr>
-				    <td align="center">
-				    	<iframe width="980" height="390" src="https://www.youtube.com/embed/WJhmJ-Vue5o?rel=0&amp;showinfo=0;wmode=opaque;" frameborder="0" allowfullscreen></iframe>
-				    </td>
+				  	<td align="center">
+				  		<iframe width="480" height="270" src="https://www.youtube.com/embed/H-p6EuZqFfE?rel=0&amp;showinfo=0;wmode=opaque;" frameborder="0" allowfullscreen></iframe>
+				  		&nbsp;
+						<iframe width="480" height="270" src="https://www.youtube.com/embed/qngozpgqJ9E?rel=0&amp;showinfo=0;wmode=opaque;" frameborder="0" allowfullscreen></iframe>
+						<br><br>
+						<iframe width="480" height="270" src="https://www.youtube.com/embed/aqhngtNurmk?rel=0&amp;showinfo=0;wmode=opaque;" frameborder="0" allowfullscreen></iframe>
+						&nbsp;
+						<iframe width="480" height="270" src="https://www.youtube.com/embed/WJhmJ-Vue5o?rel=0&amp;showinfo=0;wmode=opaque;" frameborder="0" allowfullscreen></iframe>
+				  	</td>
 				  </tr>
 				</table>
 			</td>
@@ -188,6 +201,16 @@
 						  <tr>
 						  	<td width="100px"></td>
 						  	<td colspan="2"><img src="/images/main/welcome.png"/><br/></td>
+						  </tr>
+						  <tr>
+						  	<td colspan="3" align="center">
+						  		<a href="/main/board/view.jsp?num=733&pageNum=1&category=photo"><img src="/images/main/northspace.jpg"/></a><br/><br/>
+						  	</td>
+						  </tr>
+						  <tr>
+						  	<td colspan="3" align="center">
+						  		<a href="/main/board/view.jsp?num=726&pageNum=1&category=photo"><img src="/images/main/coleman.jpg"/></a><br/><br/>
+						  	</td>
 						  </tr>
 						  <tr>
 						  	<td colspan="3" align="center">
@@ -225,17 +248,18 @@
 						  		<iframe width="330" height="186" src="https://www.youtube.com/embed/XM7h0t0hD98?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
 						  	</td>
 						  </tr>
-						  
+<!-- 						  
 						  <tr>
 						    <td colspan="3"><br><hr/></br></td>
-						  </tr>
+						  </tr>					  
 						  <tr>
 						  	<td width="100px"></td>
-						  	<td colspan="2"><img src="/images/main/packages.png"/><br/></td>
+						  	<td colspan="2">&nbsp;<br/></td>
+						  	<!-- <td colspan="2"><img src="/images/main/packages.png"/><br/></td>  -->
 						  	<!-- 
 						  	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/images/main/message.png"/><br/></td>
 						  	 -->
-						  </tr>
+<!-- 					  </tr>
 						  <tr>
 						  	<td width="100px"></td>
 						  	<td colspan="2" align="left">
@@ -243,6 +267,7 @@
 						  		<a href="http://www.urbanslowcity.com/main/content/waterLeisureSports.jsp"><img src="/images/main/img_package.jpg"/></a>
 						  	</td>
 						  </tr>
+ -->						  
 						  <!-- 
 						  <tr>
 						    <td colspan="3"><br><hr/></br></td>

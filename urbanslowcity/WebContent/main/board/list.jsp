@@ -72,147 +72,168 @@
     // 전체 52개의 글인 경우 2페이지 시작 행 번호
     // 52 - (2-1)*10 = 42
 %>   
-<HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
 <HEAD>
-	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-	<meta http-equiv="X-UA-Compatible" content="IE=7" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0, user-scalable=no,target-densitydpi=medium-dpi">
+	<meta http-equiv="Cache-Control" content="no-cache">  
+	<meta http-equiv="Expires" content="0">  
+	<meta http-equiv="Pragma" content="no-cache">
 	<TITLE>Urban Slow City </TITLE>
+	<link rel="stylesheet" type="text/css" media="all" href="/css/board/common.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="/css/board/layout.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="/css/board/content.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="/css/board/owl.carousel.css" />
 	<link rel='stylesheet' type='text/css' href='/css/company.css'>
+	<link href='http://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css' />
+	<script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
+<!--[if lt IE 9]>
+	<script type="text/javascript" src="/js/respond.min.js"></script>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 	
 	<script language='javascript' src='/js/common.js'></script>
+	<script type="text/javascript" src="/js/owl.carousel.js"></script>	
+	<script type="text/javascript" src="/js/jquery.ui.core.js"></script>
 </HEAD>
 <body leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0">
 	<!--menu-->
 	<jsp:include page="/main/menu.jsp" />
 	<!--//menu-->
-	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" id="Table_01" >
-		<tr>
-			<td align="center">
-			
-				<table width="1200" height="700" border="0" cellspacing="0" cellpadding="0">
-					
-					<tr height="200px">
-						<td>
-							<table width="1200px">
-								<tr>
-									<td width="5px"></td>
-									<td width="1150px">
-										<div id="container">
-											<%
-												if("notice".equals(category)){
-											%>
-												<h2><img src="/images/board/notice.png" alt="" /></h2>
-											<%
-												}
-											%>	
-											<%
-												if("qna".equals(category)){
-											%>
-												<h2><img src="/images/board/qna.png" alt="" /></h2>
-											<%
-												}
-											%>	
-											<!-- customerCover -->
-											<div class="communityCover">
-											<ul class="menu_list">
-												<li><a href="/main/board/gallerylist.jsp?category=photo">포토앨범</a></li>
-												<li <%if("notice".equals(category)){ %>class="on"<%} %>><a href="/main/board/list.jsp?category=notice">공지사항</a></li>
-												<li <%if("qna".equals(category)){ %>class="on"<%} %>><a href="/main/board/list.jsp?category=qna">Q & A</a></li>
-											</ul>
-											</div>
-										</div>
-									</td>
-									<td></td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr>
-    					<td align="center" valign="top">
-    					<!-- 게시판 시작 -->
-    						<link rel="StyleSheet" href="/css/board_6.css" type="text/css">
-    						<script language="javascript" src="/js/board.js?com_board_id=6&template=bizdemo18406"></script>
-    						<table border="0" cellspacing="0" cellpadding="0" width="1100px" bgcolor="#ffffff" background="">
-    							<tr>
-  									<td>
-  										<table border="1" cellpadding="0" cellspacing="0" style="border-collapse:collapse" width="100%" bordercolor="#E5E5E5" class="board">
-											<colgroup>
-												<col width="60" />
-												<col width="*" />
-												<col width="126" />
-												<col width="147" />
-												<col width="89" />
-											</colgroup>
-											<tr align="center" height="30" bgcolor="#F7F7F7">
-												<td class="att_title"><font style='color:#000000;font-size:12px;'>번호</font></td>
-												<td class="att_title"><font style='color:#000000;font-size:12px;'>제목</font></td>
-												<td class="att_title"><font style='color:#000000;font-size:12px;'>작성자</font></td>
-												<td class="att_title"><font style='color:#000000;font-size:12px;'>작성일자</font></td>
-												<td class="att_title"><font style='color:#000000;font-size:12px;'>조회수</font></td>
-											 </tr>
-<%
-if (count == 0) {  // 등록된 글이 없는 경우
-%>
-											<tr align='center' height='28'>
-												<td class="bbsno" colspan="5">등록된 내용이 없습니다.</td>
-											</tr>	 														
-<%
-}else{     // 등록된 글이 있는 경우
-	for(int i=0; i<articleList.size(); i++) {
-   		BoardVO article = (BoardVO)articleList.get(i);
-   		if(flag.equals("search")){
-%>
-											<tr align='center' height='28' onclick="location.href='/main/board/view.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>&category=<%=category%>&flag=search&com_board_search_code=<%=comBoardSearchCode %>&com_board_search_value=<%=comBoardSearchValue %>'; return false;" style='cursor:pointer;' style="cursor:pointer" >
-<%   			
- 		}else{
-%>
-											<tr align='center' height='28' onclick="location.href='/main/board/view.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>&category=<%=category%>'; return false;" style='cursor:pointer;' style="cursor:pointer" >
-<%    			
-  		}
-%> 														
-												<td class="bbsno"><%=number--%></td>
-												<td class='bbsnewf5' align='left'>
-<%
-	int wid=0;  // 들여쓰기 설정(레벨에 따라)
-%>
-													<img src="/images/board/level.gif" width="<%=wid%>">
-<%			
-	if(article.getReLevel()>0){
-		wid=5*(article.getReLevel());
-%>				
-													<img src="/images/board/reply_ic.gif"">
-<%			
-	}													
 	
-   	if(flag.equals("search")) { 
-%>  															
-													<a href='/main/board/view.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>&category=<%=category%>&flag=search&com_board_search_code=<%=comBoardSearchCode %>&com_board_search_value=<%=comBoardSearchValue %>'>
-<%          
-	}else{ 
-%>  															
-													<a href="/main/board/view.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>&category=<%=category%>">
-<%			
+	<div id="container">	
+		<%
+			if("notice".equals(category)){
+		%>
+			<h2><img src="/images/board/notice.png" alt="" /></h2>
+		<%
+			}
+		%>	
+		<%
+			if("qna".equals(category)){
+		%>
+			<h2><img src="/images/board/qna.png" alt="" /></h2>
+		<%
+			}
+		%>	
+					
+		<!-- customerCover -->
+		<div class="communityCover">
+			<ul class="menu_list">
+				<li><a href="/main/board/gallerylist.jsp?category=photo">포토앨범</a></li>
+				<li <%if("notice".equals(category)){ %>class="on"<%} %>><a href="/main/board/list.jsp?category=notice">공지사항</a></li>
+				<li <%if("qna".equals(category)){ %>class="on"<%} %>><a href="/main/board/list.jsp?category=qna">Q & A</a></li>
+			</ul>
+		</div>
+
+		<div  class="board_list">
+<%
+if(category.equals("notice")){
+%>
+			<table class="mgb30">
+				<caption>공지사항</caption>
+				<colgroup>			
+					<col width="70px;" class="p_tl" />
+					<col width="*" />							
+					<col width="100px" />
+					<col width="90px" class="p_tl" />
+				</colgroup>
+				<thead>
+					<tr>
+						<th scope="col" class="p_tc">번호</th>
+						<th scope="col">제목</th>								
+						<th scope="col">등록일</th>
+						<th scope="col" class="p_tc">조회수</th>
+					</tr>
+				</thead>
+				<tbody>
+<%
+	if (count == 0) {  // 등록된 글이 없는 경우
+%>		
+					<tr align='center' height='28'>
+						<td class="bbsno" colspan="4">등록된 내용이 없습니다.</td>
+					</tr>	
+<%
+	}else{     // 등록된 글이 있는 경우
+		for(int i=0; i<articleList.size(); i++) {
+			BoardVO article = (BoardVO)articleList.get(i);
+%>
+					<tr>
+						<td class="letter_zero p_tc"><%=number--%></td>
+						<td class="tleft"><a href="/main/board/view.jsp?num=<%=article.getNum()%>&pageNum=<%=currentPage%>&category=<%=category%>" class="fc_01"><%=article.getSubject()%></a></td>
+						<td class="letter_zero"><%= sdf.format(article.getRegDate())%></td>				
+						<td class="letter_zero p_tc"><%=article.getReadCount()%></td>
+					</tr>
+<%
+		}
 	}
-%>												
-													<%=article.getSubject()%></a></td>
-												<td class="bbswriter"><%=article.getWriter()%></td>
-												<td class="bbsetc_dateof_write"><%= sdf.format(article.getRegDate())%></td>
-												<td class="bbsetc_view_count"><%=article.getReadCount()%></td>
-											</tr>
-<%		
+%>		
+				</tbody>
+			</table>	
+<%
+}else if(category.equals("qna")){
+%>
+			<table summary="" class="mgb30">
+				<caption>자유 게시판</caption>
+				<colgroup>			
+					<col width="70px;" class="p_tl" />
+					<col width="*" />							
+					<col width="100px" class="m_layout_tl" />
+					<col width="100px" class="m_layout_tl" />
+					<col width="85px" class="p_tl" />
+				</colgroup>
+				<thead>
+					<tr>
+						<th scope="col" class="p_tc">번호</th>
+						<th scope="col">제목</th>								
+						<th scope="col" class="m_layout_tc">작성자</th>
+						<th scope="col" class="m_layout_tc">등록일</th>
+						<th scope="col" class="p_tc">조회수</th>
+					</tr>
+				</thead>
+				<tbody>
+<%
+	if (count == 0) {  // 등록된 글이 없는 경우
+%>		
+					<tr align='center' height='28'>
+						<td class="bbsno" colspan="5">등록된 내용이 없습니다.</td>
+					</tr>	
+<%
+	}else{     // 등록된 글이 있는 경우
+		for(int i=0; i<articleList.size(); i++) {
+			BoardVO article = (BoardVO)articleList.get(i);
+%>	
+					<tr>				 
+						<td class="fs_14 fc_01 p_tc"><%=number--%></td>
+						<td class="tleft qna_titlefs_14 fc_01">
+							 <img src="http://djscooter.cdn3.cafe24.com/images/content/icon_question.png" alt="Q"/>&nbsp;
+<%
+			if(article.getDescription()!=null){
+%>					 
+					 		<img src="http://djscooter.cdn3.cafe24.com/images/content/icon_answer.png" alt="A" class="mgl03" />
+<%
+				}
+%>					 
+							 <a href="#hide" onclick="$('#qna_pwd').show();$('#b_passwd').focus();$('#num').val('<%=article.getNum()%>')"><%=article.getSubject()%></a>
+							 <p class="writer m_b"><%=article.getWriter()%><span class="letter_zero"><%= sdf.format(article.getRegDate())%></span></p>
+						</td>
+						<td class="fs_14 fc_01 m_layout_tc"><%=article.getWriter()%></td>
+						<td class="letter_zero m_layout_tc"><%= sdf.format(article.getRegDate())%></td>				
+						<td class="letter_zero p_tc"><%=article.getReadCount()%></td>
+					</tr>	
+<%
+		}
 	}
+%>
+				</tbody>
+			</table>
+<%
 }
-%>																								
-										</table>
-										<table border='0' cellpadding='0' cellspacing='0' width='100%'>
-										    <tr><td height='1' bgcolor='#E5E5E5'></td></tr>
-										</table>
-										<!-- 페이징 -->
-										<table border="0" cellpadding="0" cellspacing="0" align="center" width="100%">
-											<tr>
-												<td width='62'></td>
-												<td height="34" align="center" class="paging">
+%>	
+	<div class="paging mgb10" style="border:solid 1px #e3e2da;">
+		<p class="prevCover">
 <%
     if (count > 0) {  // 등록된 글이 있는 경우
 	    int pageCount = count / pageSize + ( count % pageSize == 0 ? 0 : 1);
@@ -226,101 +247,143 @@ if (count == 0) {  // 등록된 글이 없는 경우
 	    int endPage = startPage + pageBlock-1;
 	    //
 	    if (endPage > pageCount) endPage = pageCount;
-	
-	    if(flag.equals("search")) {
-	    	if (startPage > 10) {    %>
-	        	<a href="/main/board/list.jsp?pageNum=<%= startPage - 10 %>&category=<%=category%>&flag=search&com_board_search_code=<%=comBoardSearchCode %>&com_board_search_value=<%=comBoardSearchValue %>"><img src="/images/board/btn_prev.gif" alt="이전" /></a>
-<%      	}
-		    for (int i = startPage ; i <= endPage ; i++) {  %>
-		        <a href="/main/board/list.jsp?pageNum=<%= i %>&category=<%=category%>&flag=search&com_board_search_code=<%=comBoardSearchCode %>&com_board_search_value=<%=comBoardSearchValue %>">&nbsp;<%= i %></a>
+%>
+			<span class="prevEnd"><a href="/main/board/list.jsp?pageNum=1&category=<%=category%>"><img src="http://djscooter.cdn3.cafe24.com/images/btn/prevEnd.gif" alt="맨처음" /></a></span>
+<%	    
+	    if (startPage > 10) {    
+%>
+			<span class="prev"><a href="/main/board/list.jsp?pageNum=<%= startPage - 10 %>&category=<%=category%>"><img src="http://djscooter.cdn3.cafe24.com/images/btn/prev.gif" alt="이전10개" /></a></span>
 <%
-		    }
-		    if (endPage < pageCount) {  %>
-		    	<a href="/main/board/list.jsp?pageNum=<%= startPage + 10 %>&category=<%=category%>&flag=search&com_board_search_code=<%=comBoardSearchCode %>&com_board_search_value=<%=comBoardSearchValue %>">&nbsp;<img src="/images/board/btn_next.gif" alt="다음" /></a>
+	    }else{ 
+%>
+			<span class="prev"><img src="http://djscooter.cdn3.cafe24.com/images/btn/prev.gif" alt="이전10개" /></span>
 <%
-		    }
-	    }else{
-	        if (startPage > 10) {    %>
-	            <a href="/main/board/list.jsp?pageNum=<%= startPage - 10 %>&category=<%=category%>"><img src="/images/board/btn_prev.gif" alt="이전" /></a>
-<%      	}
-	        for (int i = startPage ; i <= endPage ; i++) {  %>
-	            <a href="/main/board/list.jsp?pageNum=<%= i %>&category=<%=category%>">&nbsp;<%= i %></a>
-<%
-	        }
-	        if (endPage < pageCount) {  %>
-	            <a href="/main/board/list.jsp?pageNum=<%= startPage + 10 %>&category=<%=category%>">&nbsp;<img src="/images/board/btn_next.gif" alt="다음" /></a>
-<%
-	        }
 	    }
-    }
-%>																
-												</td>
-												<td width='62' align='right'>
-												<!-- 글쓰기 -->
+%>
+		</p>
 <%
-	if(!category.equals("notice")){
-%>		
-													<a href='/main/board/writeForm.jsp?category=<%=category%>' style=''><img alt='' src='/images/board/write.gif' border='0' /></a>			
+		for (int i = startPage ; i <= endPage ; i++) {
+%>
+			<a href="/main/board/list.jsp?pageNum=<%= i %>&category=<%=category%>">
+<%
+			if( i == currentPage){
+%>
+				<strong class="border first"><%= i %></strong>
+<%
+			}else{
+%>				
+				<%= i %>
+<%
+			}
+%>
+		</a>
+		
+<%
+		}
+%>
+		<p class="nextCover">
+<%
+		if (endPage < pageCount) {  
+%>
+			<span class="next"><a href="/main/board/list.jsp?pageNum=<%= startPage + 10 %>&category=<%=category%>"><img src="http://djscooter.cdn3.cafe24.com/images/btn/next.gif" alt="다음10개" /></a></span>
+<%
+		}else{
+%>
+			<span class="next"><img src="http://djscooter.cdn3.cafe24.com/images/btn/next.gif" alt="다음10개" /></span>
+<%			
+		}
+%>
+			<span class="nextEnd"><a href="/main/board/list.jsp?pageNum=<%= endPage %>&category=<%=category%>"><img src="http://djscooter.cdn3.cafe24.com/images/btn/nextEnd.gif" alt="맨마지막" /></a></span>
 <%
 	}
-%>															
+%>
+		</p>																	
+	</div>
+<%
+if(category.equals("qna")){
+%>	
+	<div class="text-r"><span class="btn_pack gray"><a href="/main/board/writeForm.jsp?category=<%=category%>">글쓰기</a></span></div>
+<%
+}
+%>
+	<!-- pw_pop -->
+	<div class="pw_pop" id="qna_pwd" style="display:none;">
+		<form name="frm_passwd" method="post">
+		<input type="hidden" name="num" id="num" />
+		<p class="title">비밀번호 확인</p>
+		<p class="info">이 게시글의 비밀번호를 입력해주세요</p>
+		<p class="input_pw">
+		<input type="password" name="b_passwd" id="b_passwd" class="intxt01" />
+		<a href="#pass" onclick="passwdOk();" title="확인" class="btn_com">확인</a>
+		</p>
+		<a href="javascript:LayerClose();" class="btn_close"><img src="http://djscooter.cdn3.cafe24.com/images/btn/pop_close.png" alt="닫기" /></a>
+		</form>
+	</div>						
 
-															<!-- //글쓰기 -->
-												</td>
-											</tr>
-											<tr><td colspan='3' height='1' bgcolor="#E5E5E5"></td></tr>
-										</table>
-										<!-- //페이징 -->
-													
-										<!-- 검색 -->
-										<div id="ext_search" style="text-align:left">
-											<table id="search_table" border="0" cellspacing="0" cellpadding="2">
-											<form name='com_board_search' method='post' action='/main/board/list.jsp?category=<%=category%>&flag=search' onsubmit="return FormCheck.init('com_board_search')">
-												<tr>
-													<td class="est_cate_cell">
-														<select title="select" name='com_board_search_code' class="cateform" align='absmiddle' onchange='sel_search();'>
-															<option value='subject' <%if(comBoardSearchCode.equals("subject")){%> selected <%}%>>제목</option>
-															<option value='description' <%if(comBoardSearchCode.equals("description")){%> selected <%}%>>내용</option>
-															<option value='writer' <%if(comBoardSearchCode.equals("writer")){%> selected <%}%>>작성자</option>
-														</select>
-													</td>
-													<td class="est_keyword_cell">
-														<div id='search_display1' style='display:block;'>
-															<input title="input" alt="" type='text' class="keywordform" align='absmiddle' name='com_board_search_value' chk="y" msg="검색어" kind="" value="<%=comBoardSearchValue%>"/>
-														</div>
-														<div id='search_display2' style='display:none;'>
-															<input title="input" alt="" type='text' class="dateform" align='absmiddle' name='com_board_search_value1' value='<%=searchDay %>' />&nbsp;~&nbsp;
-															<input title="input" alt="" type='text' class="dateform" align='absmiddle' name='com_board_search_value2' value='<%=searchDay %>' />
-														</div>
-													</td>
-													<td class="est_btn_cell">
-														<input title="input" alt="" type='image' src='/images/board/search.gif' border='0' align='absmiddle'>
-													</td>
-												</tr>
-											</form>
-											</table>
-										</div>
-										<!-- //검색 -->
-									</td>
-											
-										<!-- 게시판 끝 -->
-			
-								</tr>
-							</table>
-						</td>
-					</tr>
-					<tr height="150"><td></td></tr>
-				</table>
-
-			 </td>
-		</tr>
-	</table>
-
-	<!--bottom-->
-	<jsp:include page="/main/bottom.jsp" />
-	<!--//bottom-->
+<script language="javascript">
+//<![CDATA[ 
+function searchForm(){
+	var frm = document.frm_search;
+	if ( !frm.query.value ) {
+		alert('검색어를 입력하세요');
+		frm.query.focus();
+		return false;
+	}	
 	
-</BODY>
-</HTML>
-<script language="javascript" type="text/javascript" src="/js/urban.lib.js?date=1364782903"></script>
-<script language="javascript" src="/js/urban.board.js"></script>
+	frm.submit();
+}
+function passwdOk(){
+	if ( !$('#b_passwd').val() )
+	{
+		alert('비밀번호를 입력하세요.');
+		$('#b_passwd').focus();
+		return false;
+	}
+	document.frm_passwd.action='/board.do?action=board&step=passwordChk&category=<%=category%>&pageNum=<%=pageNum%>';
+	document.frm_passwd.submit();
+}
+//Layer 숨김
+function LayerClose(){
+	$('#qna_pwd').hide();
+}
+//]]>
+</script>
+	</div>
+	<!-- // customerCover -->
+
+</div>	<!-- BODY -->
+
+	<!-- BOTTOM -->
+	<!-- #footer -->
+	<jsp:include page="/main/bottom.jsp" />
+	<!-- // #footer -->
+
+	<!-- BOTTOM -->
+</body>
+</html>
+<script type="text/javascript">
+$(function(){
+	setTimeout( resize , 500 );
+	function resize(){
+		if($(window).width() < 800)
+		{
+			$(".newwin").width( $(window).width() - 20 ).css({'left' : '10px' , 'top' : '10px'});			
+		}	
+	}
+	$(window).resize(function(){		
+		resize();		
+	});
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

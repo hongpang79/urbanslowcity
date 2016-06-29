@@ -203,7 +203,7 @@ function view(value,target)
 			<table border=1 cellpadding=3 cellspacing=0 width=800 style='border-collapse:collapse;line-height:17px' bordercolor=D3D3D3>
 				<tr height='28' align='center'>
 					<td class='tbctr' width='150'>레벨/권한</td>
-					<td class='tbctr'>접근가능 메뉴</td>
+					<td class='tbctr' width='180'>접근가능 메뉴</td>
 					<td class='tbctr'>권한 설명</td>
 				</tr>
 				<tr height='28'>

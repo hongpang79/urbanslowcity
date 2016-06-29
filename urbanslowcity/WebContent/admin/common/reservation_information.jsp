@@ -26,6 +26,9 @@ if(!cmd.equals("list")){
 <head>
 <title>예약환경설정</title>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
 <link rel='stylesheet' type='text/css' href='/admin/css/admin.css'>
 <script language=javascript src='/admin/js/common.js'></script>
 <script language=javascript src='/admin/js/admin.js'></script>

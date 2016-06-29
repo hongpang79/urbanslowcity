@@ -27,8 +27,11 @@ int rsvtRefdCompCnt = statistics.getRsvtRefdCompCnt();
 %>
 <html>
 <head>
-<title></title>
+<title>UrbanSlowCity Admin</title>
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
 <link rel='stylesheet' type='text/css' href='/admin/css/admin.css'>
 </head>
 

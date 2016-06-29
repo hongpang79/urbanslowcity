@@ -241,6 +241,7 @@ public class ReservationDAO {
 			if( rs.next() ){
 				site.setProductNo(rs.getInt("product_no"));						// 고유번호 primary key
 				site.setProductName(rs.getString("product_name"));				// site이름
+				site.setZoneNo(rs.getInt("zone_no"));
 				site.setSiteNo(rs.getInt("site_no"));
 				site.setUsers(rs.getInt("users"));							// 기본이용인원
 				site.setMaxUsers(rs.getInt("max_users"));					// 최대인원수
@@ -387,6 +388,8 @@ public class ReservationDAO {
 					money = Integer.toString(payMoney);
 				}
 			}else{
+//				int zoneNo = site.zoneNo;
+//				System.out.println("zoneNo : " + zoneNo);
 				for( int i=0; i<maxRange ; i++ ){
 //					if(flatPriceYn.equals("Y")){ //균일가 기간에는 평일/주말 체크로직 없이 일괄 적용
 //						payMoney = payMoney + site.getFlatPrice();
@@ -396,17 +399,20 @@ public class ReservationDAO {
 						
 						//int chkDate = Integer.parseInt(chooseCal.get(Calendar.YEAR)+""+((chooseCal.get(Calendar.MONTH)+1) < 10 ? "0"+(chooseCal.get(Calendar.MONTH)+1) : chooseCal.get(Calendar.MONTH)+1) +""+chooseCal.get(Calendar.DATE));
 						String chkDate = chooseCal.get(Calendar.YEAR)+"-"+((chooseCal.get(Calendar.MONTH)+1) < 10 ? "0"+(chooseCal.get(Calendar.MONTH)+1) : chooseCal.get(Calendar.MONTH)+1) +"-"+chooseCal.get(Calendar.DATE);
+						String chkHolyDate = chooseCal.get(Calendar.YEAR)+""+((chooseCal.get(Calendar.MONTH)+1) < 10 ? "0"+(chooseCal.get(Calendar.MONTH)+1) : chooseCal.get(Calendar.MONTH)+1) +""+chooseCal.get(Calendar.DATE);
 						int day = chooseCal.get(Calendar.DAY_OF_WEEK);	// 선택날에 해당하는 요일 [일요일=1 1~7]
 	//					System.out.print(day+" ");
 	//					days[i] = da[day-1];
 						
-						boolean holiday = util.CommonUtil.holidayCheckAfterDay(chooseDate); //선택날 다음날이 공휴일이면 주말가격임.
+						boolean holiday = util.CommonUtil.holidayCheckAfterDay(chkHolyDate); //선택날 다음날이 공휴일이면 주말가격임.
 						if( holiday){
-							day = 8;
+							day = 8;  //공휴일=8
+//							System.out.println("holiday check : " + day);
 						}
 						
-						chooseCal.add(Calendar.DAY_OF_MONTH, 1);
-	//					System.out.print(chooseCal.DAY_OF_MONTH+" ");
+//						System.out.println("[before]" + chooseCal.get(Calendar.MONTH)+"/"+chooseCal.get(Calendar.DATE));
+						chooseCal.add(Calendar.DAY_OF_MONTH, 1); //다음날의 대한 값을 구하기 위해 하루를 더함
+//						System.out.println("[after]" + chooseCal.get(Calendar.MONTH)+"/"+chooseCal.get(Calendar.DATE));
 						
 						pstmt.setString(1, chkDate);
 						pstmt.setString(2, chkDate);
@@ -427,10 +433,13 @@ public class ReservationDAO {
 ////								price[i] = site.getLowSeasonWeekday();
 //								payMoney = payMoney + site.getMiddleSeasonWeekday();
 //							}
-						if( day == 6 && flatPriceYn.equals("Y")){	// 금요일 균일가 이벤트
-							payMoney = payMoney + site.getFlatPrice();
-							flatMoney = flatMoney + site.getFlatPrice();
-						}else if( day == 6 || day == 7 || day == 8){	// 금요일 또는 토요일 (주말), 국경일전날  
+						
+//						if( day == 6 && flatPriceYn.equals("Y")){	// 균일가 이벤트
+//							payMoney = payMoney + site.getFlatPrice();
+//							flatMoney = flatMoney + site.getFlatPrice();
+//						}else if( day == 6 || day == 7 || day == 8){	// 금요일 또는 토요일 (주말), 국경일전날
+						
+						if( day == 7 || day == 8){	// 토요일 (주말), 국경일전날
 							if(seasonCode.equals("L")){
 //								price[i] = site.getLowSeasonWeekend();
 								payMoney = payMoney + site.getLowSeasonWeekend();
@@ -441,7 +450,12 @@ public class ReservationDAO {
 //								price[i] = site.getLowSeasonWeekday();
 								payMoney = payMoney + site.getMiddleSeasonWeekend();
 							}
-
+						}else if(flatPriceYn.equals("Y")){	// 균일가 이벤트
+								payMoney = payMoney + site.getFlatPrice();
+								flatMoney = flatMoney + site.getFlatPrice();
+//						}else if((zoneNo==2 || zoneNo==3) && flatPriceYn.equals("Y")){	// 특정사이트 균일가 이벤트
+//								payMoney = payMoney + site.getFlatPrice();
+//								flatMoney = flatMoney + site.getFlatPrice();
 						}else{
 							if(seasonCode.equals("L")){
 //								price[i] = site.getLowSeasonWeekday();
@@ -710,6 +724,7 @@ public class ReservationDAO {
 								msg = rs.getString(1);
 								msg = msg.replace("[DATE]", resDate);
 								msg = msg.replace("[SITENAME]", productName);
+								msg = msg.replace("[RESERVER]", reserver);
 							}
 							
 							SQL = "SELECT phone_number FROM sms_phone ";

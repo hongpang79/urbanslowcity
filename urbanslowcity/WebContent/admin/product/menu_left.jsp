@@ -38,7 +38,8 @@
         	<tr>
         		<td height=21 style='padding:3 0 8 0'>
                     <img src=/admin/img/bl_left2.gif><a href="/admin/product/product_reservation_list.jsp"  >상품 리스트</a><br>
-                    <img src=/admin/img/bl_left2.gif><a href="/admin/product/product_reservation_modify.jsp"  >상품 등록</a>
+                    <img src=/admin/img/bl_left2.gif><a href="/admin/product/product_reservation_modify.jsp"  >상품 등록</a><br>
+                    <img src=/admin/img/bl_left2.gif><a href="/admin/product/product_reservation_update.jsp"  >상품일괄변경</a>
                 </td>
             </tr>
         </tbody>

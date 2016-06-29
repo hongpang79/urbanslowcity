@@ -40,6 +40,12 @@
 	<script language='javascript'>
 	function sendit(){
 		
+		var pay = document.sch_frm.payStatus.value;
+		if(pay == 'Y'){
+			alert("환불신청은 고객센터로 전화주세요\r\n1899-9349");
+			return false;
+		}
+		
 		var str = document.sch_frm.r_cancel_content.value;
 		if(str.length < 1){
 			alert("취소사유를 입력해 주세요!");
@@ -108,6 +114,11 @@
 																				- 3~5일 60% 환불<br />
 																				- 1~2일 50% 환불<br />
 																				- 이용당일 환불불가<br /><br />
+																				성수기(6월~10월) 예약취소시 위약금<br />
+																				- 10일이전 100% 환불<br />
+																				- 8~10일 90% 환불<br />
+																				- 이용당일, 7일전 환불불가<br /><br />
+																						
 																				* 올바른 예약문화 정착을 위해 불가피한 조치이오니 양해부탁드립니다.</p>
 																		</td>
 																	</tr>
@@ -176,7 +187,7 @@
 																	</tbody>
 																</table>
 															</div>
-										
+															
 															<p class="mt40 tac"><input type="image" src="/images/reservation/btn_reservation6.gif" alt="예약취소" /></p>
 														
 														</form>
