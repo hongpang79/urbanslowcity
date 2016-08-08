@@ -320,17 +320,24 @@
 								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5497.JPG" data-fancybox-group="tipi2" title=""></a>
 								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5488.JPG" data-fancybox-group="tipi2" title=""></a>
 -->																
-								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5477.JPG" data-fancybox-group="tipizone" title="티피1"><img src="/images/site/sen/tipizone.jpg" width="480" height="300" alt="" /></a>
-								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5478.JPG" data-fancybox-group="tipizone" title="티피1"></a>
-								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5479.JPG" data-fancybox-group="tipizone" title="티피1"></a>
-								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5483.JPG" data-fancybox-group="tipizone" title="티피1"></a>
-								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5487.JPG" data-fancybox-group="tipizone" title="티피1"></a>
-								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/tipi_2.jpg" data-fancybox-group="tipizone" title="티피2"></a>
-								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/tipi_2-1.jpg" data-fancybox-group="tipizone" title="티피2"></a>
-								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/tipi_2-2.jpg" data-fancybox-group="tipizone" title="티피2"></a>
-								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/tipi_2-3.jpg" data-fancybox-group="tipizone" title="티피2"></a>
-								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/tipi_3.png" data-fancybox-group="tipizone" title="티피3"></a>
-								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/tipi_3-1.png" data-fancybox-group="tipizone" title="티피3"></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5477.JPG" data-fancybox-group="tipizone" title=""><img src="/images/site/sen/tipizone.jpg" width="480" height="300" alt="" /></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5478.JPG" data-fancybox-group="tipizone" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5479.JPG" data-fancybox-group="tipizone" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5483.JPG" data-fancybox-group="tipizone" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5487.JPG" data-fancybox-group="tipizone" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/tipi_2.jpg" data-fancybox-group="tipizone" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/tipi_2-1.jpg" data-fancybox-group="tipizone" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/tipi_2-2.jpg" data-fancybox-group="tipizone" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/tipi_2-3.jpg" data-fancybox-group="tipizone" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/tipi_3.png" data-fancybox-group="tipizone" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/tipi_3-1.png" data-fancybox-group="tipizone" title=""></a>
+								
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/oasis/oasis1.jpg" data-fancybox-group="oasiszone" title=""><img src="/images/site/oasis/oasis.jpg" width="480" height="300" alt="" /></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/oasis/oasis2.jpg" data-fancybox-group="oasiszone" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/oasis/oasis3.jpg" data-fancybox-group="oasiszone" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/oasis/oasis4.jpg" data-fancybox-group="oasiszone" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/oasis/oasis6.jpg" data-fancybox-group="oasiszone" title=""></a>
+								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/oasis/oasis7.jpg" data-fancybox-group="oasiszone" title=""></a>
 																
 								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/spa1.jpg" data-fancybox-group="spa" title=""><img src="/images/site/spa.jpg" width="480" height="300" alt="" /></a>
 								<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/spa2.jpg" data-fancybox-group="spa" title=""></a>

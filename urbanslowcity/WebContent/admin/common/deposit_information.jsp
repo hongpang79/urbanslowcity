@@ -241,7 +241,7 @@ function checkBank(value) {
 						<td width='250' align="center"><%=account %></td>
 						<td width='150' align="center"><%=depositor %></td>
 						<td width='150' align="center">
-							<a href="javascript:;" onclick="javascript:deleteCheck(<%=account %>)">삭제</a>
+							<a href="javascript:;" onclick="javascript:deleteCheck('<%=account %>')">삭제</a>
 						</td>
 					</tr>
 <%
@@ -283,7 +283,7 @@ function checkBank(value) {
 																	<option value='신용협동조합' >신용협동조합</option>
 																	<option value='수출입은행' >수출입은행</option>
 																	<option value='수협중앙회' >수협중앙회</option>
-																	<option value='국민(주택)은행' >국민(주택)은행</option>
+																	<option value='국민은행' >국민은행</option>
 																	<option value='농협중앙회' >농협중앙회</option>
 																	<option value='기업은행' >기업은행</option>
 																	<option value='제주은행' >제주은행</option>
@@ -292,7 +292,7 @@ function checkBank(value) {
 																	<option value='도이치은행' >도이치은행</option>
 																	<option value='광주은행' >광주은행</option>
 																	<option value='전북은행' >전북은행</option>
-																	<option value='하나(서울)은행' >하나(서울)은행</option>
+																	<option value='하나은행' >하나은행</option>
 																	<option value='한국시티(한미)은행' >한국시티(한미)은행</option>
 																	<option value='산업은행' >산업은행</option>
 																	<option value='대구은행' >대구은행</option>
