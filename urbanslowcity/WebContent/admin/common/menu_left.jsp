@@ -46,7 +46,6 @@
                     <img src=/admin/img/bl_left2.gif><a href="/admin/common/admin_member.jsp"  >운영자설정</a><br>
                     <img src=/admin/img/bl_left2.gif><a href="/admin/common/deposit_information.jsp"  >무통장입금계좌설정</a><br>
                     <img src=/admin/img/bl_left2.gif><a href="/admin/common/holyday_information.jsp"  >휴일관리</a><br>
-                    <img src=/admin/img/bl_left2.gif><a href="/admin/common/popup_manager.jsp"  >팝업관리</a><br>
                 </td>
             </tr>
         </tbody>

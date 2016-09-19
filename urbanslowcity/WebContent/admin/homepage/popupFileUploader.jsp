@@ -60,7 +60,7 @@ h1{color:#333;font-size:14px;letter-spacing:-1px}
 	    	 그밖의 경우 pop_container2 클래스와 하위 HTML 적용      -->
 	<div id="pop_container2" class="pop_container2">
     	<!-- content -->
-		<form id="editor_upimage" name="editor_upimage" action="/admin/common/file_uploader.jsp" method="post" enctype="multipart/form-data" onSubmit="return false;">
+		<form id="editor_upimage" name="editor_upimage" action="/admin/homepage/file_uploader.jsp" method="post" enctype="multipart/form-data" onSubmit="return false;">
 		<input type="hidden" name="target" value="<%=target %>"/>
         <div id="pop_content2">
 			<input type="file" class="upload" id="uploadInputBox" name="Filedata">

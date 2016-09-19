@@ -1,13 +1,19 @@
 package util;
 
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-
+/**
+ * urban slowcity
+ * cafe24 id : urbanslowcity
+ * p/w : 1899
+ * @author kr007951
+ *
+ */
 public class ConnectionUtil {
 	
 //	private static DataSource ds = null;

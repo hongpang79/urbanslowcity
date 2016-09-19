@@ -175,7 +175,7 @@ function numnberCheck()
 	<tr>
 		<td align="center">
 			<table border='1' cellpadding='0' cellspacing='0' width='740' style='border-collapse:collapse' bordercolor='cccccc'>
-				<form name='addform' method='post' action='/admin/common/popup_form.jsp' onSubmit='return formCheck()'>
+				<form name='addform' method='post' action='/admin/homepage/popup_form.jsp' onSubmit='return formCheck()'>
 					<input type='hidden' name='cmd' value='<%=action%>'/>
 					<input type='hidden' name='action' value='<%=action%>'/>
 					<input type='hidden' name='msg' id='msg' value="<%=msg %>"/>
@@ -189,7 +189,7 @@ function numnberCheck()
 					<td class='tbsbj'>이미지</td>
 					<td colspan="3" height='28' class='tbcont'>
 						<input title="input" type='text' id='imgSrc' name="imgSrc" style="border:1px solid #EAEAEA;height:20px;" maxlength="50" size="50" value="<%=imgSrc%>"/>
-							<a href="javascript:WinOpen('/admin/common/popupFileUploader.jsp?target=imgSrc','file_upload','384','270','false')"><img src="/admin/img/common/file_upload.gif"/></a>
+							<a href="javascript:WinOpen('/admin/homepage/popupFileUploader.jsp?target=imgSrc','file_upload','384','270','false')"><img src="/admin/img/common/file_upload.gif"/></a>
 					</td>
 				</tr>
 				<tr height='28'>

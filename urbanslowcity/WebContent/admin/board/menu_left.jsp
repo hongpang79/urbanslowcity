@@ -41,10 +41,18 @@
                     <img src=/admin/img/bl_left2.gif><a href="/admin/board/list.jsp?category=notice"  >공지사항</a><br>
                     <img src=/admin/img/bl_left2.gif><a href="/admin/board/list.jsp?category=qna"  >문의하기</a><br>
                     <img src=/admin/img/bl_left2.gif><a href="/admin/board/list.jsp?category=photo"  >포토앨범</a>
-                    <!-- 
-                    <br>
-                    <img src=/admin/img/bl_left2.gif><a href="/admin/board/menu.php?component=reservation&file=board_admin_list&component_type=board&component_id=8"  >여행후기</a><br>
-                     -->
+                </td>
+            </tr>
+        </tbody>
+        <tr><td height=1></td></tr>
+        <tr><td class=left1><a href="javascript:;"  >홈페이지 관리</a></td></tr>
+        <tr><td height=1></td></tr>
+        <tbody>
+        	<tr>
+        		<td height=21 style='padding:3 0 8 0'>
+        			<img src=/admin/img/bl_left2.gif><a href="/admin/homepage/popup_manager.jsp"  >팝업관리</a><br>
+                    <img src=/admin/img/bl_left2.gif><a href="/admin/homepage/main_banner.jsp"  >메인 Banner 관리</a><br>
+                    <!-- <img src=/admin/img/bl_left2.gif><a href="/admin/homepage/site_content.jsp"  >SITE화면 관리</a><br> -->
                 </td>
             </tr>
         </tbody>

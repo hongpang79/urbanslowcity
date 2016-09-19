@@ -3,9 +3,6 @@
 <%@ page import="java.text.NumberFormat" %>
 <%@ page import="admin.PopupVO" %>
 <%@ page import="admin.CommonDAO" %>
-<%@ page import="admin.MainBoardVO" %>
-<%@ page import="admin.MainDAO" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <HEAD>
@@ -79,32 +76,101 @@
 				<div class="gallery_wrap" id="sliderImg01">
 					<div class="inner">
 						<ul class="gallery">
-<%
-Vector<MainBoardVO> vBoard = MainDAO.getInstance().selectMainBannerShow();
-int count = vBoard.size();
-if( count > 0 ){
-	int bannerNo = 0;
-	String bannerName = "";
-	String imagePath = "";
-	int boardNo = 0;
-	
-	MainBoardVO board = null;
-	for(int i=0; i<count; i++){
-		board = vBoard.get(i);
-		bannerNo = board.getNum();
-		bannerName = board.getSubject();
-		imagePath = board.getImgUrl();
-		boardNo = board.getBoardNo();	
-		%>
 							<li>
-								<a href="/main/board/view.jsp?num=<%=boardNo %>&pageNum=1&category=notice">
-									<img src="<%=imagePath %>" alt="<%=bannerName %>" width="1200" height="390"/>
+								<a href="/main/board/view.jsp?num=941&pageNum=1&category=notice">
+									<img src="/images/main/1.jpg" alt="감성" width="1200" height="390"/>
 								</a>
 							</li>
-		<%
-	}
-}
-%>						
+							<li>
+								<a href="/main/board/view.jsp?num=942&pageNum=1&category=notice">
+									<img src="/images/main/2.jpg" alt="어반로드" width="1200" height="390"/>
+								</a>
+							</li>
+							<li>
+								<a href="/main/board/view.jsp?num=946&pageNum=1&category=notice">
+									<img src="/images/main/3.jpg" alt="요트" width="1200" height="390"/>
+								</a>
+							</li>
+							<li>
+								<a href="/main/board/view.jsp?num=943&pageNum=1&category=notice">
+									<img src="/images/main/4.jpg" alt="classic" width="1200" height="390"/>
+								</a>
+							</li>
+							<!-- 
+							<li>
+								<a href="/main/board/view.jsp?num=683&pageNum=1&category=notice">
+									<img src="/images/main/main14.jpg" alt="유아풀장개장" width="1200" height="390"/>
+								</a>
+							</li>
+							<li>
+								<a href="/main/board/view.jsp?num=682&pageNum=1&category=notice">
+									<img src="/images/main/main13.jpg" alt="섬머패키지" width="1200" height="390"/>
+								</a>
+							</li>
+							<li>
+								<a href="/main/board/view.jsp?num=603&pageNum=1&category=notice">
+									<img src="/images/main/main12.jpg" alt="캠핑균일가이벤트" width="1200" height="390"/>
+								</a>
+							</li>
+							 -->
+							<!--
+							<li>
+								<a href="#">
+									<img src="/images/main/main11.jpg" alt="5월가정의달이벤트" width="1200" height="390"/>
+								</a>
+							</li>
+							
+							<li>
+								<a href="/main/board/view.jsp?num=436&pageNum=1&category=notice">
+									<img src="/images/main/main9.jpg" alt="어반슬로우시티맵버쉽" width="1200" height="390"/>
+								</a>
+							</li>
+							 
+							<li>
+								<a href="#">
+									<img src="/images/main/main7.jpg" alt="대형화덕" width="1200" height="390"/>
+								</a>
+							</li>
+							
+							<li>
+								<a href="/main/board/view.jsp?num=331&pageNum=1&category=notice">
+									<img src="/images/main/main6.jpg" alt="송어잡기" width="1200" height="390"/>
+								</a>
+							</li>
+							 
+							
+							<li>
+								<a href="/main/content/glamping.jsp">
+									<img src="/images/main/main5.jpg" alt="감성존" width="1200" height="390"/>
+								</a>
+							</li>
+							
+							<li>
+								<a href="#">
+									<img src="/images/main/main4.jpg" alt="불금 이벤트" width="1200" height="390"/>
+								</a>
+							</li>
+							-->
+							<!-- 
+							<li>
+								<a href="#">
+									<img src="/images/main/main1.jpg" alt="가을 이벤트" width="1200" height="390"/>
+								</a>
+							</li>
+							 -->
+							<!-- 
+							<li>
+								<a href="#">
+									<img src="/images/main/main2.jpg" alt="summer패키지" width="1200" height="390"/>
+								</a>
+							</li>
+							
+							<li>
+								<a href="/main/board/view.jsp?num=169&pageNum=1&category=notice">
+									<img src="/images/main/main3.jpg" alt="크루즈요트럭서리투어" width="1200" height="390"/>
+								</a>
+							</li>
+							-->	
 								
 							<a href="#" class="links_prev btn">
 									<img alt="이전" src="/images/main/links_prev.png" />

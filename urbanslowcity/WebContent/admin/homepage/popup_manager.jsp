@@ -51,7 +51,7 @@ function callPopup(layerId){
 	if(layerId == "NEW"){
 		action = "insert";
 	}
-	var url = "/admin/common/popup_form.jsp?action="+action+"&layerId="+layerId;
+	var url = "/admin/homepage/popup_form.jsp?action="+action+"&layerId="+layerId;
 	url = encodeURI(url);
 	popup.openWindowPopup(url, 'popup', {width : '800px', height : '380px'});
 }
@@ -60,13 +60,13 @@ function callPopup(layerId){
 
 <body bgcolor='#FFFFFF' topmargin='0' leftmargin='0'>
 	 <!-- 상단 TOP Menu S -->
-     <jsp:include page="/admin/common/menu_top.jsp" />
+     <jsp:include page="/admin/board/menu_top.jsp" />
      <!-- 상단 TOP Menu E -->
 	 <table border=0 cellpadding=0 cellspacing=0 width=800>
 		<tr valign=top>
 			<td width=175 bgcolor=F7F7F7>
 				<!--왼쪽 타이틀------------------------------------------------->
-				<jsp:include page="/admin/common/menu_left.jsp" />
+				<jsp:include page="/admin/board/menu_left.jsp" />
 				<!--//왼쪽 타이틀------------------------------------------------->    
 			</td>
 			<td width=18><img src=/admin/img/e.gif width=18></td>
@@ -77,7 +77,7 @@ function callPopup(layerId){
 <!--본문 타이틀------------------------------------------------------------>
 <ul class="content_title">
 	<li>팝업관리</li>
-	<li class="location">캠핑장관리>기본정보>팝업관리</li>
+	<li class="location">공지/게시관리>홈페이지 관리>팝업관리</li>
 </ul>
 
 			<!--본문 내용 시작--------------------------------------------------------->
@@ -90,7 +90,7 @@ function callPopup(layerId){
 			<tr>
 				<td>
 					<table class="product_table" align="center">
-					  <form name='bankinfo' method='post' action='/admin/common/popup_manager.jsp'>
+					  <form name='bankinfo' method='post' action='/admin/homepage/popup_manager.jsp'>
 						<input type='hidden' name='cmd' value=''>
 						<input type='hidden' name='layerId' value=''>
 						<input type='hidden' name='displayStartDay' value=''>

@@ -10,6 +10,7 @@ drop table product;
 drop table site_information;
 drop table zone_information;
 drop table holyday;
+drop table siteboard;
 
 CREATE TABLE `comboard` (
   `num` int(11) NOT NULL auto_increment,
@@ -483,6 +484,18 @@ insert into popup values('layer_pop3','position:absolute; width:433px;left:26%;m
 insert into popup values('layer_pop4','position:absolute; width:433px;left:26%;margin-left:500px; top:450px; z-index:1', '/images/main/membershippopup.jpg','event_notice4','<area shape="rect" coords="368,391,408,408" href="javascript:pop_close(\'layer_pop4\');" /><area shape="rect" coords="2,1,415,387" href="/main/board/view.jsp?num=436&pageNum=1&category=notice" />','맴버쉽','Y',now(),now());
 insert into popup values('layer_pop5','position:absolute; width:433px;left:26%;margin-left:0px; top:450px; z-index:1', '/images/main/201603event_popup.jpg','event_notice5','<area shape="rect" coords="447,403,488,418" href="javascript:pop_close(\'layer_pop5\');" /><area shape="rect" coords="0,1,487,400" href="/main/board/view.jsp?num=436&pageNum=1&category=notice" />','2016특가이벤트','Y',now(),now());
 
+CREATE TABLE `siteboard` (
+  `num` int(11) NOT NULL auto_increment,
+  `category` varchar(10) default NULL,
+  `zone_no` varchar(10) default NULL,
+  `subject` varchar(50) default NULL,
+  `img_url` varchar(255) default NULL,
+  `board_no` int(11),
+  `display_start_day` date default NULL,
+  `display_end_day` date default NULL,
+  `use_yn` varchar(1) default 'Y', 	/*사용여부*/
+  PRIMARY KEY  (`num`)
+) ENGINE=MyISAM DEFAULT CHARSET=euckr;
 
 
 /**
