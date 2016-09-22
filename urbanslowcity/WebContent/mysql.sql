@@ -494,9 +494,12 @@ CREATE TABLE `siteboard` (
   `display_start_day` date default NULL,
   `display_end_day` date default NULL,
   `use_yn` varchar(1) default 'Y', 	/*사용여부*/
+  `contents` mediumtext,
   PRIMARY KEY  (`num`)
 ) ENGINE=MyISAM DEFAULT CHARSET=euckr;
 
+ALTER TABLE `urban`.`siteboard` 
+ADD COLUMN `contents` MEDIUMTEXT NULL DEFAULT NULL AFTER `use_yn`;
 
 /**
 ALTER TABLE `urbanslowcity`.`product` 

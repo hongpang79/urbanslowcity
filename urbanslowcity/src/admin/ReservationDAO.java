@@ -71,7 +71,7 @@ public class ReservationDAO {
 			}
 		}
 		
-		String SQL = "SELECT RM.zone_name, RM.product_name, R.* FROM reservation R " +
+		String SQL = "SELECT RM.zone_name, RM.product_name, RM.site_name, R.* FROM reservation R " +
 	             "LEFT OUTER JOIN (select zone_name, product_no, product_name, site_no, site_name FROM product s, zone_information z WHERE z.zone_no = s.zone_no) RM " +
 			     "ON R.product_no=RM.product_no " +
 			     WHERE + " BETWEEN DATE_FORMAT(?,'%Y-%m-%d %H:%i:%s') AND DATE_FORMAT(?,'%Y-%m-%d %H:%i:%s') " +
@@ -122,6 +122,98 @@ public class ReservationDAO {
 		}
 		return reservations;
 	}
+	
+	public Vector<ReservationVO> selectStayOrderList(String startDate, String endDate, String searchSite, String searchUserName, String mode, String sort){
+		Vector<ReservationVO> reservations = null;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+			
+		String ANDSITE = "";
+		if(searchSite != null){
+			if(searchSite.length() > 0){
+				ANDSITE = " AND site_name LIKE '%" + searchSite + "%' ";
+			}
+		}
+		
+		String ANDUSER = "";
+		if(searchUserName != null){
+			if(searchUserName.length() > 0){
+				ANDUSER = " AND reserver LIKE '%" + searchUserName + "%' ";
+			}
+		}
+		
+		String ANDMODE = "";
+		if(mode != null){
+			if(mode.length() > 0){
+				ANDMODE = " AND pay_status IN ("+mode+") ";
+			}
+		}
+		
+		String ORDER = "reg_date";
+		if(sort != null){
+			if(sort.length() > 0){
+				ORDER = sort;
+			}
+		}
+		
+		String SQL = "SELECT RM.zone_name, RM.product_name, RM.site_name, R.* FROM reservation R " +
+	             "LEFT OUTER JOIN (select zone_name, product_no, product_name, site_no, site_name FROM product s, zone_information z WHERE z.zone_no = s.zone_no) RM " +
+			     "ON R.product_no=RM.product_no " +
+			     "WHERE reservation_no IN (SELECT reservation_no FROM reservation_day WHERE reservation_day BETWEEN ? AND ? AND pay_status = 'C' ) " +
+			     "AND reservation_date NOT BETWEEN DATE_FORMAT(?,'%Y-%m-%d %H:%i:%s') AND DATE_FORMAT(?,'%Y-%m-%d %H:%i:%s') " +
+			     ANDSITE + ANDUSER + ANDMODE +
+			     
+			     "ORDER BY "+ORDER;
+//		System.out.println("[ReservationDAO][selectStayOrderList] SQL = " + SQL);
+		try{
+			conn = ConnectionUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, startDate.replaceAll("-", ""));
+			pstmt.setString(2, endDate.replaceAll("-", ""));
+			pstmt.setString(3, startDate+" 00:00:00");
+			pstmt.setString(4, endDate+" 23:59:59");
+			rs = pstmt.executeQuery();
+
+			
+			if( rs.next() ){
+				reservations = new Vector<ReservationVO>();
+				do{
+					ReservationVO reservation = new ReservationVO();
+					reservation.setReservationNo(rs.getInt("reservation_no"));
+					reservation.setReservationDate(rs.getDate("reservation_date"));
+					reservation.setZoneName(rs.getString("zone_name"));
+					reservation.setProductName(rs.getString("product_name"));
+					reservation.setReserver(rs.getString("reserver"));
+					reservation.setToddler(rs.getInt("toddler"));
+					reservation.setChild(rs.getInt("child"));
+					reservation.setUsers(rs.getInt("users"));
+					reservation.setNights(rs.getInt("nights"));
+					reservation.setPrice(rs.getInt("price"));
+					reservation.setRegDate(rs.getDate("reg_date"));
+					reservation.setPhone1(rs.getString("phone1"));
+					reservation.setPhone2(rs.getString("phone2"));
+					reservation.setPhone3(rs.getString("phone3"));
+					reservation.setCell1(rs.getString("cell1"));
+					reservation.setCell2(rs.getString("cell2"));
+					reservation.setCell3(rs.getString("cell3"));
+					reservation.setEmail(rs.getString("email"));
+					reservation.setMemo(rs.getString("memo"));
+					reservation.setPayStatus(rs.getString("pay_status"));
+					reservation.setAdminMemo(rs.getString("admin_memo"));
+					reservations.add(reservation);
+				}while(rs.next());
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rs,pstmt,conn);
+		}
+		return reservations;
+	}
+	
 	
 	public String updateReservation(String status, String reservationNo){
 		String currentDateTime = CommonUtil.callDateTime();

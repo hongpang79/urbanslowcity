@@ -9,6 +9,13 @@
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 		<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 		<link rel="apple-touch-icon" href="/images/apple-touch-icon.png" /> 
+		<meta name="keywords" content="로맨틱 감성캠핑 글램핑 캠핑 어반 슬로우시티 쉘타 유니온 블랙 감성 슬로우 클래식 수상레저 빠지 요트" />
+		<meta name="description" content="로맨틱한 감성캠핑, 바쁜 일상에서 벗어나 여유로운 삶을 느끼고 공감하는 곳 어반슬로우시티" />
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="어반슬로우시티">
+		<meta property="og:description" content="로맨틱한 감성캠핑, 바쁜 일상에서 벗어나 여유로운 삶을 느끼고 공감하는 곳 어반슬로우시티">
+		<meta property="og:image" content="http://www.urbanslowcity.com/images/bottom.png">
+		<meta property="og:url" content="http://www.urbanslowcity.com">
         <link rel="stylesheet" type="text/css" href="/css/demo.css" />
         <link rel="stylesheet" type="text/css" href="/css/style1.css" />
   		

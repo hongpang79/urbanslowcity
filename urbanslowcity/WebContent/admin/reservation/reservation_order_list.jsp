@@ -9,7 +9,7 @@
 request.setCharacterEncoding("UTF-8");
 
 NumberFormat nf = NumberFormat.getInstance();
-SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
+SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 Calendar cal = Calendar.getInstance();
 String year = cal.get(Calendar.YEAR)+"";
@@ -43,6 +43,27 @@ if(jobDvsn.equals("update")){
 }else if(jobDvsn.equals("cancleAll")){
 	msg = ReservationDAO.getInstance().updateReservationCancleAll();
 }
+
+int count = 0;	// 검색된 리스트 총 수 반환
+int reservationNo = 0;
+String chooseDate = "";
+String zoneName = "";
+String productName = "";
+String reserver = "";
+int toddler = 0;
+int child = 0;
+int users = 0;
+int nights = 0;
+int price = 0;
+String regDate = "";
+String content = "";
+String payStatus = "";
+String status = "";
+String phone = "";
+String cell = "";
+String email = "";
+String adminMemo = "";
+int totalUser = 0;
 
 String ip = request . getHeader ( "X-Forwarded-For" );   
 if  ( ip ==  null  || ip . length ()  ==  0  ||  "unknown" . equalsIgnoreCase ( ip ))  {   
@@ -257,7 +278,7 @@ $(function() {
 		<td class='tbctr' align=center>정렬</td>
 		<td class='tbcont'>
 			<input type="radio" id="sort" name="sort" value="reg_date" <% if(sort.equals("reg_date")){%>checked<%}%>>접수일자
-			<input type="radio" id="sort" name="sort" value="site_no" <% if(sort.equals("site_no")){%>checked<%}%>>SITE명
+			<input type="radio" id="sort" name="sort" value="zone_name,site_name" <% if(sort.equals("zone_name,site_name")){%>checked<%}%>>SITE명
 		</td>
 	</tr>
 </table>
@@ -276,33 +297,22 @@ $(function() {
 	<table id="listing_table" class="product_table">
 		<col width='10'></col>
 		<col width='80'></col>
-		<col width='60'></col>
-		<col width='60'></col>
-		<col width='20'></col>
-		<col width='80'></col>
-		<col width='90'></col>
+		<col width='160'></col>
+		<col width='130'></col>
 		<col width='80'></col>
 		<col></col>
-		<col width='60'></col>
+		<col width='80'></col>
 		<col width='60'></col>		
 		<thead>
 	        <tr>
-	            <th rowspan="2">No.</th>
-	            <th rowspan="2">Site명</th>
-	            <th rowspan="2">예약자</th>
-				<th>예약일자</th>
-				<th rowspan="2">인원</th>
-	            <th rowspan="2">결제금액</th>
-	            <th>연락처</th>
-	            <th>e-mail</th>
-	            <th rowspan="2">예약요청사항</th>
-	            <th rowspan="2">예약상태</th>
-	            <th rowspan="2">예약처리</th>
-	        </tr>
-	        <tr>
-	        	<th>이용기간</th>
-		        <th>비상연락처</th>
-		        <th>접수일자</th>
+	            <th>No.</th>
+	            <th>예약상품명</th>
+	            <th>예약자 정보</th>
+				<th>예약내용</th>
+	            <th>결제금액</th>
+	            <th>예약요청사항</th>
+	            <th>접수일자<br>(예약상태)</th>
+	            <th>상태변경</th>
 	        </tr>
 		</thead>
 <%
@@ -319,31 +329,13 @@ $(function() {
 	if( vReservation == null ){
 %>
 		<tr>
-			<td colspan="11" align="center">
+			<td colspan="8" align="center">
 				<br>검색 결과가 없습니다<br><br>
 			</td>
 		</tr>
 <%
 	}else{
-		int count = vReservation.size();	// 검색된 리스트 총 수 반환
-		int reservationNo = 0;
-		String chooseDate = "";
-		String zoneName = "";
-		String productName = "";
-		String reserver = "";
-		int toddler = 0;
-		int child = 0;
-		int users = 0;
-		int nights = 0;
-		int price = 0;
-		String regDate = "";
-		String content = "";
-		String payStatus = "";
-		String status = "";
-		String phone = "";
-		String cell = "";
-		String email = "";
-		String adminMemo = "";
+		count = vReservation.size();	// 검색된 리스트 총 수 반환
 		for( int i=0; i<count; i++ ){
 			ReservationVO reservation = vReservation.get(i);
 			reservationNo = reservation.getReservationNo();
@@ -354,11 +346,12 @@ $(function() {
 			toddler = reservation.getToddler();
 			child = reservation.getChild();
 			users = reservation.getUsers();
+			totalUser = toddler+child+users;
 			nights = reservation.getNights();
 			price = reservation.getPrice();
 			regDate = transFormat.format(reservation.getRegDate());
-			phone = reservation.getPhone1()+"-"+reservation.getPhone2()+"-"+reservation.getPhone3();
-			cell = reservation.getCell1()+"-"+reservation.getCell2()+"-"+reservation.getCell3();
+			phone = reservation.getPhone1().length()==0?"":reservation.getPhone1()+"-"+reservation.getPhone2()+"-"+reservation.getPhone3();
+			cell = reservation.getCell1().length()==0?"":reservation.getCell1()+"-"+reservation.getCell2()+"-"+reservation.getCell3();
 			email = reservation.getEmail();
 			content = reservation.getMemo();
 			adminMemo = reservation.getAdminMemo()==null?"":reservation.getAdminMemo();
@@ -373,22 +366,26 @@ $(function() {
 				status="예약취소";
 			}
 %>
-		<tr>
-			<td rowspan="2"><%= i+1 %></td>
-			<td rowspan="2"><%= productName %></td>
-			<td rowspan="2"><%= reserver %></td>
-			<td><%= chooseDate %></td>
-			<td rowspan="2"><%= toddler %>/<%= child %>/<%= users %></td>
-			<td rowspan="2"><% out.print(nf.format(price)); %>원<br><%=adminMemo %></td>
-			<td><%= phone %></td>
-			<td><%= email %></td>
-			<td rowspan="2" align="left"><%= content %></td>
-			<td rowspan="2"><a href="javascript:adminMemo('<%=reservationNo%>','<%=price%>','<%=adminMemo %>')"><%= status %></a></td>
-			<td rowspan="2">
+		<tr style="height:'56px';">
+			<td><%= i+1 %></td>
+			<td><%= productName %></td>
+			<td style="text-align: left;">
+				&nbsp;<%= reserver %><br>
+				&nbsp;<%= phone %><br>
+				&nbsp;<%= cell %><br>
+				&nbsp;<%= email %>
+			</td>
+			<td style="text-align: left;">
+				&nbsp;<%= chooseDate %>&nbsp;(<% if(nights==0){ out.print("picnic"); }else{out.print(nights+"박"+(nights+1)+"일");} %>)<br>
+				&nbsp;<%=totalUser%>명 &nbsp;(&nbsp;<%= toddler %>&nbsp;/&nbsp;<%= child %>&nbsp;/&nbsp;<%= users %>&nbsp;)</td>
+			<td style="text-align: right;"><% out.print(nf.format(price)); %>원&nbsp;<br><%=adminMemo %>&nbsp;</td>
+			<td style="text-align: left;">&nbsp;<%= content %></td>
+			<td><%= regDate %><br><a href="javascript:adminMemo('<%=reservationNo%>','<%=price%>','<%=adminMemo %>')">[<%= status %>]</a></td>
+			<td>
 				<% 
 					if(payStatus.equals("N")){ 
 				%>
-					<input type="button" value="예약승인" onClick="javascript:admitReservation('Y',<%= reservationNo %>);" />
+					<input type="button" value="예약승인" onClick="javascript:admitReservation('Y',<%= reservationNo %>);" /><br>
 					<input type="button" value="예약취소" onClick="javascript:admitReservation('R',<%= reservationNo %>);" />
 				<% 
 					}else if(payStatus.equals("Y")){
@@ -399,17 +396,100 @@ $(function() {
 				%>
 			</td>
 		</tr>
-		<tr>
-			<td><% if(nights==0){ out.print("picnic"); }else{out.print(nights+"박"+(nights+1)+"일");} %></td>
-			<td><%= cell %></td>
-			<td><%= regDate %></td>
-		</tr>
 <% 		}
 	} 
 %>			
 	</table>
 </form>
-
+<%
+	if(periodGubun.equals("period")){
+		Vector<ReservationVO> vStayReservation = ReservationDAO.getInstance().selectStayOrderList(startDate,endDate,searchSite,searchUserName,mode,sort);
+%>
+	<br>
+	<ul class="bullet_title"><li>연박이용자(조회기간이전 입실자) - 예약일자기준 조회일때만 보여집니다.</ul>
+	<table id="listing_table" class="product_table">
+		<col width='10'></col>
+		<col width='80'></col>
+		<col width='160'></col>
+		<col width='130'></col>
+		<col width='80'></col>
+		<col></col>
+		<col width='80'></col>	
+		<thead>
+	        <tr>
+	            <th>No.</th>
+	            <th>예약상품명</th>
+	            <th>예약자 정보</th>
+				<th>예약내용</th>
+	            <th>결제금액</th>
+	            <th>예약요청사항</th>
+	            <th>접수일자<br>(예약상태)</th>
+	        </tr>
+		</thead>
+<%		
+		if( vStayReservation == null ){
+%>
+			<tr>
+				<td colspan="7" align="center">
+					<br>연박 이용자가 없습니다<br><br>
+				</td>
+			</tr>
+<%	
+		}else{
+			count = vStayReservation.size();	// 검색된 리스트 총 수 반환
+			for( int i=0; i<count; i++ ){
+				ReservationVO reservation = vStayReservation.get(i);
+				reservationNo = reservation.getReservationNo();
+				chooseDate = transFormat.format(reservation.getReservationDate());
+				zoneName = reservation.getZoneName();
+				productName = reservation.getProductName();
+				reserver = reservation.getReserver();
+				toddler = reservation.getToddler();
+				child = reservation.getChild();
+				users = reservation.getUsers();
+				totalUser = toddler+child+users;
+				nights = reservation.getNights();
+				price = reservation.getPrice();
+				regDate = transFormat.format(reservation.getRegDate());
+				phone = reservation.getPhone1().length()==0?"":reservation.getPhone1()+"-"+reservation.getPhone2()+"-"+reservation.getPhone3();
+				cell = reservation.getCell1().length()==0?"":reservation.getCell1()+"-"+reservation.getCell2()+"-"+reservation.getCell3();
+				email = reservation.getEmail();
+				content = reservation.getMemo();
+				adminMemo = reservation.getAdminMemo()==null?"":reservation.getAdminMemo();
+				payStatus = reservation.getPayStatus();
+				if(payStatus.equals("N")){
+					status="예약대기";
+				}else if(payStatus.equals("Y")){
+					status="예약완료";
+				}else if(payStatus.equals("C")){
+					status="취소/환불신청";
+				}else if(payStatus.equals("R")){
+					status="예약취소";
+				}
+	%>
+			<tr>
+				<td><%= i+1 %></td>
+				<td><%= productName %></td>
+				<td style="text-align: left;">
+					&nbsp;<%= reserver %><br>
+					&nbsp;<%= phone %><br>
+					&nbsp;<%= cell %><br>
+					&nbsp;<%= email %>
+				</td>
+				<td style="text-align: left;">
+					&nbsp;<%= chooseDate %>&nbsp;(<% if(nights==0){ out.print("picnic"); }else{out.print(nights+"박"+(nights+1)+"일");} %>)<br>
+					&nbsp;<%=totalUser%>명&nbsp; (&nbsp;<%= toddler %>&nbsp;/&nbsp;<%= child %>&nbsp;/&nbsp;<%= users %>&nbsp;)</td>
+				<td style="text-align: right;"><% out.print(nf.format(price)); %>원&nbsp;<br><%=adminMemo %>&nbsp;</td>
+				<td style="text-align: left;">&nbsp;<%= content %></td>
+				<td><%= regDate %><br>[<%= status %>]</td>
+			</tr>
+	<% 		}
+		} 
+	%>			
+		</table>
+<%
+	}
+%>
 	<br>
 
 	<table width=100% border=0 cellspacing=0 cellpadding=10 align=center>

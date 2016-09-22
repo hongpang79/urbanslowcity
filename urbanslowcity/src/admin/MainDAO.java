@@ -1,7 +1,6 @@
 package admin;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +9,6 @@ import java.util.Vector;
 import javax.servlet.http.HttpServletRequest;
 
 import util.ConnectionUtil;
-import board.BoardVO;
 
 public class MainDAO {
 
@@ -54,8 +52,8 @@ public class MainDAO {
 					banner.setImgUrl(rs.getString("img_url"));
 					banner.setBoardNo(rs.getInt("board_no"));
 					banner.setBoardSubject(rs.getString("board_subject"));
-					banner.setDisplayStartDay(rs.getDate("display_start_day"));
-					banner.setDisplayEndDay(rs.getDate("display_end_day"));
+					banner.setDisplayStartDay(rs.getTimestamp("display_start_day"));
+					banner.setDisplayEndDay(rs.getTimestamp("display_end_day"));
 					banner.setUseYn(rs.getString("use_yn"));
 					banners.add(banner);
 				}while(rs.next());
@@ -93,8 +91,8 @@ public class MainDAO {
 					banner.setImgUrl(rs.getString("img_url"));
 					banner.setBoardNo(rs.getInt("board_no"));
 					banner.setBoardSubject(rs.getString("board_subject"));
-					banner.setDisplayStartDay(rs.getDate("display_start_day"));
-					banner.setDisplayEndDay(rs.getDate("display_end_day"));
+					banner.setDisplayStartDay(rs.getTimestamp("display_start_day"));
+					banner.setDisplayEndDay(rs.getTimestamp("display_end_day"));
 					banner.setUseYn(rs.getString("use_yn"));
 					banners.add(banner);
 				}while(rs.next());
@@ -114,7 +112,7 @@ public class MainDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String SQL = "SELECT z.*, s.subject as board_subject FROM siteboard z, comboard s where z.board_no = s.num " +
+		String SQL = "SELECT z.*, s.subject as board_subject FROM siteboard z, comboard s where category='banner' and z.board_no = s.num " +
 	             "and z.num = " + num;
 //			System.out.println("[MainDAO][getBanner] SQL = " + SQL);
 		try{
@@ -130,8 +128,8 @@ public class MainDAO {
 				banner.setImgUrl(rs.getString("img_url"));
 				banner.setBoardNo(rs.getInt("board_no"));
 				banner.setBoardSubject(rs.getString("board_subject"));
-				banner.setDisplayStartDay(rs.getDate("display_start_day"));
-				banner.setDisplayEndDay(rs.getDate("display_end_day"));
+				banner.setDisplayStartDay(rs.getTimestamp("display_start_day"));
+				banner.setDisplayEndDay(rs.getTimestamp("display_end_day"));
 				banner.setUseYn(rs.getString("use_yn"));
 			}
 			
@@ -148,7 +146,6 @@ public class MainDAO {
         PreparedStatement pstmt = null;
     	ResultSet rs = null;
     	
-    	int num=article.getNum();
 		int number=0;
         String sql="";
 
@@ -231,5 +228,139 @@ public class MainDAO {
 		}
 		return msg;
 	}
+	
+	public MainBoardVO getContent(String category){
+		
+		String SQL = "SELECT * FROM siteboard where category='" + category +"'";
+		
+		MainBoardVO board = selectContent(SQL);
+		
+		return board;
+	}
+	
+	public MainBoardVO getContent(int num){
+		
+		String SQL = "SELECT * FROM siteboard where num = " + num;
+		
+		MainBoardVO board = selectContent(SQL);
+				
+		return board;
+	}
+	
+	public MainBoardVO selectContent(String SQL){
+		MainBoardVO board = new MainBoardVO();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+				
+//			System.out.println("[MainDAO][getContents] SQL = " + SQL);
+		try{
+			conn = ConnectionUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			
+			if( rs.next() ){
+				board.setNum(rs.getInt("num"));
+				board.setCategory(rs.getString("category"));
+				board.setSubject(rs.getString("subject"));
+				board.setImgUrl(rs.getString("img_url"));
+				board.setBoardNo(rs.getInt("board_no"));
+				board.setSubject(rs.getString("subject"));
+				board.setDisplayStartDay(rs.getTimestamp("display_start_day"));
+				board.setDisplayEndDay(rs.getTimestamp("display_end_day"));
+				board.setUseYn(rs.getString("use_yn"));
+				board.setContents(rs.getString("contents"));
+				
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rs,pstmt,conn);
+		}
+		return board;
+	}
+	
+	public int insertContent(MainBoardVO article) throws Exception {
+    	Connection conn = null;
+        PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+    	
+    	int rtn = 0;
+    	
+		int number=0;
+        String sql="";
+
+        try {
+        	conn = ConnectionUtil.getConnection();
+
+            pstmt = conn.prepareStatement("select max(num) from siteboard");
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+		      number=rs.getInt(1)+1;
+			}else{
+		      number=1; 
+			}
+			System.out.println("[MainDAO][insertContent] number = " + number);
+			
+            sql = "insert into siteboard(category,zone_no,subject,img_url,board_no,display_start_day,display_end_day,use_yn,contents)";
+		    sql+=" values(?,?,?,?,?,?,?,?,?)";
+
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, article.getCategory());
+            pstmt.setString(2, article.getZoneNo());
+            pstmt.setString(3, article.getSubject());
+            pstmt.setString(4, article.getImgUrl());
+            pstmt.setInt(5, article.getBoardNo());
+			pstmt.setTimestamp(6, article.getDisplayStartDay());
+			pstmt.setTimestamp(7, article.getDisplayEndDay());
+            pstmt.setString(8, article.getUseYn());
+            pstmt.setString(9, article.getContents());
+            rtn = pstmt.executeUpdate();
+            
+            System.out.println("[MainDAO][insertContent] rtn = " + rtn);
+        } catch(Exception ex) {        	
+            ex.printStackTrace();
+        } finally {
+			ConnectionUtil.close(conn, pstmt, rs);
+        }
+        return rtn;
+    }
+	
+	public int updateContent(MainBoardVO article) throws Exception {
+    	Connection conn = null;
+        PreparedStatement pstmt = null;
+    	
+    	int rtn = 0;
+		String sql="";
+
+        try {
+        	conn = ConnectionUtil.getConnection();
+
+            sql = "UPDATE siteboard " +
+            		" SET category=?,zone_no=?,subject=?,img_url=?,board_no=?,display_start_day=?,display_end_day=?,use_yn=?,contents=? " +
+            	  " WHERE num = ? ";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, article.getCategory());
+            pstmt.setString(2, article.getZoneNo());
+            pstmt.setString(3, article.getSubject());
+            pstmt.setString(4, article.getImgUrl());
+            pstmt.setInt(5, article.getBoardNo());
+            pstmt.setTimestamp(6, article.getDisplayStartDay());
+			pstmt.setTimestamp(7, article.getDisplayEndDay());
+            pstmt.setString(8, article.getUseYn());
+            pstmt.setString(9, article.getContents());
+            pstmt.setInt(10, article.getNum());
+            rtn = pstmt.executeUpdate();
+            
+//            System.out.println("[MainDAO][updateContent] rtn = " + rtn);
+        } catch(Exception ex) {        	
+            ex.printStackTrace();
+        } finally {
+			ConnectionUtil.close(conn, pstmt);
+        }
+        return rtn;
+    }
 
 }

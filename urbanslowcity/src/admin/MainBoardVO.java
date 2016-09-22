@@ -1,5 +1,6 @@
 package admin;
 
+import java.sql.Date;
 /**
  * CREATE TABLE `siteboard` (
  *  `num` int(11) NOT NULL auto_increment,
@@ -15,7 +16,7 @@ package admin;
  *) ENGINE=MyISAM DEFAULT CHARSET=euckr;
  *
  */
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class MainBoardVO{
 	private int num, boardNo;
@@ -25,8 +26,9 @@ public class MainBoardVO{
     private String useYn;
     private String imgUrl;
     private String boardSubject;
+    private String contents;
     
-    Date displayStartDay, displayEndDay;
+    Timestamp displayStartDay, displayEndDay;
 
 	public int getNum() {
 		return num;
@@ -92,20 +94,28 @@ public class MainBoardVO{
 		this.boardSubject = boardSubject;
 	}
 
-	public Date getDisplayStartDay() {
+	public Timestamp getDisplayStartDay() {
 		return displayStartDay;
 	}
 
-	public void setDisplayStartDay(Date displayStartDay) {
+	public void setDisplayStartDay(Timestamp displayStartDay) {
 		this.displayStartDay = displayStartDay;
 	}
 
-	public Date getDisplayEndDay() {
+	public Timestamp getDisplayEndDay() {
 		return displayEndDay;
 	}
 
-	public void setDisplayEndDay(Date displayEndDay) {
+	public void setDisplayEndDay(Timestamp displayEndDay) {
 		this.displayEndDay = displayEndDay;
+	}
+
+	public String getContents() {
+		return contents;
+	}
+
+	public void setContents(String contents) {
+		this.contents = contents;
 	} 
 }
 

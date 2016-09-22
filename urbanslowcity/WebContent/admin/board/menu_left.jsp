@@ -52,6 +52,7 @@
         		<td height=21 style='padding:3 0 8 0'>
         			<img src=/admin/img/bl_left2.gif><a href="/admin/homepage/popup_manager.jsp"  >팝업관리</a><br>
                     <img src=/admin/img/bl_left2.gif><a href="/admin/homepage/main_banner.jsp"  >메인 Banner 관리</a><br>
+                    <img src=/admin/img/bl_left2.gif><a href="/admin/homepage/about_content.jsp"  >about 관리</a><br>
                     <!-- <img src=/admin/img/bl_left2.gif><a href="/admin/homepage/site_content.jsp"  >SITE화면 관리</a><br> -->
                 </td>
             </tr>

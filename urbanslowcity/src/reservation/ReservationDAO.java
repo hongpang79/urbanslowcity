@@ -630,8 +630,8 @@ public class ReservationDAO {
 					}
 					for(int i=0; i<loop; i++){
 						pstmt = conn.prepareStatement(SQL);
-						pstmt.setString(1, chooseDate.substring(0,6));
 						if(i==0){
+							pstmt.setString(1, chooseDate.substring(0,6));
 							pstmt.setString(2, chooseDate);
 						}else{
 							cal.set(Integer.parseInt(chooseDate.substring(0,4)),Integer.parseInt(chooseDate.substring(4,6))-1,Integer.parseInt(chooseDate.substring(6,8)));
@@ -640,6 +640,7 @@ public class ReservationDAO {
 							mm = ((cal.get(Calendar.MONTH)+1) < 10) ? "0"+(cal.get(Calendar.MONTH)+1) : (cal.get(Calendar.MONTH)+1)+"";
 							dd = (cal.get(Calendar.DATE) < 10) ? "0"+cal.get(Calendar.DATE) : cal.get(Calendar.DATE)+"";
 							endDate = endDate + mm + dd;
+							pstmt.setString(1, endDate.substring(0,6));
 							pstmt.setString(2, endDate);
 						}
 						pstmt.setString(3, chooseZone);

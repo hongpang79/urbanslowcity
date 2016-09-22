@@ -9,7 +9,7 @@
 request.setCharacterEncoding("UTF-8");
 
 NumberFormat nf = NumberFormat.getInstance();
-SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
+SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 Calendar cal = Calendar.getInstance();
 String year = cal.get(Calendar.YEAR)+"";
@@ -248,38 +248,26 @@ $(function() {
 <ul class="bullet_title"><li>검색 결과</ul>
 	<table id="listing_table" class="product_table">
 		<col width='10'></col>
-		<col width='60'></col>
-		<col width='50'></col>
+		<col width='80'></col>
+		<col width='160'></col>
+		<col width='70'></col>
 		<col width='90'></col>
-		<col width='80'></col>
-		<col width='90'></col>
-		<col width='80'></col>
-		<col width='80'></col>
+		<col width='100'></col>
 		<col></col>
-		<col width='60'></col>
+		<col width='70'></col>
 		<col width='60'></col>
 		<thead>
 	        <tr>
-	            <th rowspan="2">No.</th>
-	            <th rowspan="2">Site명</th>
-	            <th rowspan="2">예약자</th>
-				<th>연락처</th>
-				<th>예약일자</th>
-				<th>은행명</th>
-				<th>환불요청일자</th>
-				<th>환불수수료<br>조건</th>
-				<th rowspan="2">취소사유</th>
-	            <th>환불<br>완료일자</th>
-	            <th rowspan="2">환불처리</th>
+	            <th>No.</th>
+	            <th>예약상품명</th>
+	            <th>예약자 정보</th>
+				<th>예약내용</th>
+				<th>환불금액</th>
+				<th>환불요청정보</th>
+				<th>취소사유</th>
+	            <th>환불일자<br>예약상태</th>
+	            <th>상태변경</th>
 	         </tr>
-	         <tr>
-	         	<th>비상연락처</th>
-	         	<th>결제금액</th>
-	         	<th>예금주</th>
-	         	<th>환불계좌번호</th>
-	         	<th>환불금액</th>
-	         	<th>예약상태</th>
-	         	
 		</thead>
 <%
 	// 총 수
@@ -288,7 +276,7 @@ $(function() {
 	if( vReservation == null ){
 %>	
 		<tr>
-			<td colspan="11" align="center">
+			<td colspan="9" align="center">
 				<br>검색 결과가 없습니다<br><br>
 			</td>
 		</tr>
@@ -332,8 +320,8 @@ $(function() {
 			nights = reservation.getNights();
 			price = reservation.getPrice();
 			regDate = transFormat.format(reservation.getRegDate());
-			phone = reservation.getPhone1()+"-"+reservation.getPhone2()+"-"+reservation.getPhone3();
-			cell = reservation.getCell1()+"-"+reservation.getCell2()+"-"+reservation.getCell3();
+			phone = reservation.getPhone1().length()==0 ? "" : reservation.getPhone1()+"-"+reservation.getPhone2()+"-"+reservation.getPhone3();
+			cell = reservation.getCell1().length()==0 ? "" : reservation.getCell1()+"-"+reservation.getCell2()+"-"+reservation.getCell3();
 			email = reservation.getEmail();
 			remark = reservation.getRemark();
 			refundBank = reservation.getRefundBank() == null ? "" : reservation.getRefundBank();
@@ -351,21 +339,39 @@ $(function() {
 			if(payStatus.equals("F")){
 				status="환불완료";
 			}else if(payStatus.equals("C")){
-				status="취소/환불신청";
+				status="예약취소<br>환불요청";
 			}
 %>	
 		<tr>
-			<td rowspan="2"><%= i+1 %></td>
-			<td rowspan="2"><%= productName %></td>
-			<td rowspan="2"><%= reserver %></td>
-			<td><%= phone %></td>
-			<td><%= chooseDate %></td>
-			<td><%= refundBank %></td>
-			<td><%= refundRegDate %></td>
-			<td><% if(refundMemo==null){ out.print(refundBase); }else{ out.print(refundMemo); } %></td>
-			<td rowspan="2"><%= remark %></td>
-			<td><%= refundDate %></td>
-			<td rowspan="2">
+			<td><%= i+1 %></td>
+			<td><%= productName %></td>
+			<td style="text-align: left;">
+				&nbsp;<%= reserver %><br>
+				&nbsp;<%= phone %><br>
+				&nbsp;<%= cell %><br>
+				&nbsp;<%= email %>
+			</td>
+			<td>
+				<%= chooseDate %><br>
+				(<% if(nights==0){ out.print("picnic"); }else{out.print(nights+"박"+(nights+1)+"일");} %>)<br>
+				<% out.print(nf.format(price)); %>원
+			</td>
+			<td style="text-align: right;">
+				<%= refundRegDate %>&nbsp;<br>
+				<% if(refundMemo==null){ out.print(refundBase); }else{ out.print(refundMemo); } %>&nbsp;<br>
+				<b><% if(refundMemo==null){ out.print(nf.format(calcPrice)); }else{out.print(nf.format(refundPrice));} %></b>원&nbsp;
+			</td>
+			<td style="text-align: left;">
+				&nbsp;<%= refundBank %><br>
+				&nbsp;<%= refundAccount %><br>
+				&nbsp;<%= refundDepositor %>
+			</td>
+			<td style="text-align: left;">&nbsp;<%= remark %></td>
+			<td>
+				<%= refundDate %><br>
+				<a href="javascript:refundMemo('<%=reservationNo%>','<% if(refundPrice == -1){ out.print(nf.format(calcPrice)); }else{out.print(nf.format(refundPrice));} %>','<% if(refundMemo==null){ out.print(refundBase); }else{ out.print(refundMemo); } %>')">[<%= status %>]</a>
+			</td>
+			<td>
 				<% 
 					if(payStatus.equals("C")){ 
 				%>
@@ -375,14 +381,6 @@ $(function() {
 					}
 				%>
 			</td>
-		</tr>
-		<tr>
-			<td><%= cell %></td>
-			<td><% out.print(nf.format(price)); %>원</td>
-			<td><%= refundDepositor %></td>
-			<td><%= refundAccount %></td>
-			<td><% if(refundMemo==null){ out.print(nf.format(calcPrice)); }else{out.print(nf.format(refundPrice));} %>원</td>
-			<td><a href="javascript:refundMemo('<%=reservationNo%>','<% if(refundPrice == -1){ out.print(nf.format(calcPrice)); }else{out.print(nf.format(refundPrice));} %>','<% if(refundMemo==null){ out.print(refundBase); }else{ out.print(refundMemo); } %>')"><%= status %></a></td>
 		</tr>
 <% 		}
 	} 
