@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 String loginId = "";
-String checkAdmin = "";
+String checkAdmin = "admin";
 try{
-	loginId = session.getAttribute("userId").toString();
-	checkAdmin = session.getAttribute("grade").toString();
+	//loginId = session.getAttribute("userId").toString();
+	//checkAdmin = session.getAttribute("grade").toString();
 }catch(NullPointerException e){
 	checkAdmin = "";
 }finally{

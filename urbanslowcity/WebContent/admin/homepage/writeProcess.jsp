@@ -14,7 +14,18 @@
 	int rtn = MainDAO.getInstance().insertContent(article);
 	if(rtn>0){
 		String category = article.getCategory();
-		String url = "/admin/homepage/about_content.jsp";
+		String url = "/admin/homepage/main_content.jsp";
+		if(category.equals("about")){
+			url = "/admin/homepage/about_content.jsp";
+		}else if(category.equals("site")){
+			url = "/admin/homepage/popupSiteform.jsp";
+		}else if(category.equals("contact")){
+			url = "/admin/homepage/contact_content.jsp";
+		}else if(category.equals("content")){
+			String zoneNo = request.getParameter("zoneNo");
+			url = "/admin/homepage/content_manager.jsp?zoneNo="+zoneNo;
+		}
+		
 		response.sendRedirect(url);
 	}else{ %>
 	<script>

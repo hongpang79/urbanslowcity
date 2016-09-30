@@ -139,11 +139,15 @@ $(function() {
 
 <!--본문 타이틀------------------------------------------------------------>
 <ul class="content_title">
-	<li>메인 Banner 목록</li>
+	<li>메인 Banner 등록</li>
 	<li class="location">공지/게시관리>홈페이지 관리>Banner 등록</li>
 </ul>
 
 <!--본문---------------------------------------------------------------------->
+<table border=0 cellpadding=0 cellspacing=0 width=800>
+	<tr height='20'><td></td></tr>
+</table>
+
 <form id="mainModifyForm" name="mainModifyForm" method='post' enctype="multipart/form-data" action='/admin/homepage/writeProcessBanner.jsp'>
 	<input type="hidden" id="step" name="step" value="<%=step %>"/>
 	<input type="hidden" id="category" name="category" value="banner"/>
@@ -182,14 +186,25 @@ $(function() {
 </table>
 </form>
 
-<br>
-<center>
+
+<div style='width:800' align='center'>
 	<img src="/admin/img/reservation/tbtn_bg_022.gif" align="absmiddle" class="imp"><input type="button" value="저장하기" class="bt_a32 tmb22" onclick="submitMainModify()">
 	<img src="/admin/img/reservation/tbtn_bg_022.gif" align="absmiddle" class="imp"><input type="button" value="취소하기" class="bt_a32 tmb22" onclick="location.reload();">
 	<img src="/admin/img/reservation/tbtn_bg_022.gif" align="absmiddle" class="imp"><input type="button" value="배너리스트" class="bt_a32 tmb22" onclick="location.href='/admin/homepage/main_banner.jsp'">
-</center>
-<br>
+</div>
 
+
+<table border='3' cellpadding='7' cellspacing='0' width='800' bordercolor='ECD08A' style='margin-top:20'>
+	<tr><Td style='color:585858;line-height:180%;padding-left:20'>
+			<b>[사용안내]</b><br>
+			<b class=ol>ㆍ</b> .
+	    </td>
+	</tr>
+</table>
+
+<table border=0 cellpadding=0 cellspacing=0>
+	<tr><td height=50></td></tr>
+</table>
 <!--본문 끝---------------------------------------------------------------------------------------->
 
 							</td>

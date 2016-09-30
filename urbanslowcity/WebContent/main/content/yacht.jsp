@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="admin.MainBoardVO" %>
+<%@ page import="admin.MainDAO" %>
 <HTML>
 <HEAD>
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
@@ -216,151 +218,10 @@
 	<!--menu-->
 	<jsp:include page="/main/menu.jsp" />
 	<!--//menu-->
-	
-	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" id="Table_01" >
-		<tr>
-			<td align="center">
-				<table width="1200" border="0" cellspacing="0" cellpadding="0" >
-				  <tr>
-				    <td align="center">
-    
-						<table width="1100" border="0" cellspacing="0" cellpadding="0">
-  						  <tr height="100px">
-  						  	<td width="80px">&nbsp;</td>
-    						<td style="margin:0 auto; text-align:left;">
-  	<div class="contain">
-	
-		<div class="container">
-		
-			<div class="contents" id="contents">
-				
-				<div class="ctnActivities ctnkids">
-					<div class="headTit">
-						<h4 class="tit"><img src="/images/content/subTitleYacht.jpg" alt="Yacht"></h4>
-					</div>
-					
-					<div class="slidePhotoBox">
-						<a class="fancybox" href="/images/content/y1.jpg" data-fancybox-group="yacht" title=""><img src="/images/content/yacht/subMain.jpg" alt="" /></a>
-						<a class="fancybox" href="/images/content/y2.jpg" data-fancybox-group="yacht" title=""></a>
-						<a class="fancybox" href="/images/content/y3.jpg" data-fancybox-group="yacht" title=""></a>
-						<a class="fancybox" href="/images/content/y4.jpg" data-fancybox-group="yacht" title=""></a>
-						<a class="fancybox" href="/images/content/y5.jpg" data-fancybox-group="yacht" title=""></a>
-						<a class="fancybox" href="/images/content/y6.jpg" data-fancybox-group="yacht" title=""></a>
-						<a class="fancybox" href="/images/content/y7.jpg" data-fancybox-group="yacht" title=""></a>
-						<a class="fancybox" href="/images/content/y8.jpg" data-fancybox-group="yacht" title=""></a>
-						<a class="fancybox" href="/images/content/y9.jpg" data-fancybox-group="yacht" title=""></a>
-						<a class="fancybox" href="/images/content/y10.jpg" data-fancybox-group="yacht" title=""></a>
-						<a class="fancybox" href="/images/content/y11.jpg" data-fancybox-group="yacht" title=""></a>
-						<a class="fancybox" href="/images/content/y12.jpg" data-fancybox-group="yacht" title=""></a>
-						<a class="fancybox" href="/images/content/y13.jpg" data-fancybox-group="yacht" title=""></a>
-						<a class="fancybox" href="/images/content/y14.jpg" data-fancybox-group="yacht" title=""></a>
-						<a class="fancybox" href="/images/content/y15.jpg" data-fancybox-group="yacht" title=""></a>
-						<a class="fancybox" href="/images/content/y16.jpg" data-fancybox-group="yacht" title=""></a>
-						<a class="fancybox" href="/images/content/y17.jpg" data-fancybox-group="yacht" title=""></a>
-						<a class="fancybox" href="/images/content/y19.jpg" data-fancybox-group="yacht" title=""></a>
-						<a class="fancybox" href="/images/content/y20.jpg" data-fancybox-group="yacht" title=""></a>
-						<a class="fancybox" href="/images/content/y21.jpg" data-fancybox-group="yacht" title=""></a>	
-					</div>
-
-					<div class="btmCon">
-					  <div class="leftArea">
-							<div class="topTxtwrap">
-								<div class="topTxt mgt40">
-									<img src="/images/content/yacht/yachtTxt.png" alt="">
-								</div>
-							</div>
-						</div>
-						<div class="rightArea">
-							<div class="HotelInfoBoxB mgt20">
-								<div class="HotelBoxTop">
-									<div class="conTitle2 titNew">
-										<h3>운영시간 및 요금</h3>
-									</div>
-									<div class="introList">
-										<p class="tit">운영시간</p>
-										<div class="useIntro">
-											<p>10:00 ~ 20:00</p>
-										</div>
-									</div>
-									<div class="introList">
-										<p class="tit">이용 요금</p>
-										<div class="useIntro">
-											<p>50,000원(1인)</p>
-                                         <p>＊5명이상 출발 가능합니다.</p>
-                                         <p>＊해당 내용은 기상 상황 또는 캠핑장 사정에 의해 <br>      
-                                           &nbsp;&nbsp;취소 될 수 있습니다.<br>
-										</div>
-									</div>
-							</div>
-							</div>
-						</div>
-				  </div> 
-
-
-					  <div class="btmConB">
-						<h5 class="ActivConTitleA"><img src="/images/content/subTitSsIntro.jpg" alt="시설 안내"></h5>
-
-						<div class="ssIntroWrap">
-							<ul>
-								<li>
-									<span><img src="/images/content/yacht/yachtImgA.jpg" alt=""></span>
-									<div class="ssIntro">
-								 
-							    </li>
-
-								<li>
-									<span><img src="/images/content/yacht/yachtImgB.jpg" alt=""></span>
-									<div class="ssIntro">
-								  
-							    </li>
-
-								<li class="mgr0">
-									<span><img src="/images/content/yacht/yachtImgC.jpg" alt=""></span>
-									<div class="ssIntro">
-								  
-							    </li>
-							    
-							    <li>
-									<span><img src="/images/content/yacht/yachtImgD.jpg" alt=""></span>
-									<div class="ssIntro">
-								  
-							    </li>
-
-								<li>
-									<span><img src="/images/content/yacht/yachtImgE.jpg" alt=""></span>
-									<div class="ssIntro">
-								  
-							    </li>
-
-								<li class="mgr0">
-									<span><img src="/images/content/yacht/yachtImgF.jpg" alt=""></span>
-									<div class="ssIntro">
-								  
-							    </li>
-								
-							</ul>
-						</div>
-
-					 </div>
-				</div>
-
-			</div>
-
-		</div>
-	
-	</div>
-	
-     						</td>
-  						  </tr>
-						  					  
-						</table>
-					</td>
-				  </tr>
-				</table>
-			</td>
-		</tr>
-	</table>
-	
+<%
+MainBoardVO board = MainDAO.getInstance().getContent("content","yacht");
+out.print(board.getContents());
+%>			
 	<!--bottom-->
 	<jsp:include page="/main/bottom.jsp" />
 	<!--//bottom-->

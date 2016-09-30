@@ -44,4 +44,14 @@
                 </td>
             </tr>
         </tbody>
+        <tr><td height=1></td></tr>
+        <tr><td class=left1><a href="javascript:;"  >예약현황관리</a></td></tr>
+        <tr><td height=1></td></tr>
+        <tbody>
+        	<tr>
+        		<td height=21 style='padding:3 0 8 0'>
+                    <img src=/admin/img/bl_left2.gif><a href="/admin/reservation/reservation_group_order.jsp"  >단체예약하기</a><br>
+                </td>
+            </tr>
+        </tbody>
     </table>

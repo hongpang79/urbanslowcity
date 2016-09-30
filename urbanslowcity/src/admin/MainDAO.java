@@ -238,6 +238,15 @@ public class MainDAO {
 		return board;
 	}
 	
+	public MainBoardVO getContent(String category, String zoneNo){
+		
+		String SQL = "SELECT * FROM siteboard where category='" + category +"' and zone_no='"+zoneNo+"'";
+		
+		MainBoardVO board = selectContent(SQL);
+		
+		return board;
+	}
+	
 	public MainBoardVO getContent(int num){
 		
 		String SQL = "SELECT * FROM siteboard where num = " + num;
@@ -262,6 +271,7 @@ public class MainDAO {
 			if( rs.next() ){
 				board.setNum(rs.getInt("num"));
 				board.setCategory(rs.getString("category"));
+				board.setZoneNo(rs.getString("zone_no"));
 				board.setSubject(rs.getString("subject"));
 				board.setImgUrl(rs.getString("img_url"));
 				board.setBoardNo(rs.getInt("board_no"));
@@ -302,7 +312,7 @@ public class MainDAO {
 			}else{
 		      number=1; 
 			}
-			System.out.println("[MainDAO][insertContent] number = " + number);
+//			System.out.println("[MainDAO][insertContent] number = " + number);
 			
             sql = "insert into siteboard(category,zone_no,subject,img_url,board_no,display_start_day,display_end_day,use_yn,contents)";
 		    sql+=" values(?,?,?,?,?,?,?,?,?)";
@@ -319,7 +329,7 @@ public class MainDAO {
             pstmt.setString(9, article.getContents());
             rtn = pstmt.executeUpdate();
             
-            System.out.println("[MainDAO][insertContent] rtn = " + rtn);
+//            System.out.println("[MainDAO][insertContent] rtn = " + rtn);
         } catch(Exception ex) {        	
             ex.printStackTrace();
         } finally {
@@ -362,5 +372,42 @@ public class MainDAO {
         }
         return rtn;
     }
+	
+	public Vector<MainBoardVO> selectContentList(String category){
+		Vector<MainBoardVO> contents = new Vector<MainBoardVO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String SQL = "SELECT * FROM siteboard where category = '" +category+"' ORDER BY zone_no, board_no ASC";
+//			System.out.println("[MainDAO][selectContentList] SQL = " + SQL);
+		try{
+			conn = ConnectionUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			
+			if( rs.next() ){
+				do{
+					MainBoardVO content = new MainBoardVO();
+					content.setNum(rs.getInt("num"));
+					content.setCategory(rs.getString("category"));
+					content.setZoneNo(rs.getString("zone_no"));
+					content.setSubject(rs.getString("subject"));
+					content.setImgUrl(rs.getString("img_url"));
+					content.setBoardNo(rs.getInt("board_no"));
+					content.setDisplayStartDay(rs.getTimestamp("display_start_day"));
+					content.setDisplayEndDay(rs.getTimestamp("display_end_day"));
+					content.setUseYn(rs.getString("use_yn"));
+					contents.add(content);
+				}while(rs.next());
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rs,pstmt,conn);
+		}
+		return contents;
+	}
 
 }

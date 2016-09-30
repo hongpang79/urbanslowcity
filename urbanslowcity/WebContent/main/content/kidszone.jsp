@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="admin.MainBoardVO" %>
+<%@ page import="admin.MainDAO" %>
 <HTML>
 <HEAD>
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
@@ -216,153 +218,10 @@
 	<!--menu-->
 	<jsp:include page="/main/menu.jsp" />
 	<!--//menu-->
-	
-	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" id="Table_01" >
-		<tr>
-			<td align="center">
-				<table width="1200" border="0" cellspacing="0" cellpadding="0" >
-				  <tr>
-				    <td align="center">
-    
-						<table width="1100" border="0" cellspacing="0" cellpadding="0">
-  						  <tr height="100px">
-  						  	<td width="80px">&nbsp;</td>
-    						<td style="margin:0 auto; text-align:left;">
-  	<div class="contain">
-	
-		<div class="container">
-		
-			<div class="contents" id="contents">
-				
-				<div class="ctnActivities ctnkids">
-					<div class="headTit">
-						<h4 class="tit"><img src="/images/content/subTitKidsZone.jpg" alt="Kids Zone"></h4>
-					</div>
-					
-					<div class="slidePhotoBox">
-					    <a class="fancybox" href="/images/content/kidzone/20150703_230034_001.jpg" data-fancybox-group="kidzone" title=""><img src="/images/content/kidzone/subMain.jpg" alt="" /></a>
-					 	<a class="fancybox" href="/images/content/kidzone/20150703_230059.jpg" data-fancybox-group="kidzone" title=""></a>
-					 	<a class="fancybox" href="/images/content/kidzone/DSC_0802.JPG" data-fancybox-group="kidzone" title=""></a>
-					 	<a class="fancybox" href="/images/content/kidzone/DSC_0827.JPG" data-fancybox-group="kidzone" title=""></a>
-					 	<a class="fancybox" href="/images/content/kidzone/DSC_0848.JPG" data-fancybox-group="kidzone" title=""></a>
-					 	<a class="fancybox" href="/images/content/kidzone/DSC_0854.JPG" data-fancybox-group="kidzone" title=""></a>
-					 	<a class="fancybox" href="/images/content/kidzone/DSC_0867.JPG" data-fancybox-group="kidzone" title=""></a>
-					 	<a class="fancybox" href="/images/content/kidzone/DSC_0883.JPG" data-fancybox-group="kidzone" title=""></a>
-					 	<a class="fancybox" href="/images/content/kidzone/DSC_0902.JPG" data-fancybox-group="kidzone" title=""></a>
-					 	<a class="fancybox" href="/images/content/kidzone/DSC_0910.JPG" data-fancybox-group="kidzone" title=""></a>
-					 	<a class="fancybox" href="/images/content/kidzone/DSC_0911.JPG" data-fancybox-group="kidzone" title=""></a>
-					 	<a class="fancybox" href="/images/content/kidzone/DSC_0928.JPG" data-fancybox-group="kidzone" title=""></a>
-					 	<a class="fancybox" href="/images/content/kidzone/IMG_4962.JPG" data-fancybox-group="kidzone" title=""></a>
-					 	<a class="fancybox" href="/images/content/kidzone/IMG_4963.JPG" data-fancybox-group="kidzone" title=""></a>
-					 	<a class="fancybox" href="/images/content/kidzone/IMG_4964.JPG" data-fancybox-group="kidzone" title=""></a>
-					</div>
-
-					<div class="btmCon">
-					  <div class="leftArea">
-							<div class="topTxtwrap">
-								<div class="topTxt mgt40">
-									<img src="/images/content/kidzone/kidsTxt.png" alt="키드존소개">
-								</div>
-							</div>
-						</div>
-						<div class="rightArea">
-							<div class="HotelInfoBoxB mgt20">
-								<div class="HotelBoxTop">
-									<div class="conTitle2 titNew">
-										<h3>운영시간 및 대상</h3>
-									</div>
-									<div class="introList">
-										<p class="tit">운영시간</p>
-										<div class="useIntro">
-											<p>10:00 ~ 22:00</p>
-										</div>
-									</div>
-									<div class="introList">
-										<p class="tit">대상</p>
-										<div class="useIntro">
-											<p>4세~12세 어린이</p>
-										</div>
-									</div>
-									<div class="introList">
-										<p class="tit">이용 요금</p>
-										<div class="useIntro">
-											<p>▷트램벌린 - 무료<br>
-											   ▷키즈수영장 - 무료<br>
-											  ▷사금체험  - 1만원(1인)<br>
-											  ▷풍등날리기<br>
-											 - 1셋트(4개) 1만5천원 / 추가시 3천원(1개)<br>
-											 ▷송어 황금송어 잡기체험<br/>
-											 - 2만원(1인) / 30분<br/>
-											 - 1인 최대 2마리까지 잡을 수 있음.<br>
-											 - 2인이상 참여시 못잡을 경우 1마리 증정</p>
-                                         <p>＊프로그램에 따라 요금이 상이합니다.</p>
-                                         <p>＊해당 내용은 기상 상황 또는 캠핑장 사정에 의해 <br>      
-                                           &nbsp;&nbsp;장소 변경 및 취소 될 수 있습니다.<br>
-										</div>
-									</div>
-							</div>
-							</div>
-						</div>
-				  </div> 
-
-
-					  <div class="btmConB">
-						<h5 class="ActivConTitleA"><img src="/images/content/subTitSsIntro.jpg" alt="시설 안내"></h5>
-
-						<div class="ssIntroWrap">
-							<ul>
-								<li><!-- 274*157 -->
-									<span><img src="/images/content/kidzone/kidsImgA.jpg" alt="드램플린 사진"></span>
-									<div class="ssIntro">
-								  <img src="/images/content/kidzone/txtA.png" alt="드램플린"></div>
-							    </li>
-
-								<li>
-									<span><img src="/images/content/kidzone/kidsImgB.jpg" alt="사금체험 사진"></span>
-									<div class="ssIntro">
-								  <img src="/images/content/kidzone/txtB.png" alt="사금체험"></div>
-							  </li>
-
-								<li class="mgr0">
-									<span><img src="/images/content/kidzone/kidsImgC.jpg" alt="풍등날리기 사진"></span>
-									<div class="ssIntro">
-								  <img src="/images/content/kidzone/txtC.png" alt="풍등날리기"></div>
-							  </li>
-							  
-							  	<li><!-- 274*157 -->
-									<span><img src="/images/content/kidzone/kidsImgD.jpg" alt="드램플린 사진"></span>
-									<div class="ssIntro">
-								  <img src="/images/content/kidzone/txtD.png" alt="드램플린"></div>
-							    </li>
-	
-								<li>
-									<span><img src="/images/content/kidzone/kidsImgE.jpg" alt="송어 사진"></span>
-									<div class="ssIntro">
-								  <img src="/images/content/kidzone/txtE.png" alt="송어체험"></div>
-							  </li>
-							</ul>
-						</div>
-
-					 </div>
-				</div>
-
-			</div>
-
-		</div>
-	
-	</div>
-	
-     						</td>
-  						  </tr>
-						  					  
-						</table>
-					</td>
-				  </tr>
-				</table>
-			</td>
-		</tr>
-	</table>
-	
+<%
+MainBoardVO board = MainDAO.getInstance().getContent("content","kidszone");
+out.print(board.getContents());
+%>			
 	<!--bottom-->
 	<jsp:include page="/main/bottom.jsp" />
 	<!--//bottom-->

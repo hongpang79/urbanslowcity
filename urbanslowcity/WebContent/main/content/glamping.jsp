@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="admin.MainBoardVO" %>
+<%@ page import="admin.MainDAO" %>
 <HTML>
 <HEAD>
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
@@ -216,135 +218,10 @@
 	<!--menu-->
 	<jsp:include page="/main/menu.jsp" />
 	<!--//menu-->
-	
-	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" id="Table_01" >
-		<tr>
-			<td align="center">
-				<table width="1200" border="0" cellspacing="0" cellpadding="0" >
-				  <tr>
-				    <td align="center">
-    
-						<table width="1100" border="0" cellspacing="0" cellpadding="0">
-  						  <tr height="100px">
-  						  	<td width="80px">&nbsp;</td>
-    						<td style="margin:0 auto; text-align:left;">
-  	<div class="contain">
-	
-		<div class="container">
-		
-			<div class="contents" id="contents">
-				
-				<div class="ctnActivities ctnkids">
-					<div class="headTit">
-						<h4 class="tit"><img src="/images/content/subTitGlampingCamping.jpg" alt="Glamping"></h4>
-					</div>
-					<div class="slidePhotoBox">
-						<a class="fancybox" href="/images/content/glamping/IMG_7363.jpg" data-fancybox-group="glamping" title=""><img src="/images/content/glamping/glampingmain.jpg" alt="" /></a>
-						<a class="fancybox" href="/images/content/g2.jpg" data-fancybox-group="glamping" title=""></a>
-						<a class="fancybox" href="/images/content/g5.jpg" data-fancybox-group="glamping" title=""></a>
-						<a class="fancybox" href="/images/content/g6.jpg" data-fancybox-group="glamping" title=""></a>
-						<a class="fancybox" href="/images/content/glamping/IMG_7359.jpg" data-fancybox-group="glamping" title=""></a>
-						<a class="fancybox" href="/images/content/glamping/IMG_7360.jpg" data-fancybox-group="glamping" title=""></a>
-						<a class="fancybox" href="/images/content/glamping/IMG_7362.jpg" data-fancybox-group="glamping" title=""></a>
-						<a class="fancybox" href="/images/content/glamping/IMG_7365.jpg" data-fancybox-group="glamping" title=""></a>
-						<a class="fancybox" href="/images/content/glamping/IMG_7367.jpg" data-fancybox-group="glamping" title=""></a>
-						<a class="fancybox" href="/images/content/glamping/IMG_7371.jpg" data-fancybox-group="glamping" title=""></a>
-						<a class="fancybox" href="/images/content/glamping/IMG_7373.jpg" data-fancybox-group="glamping" title=""></a>
-						<a class="fancybox" href="/images/content/glamping/IMG_7375.jpg" data-fancybox-group="glamping" title=""></a>
-						<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/snowpic/DSC_1032.JPG" data-fancybox-group="glamping" title=""></a>
-						<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/revo/IMG_5498.JPG" data-fancybox-group="glamping" title=""></a>
-						<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/revo/IMG_5503.JPG" data-fancybox-group="glamping" title=""></a>
-						<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5475.JPG" data-fancybox-group="glamping" title=""></a>
-						<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5476.JPG" data-fancybox-group="glamping" title=""></a>
-						<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5484.JPG" data-fancybox-group="glamping" title=""></a>
-						<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5489.JPG" data-fancybox-group="glamping" title=""></a>
-						<a class="fancybox" href="http://urbanslowcity.cdn3.cafe24.com/images/site/tipi/IMG_5490.JPG" data-fancybox-group="glamping" title=""></a>			
-					</div>
-
-					<div class="btmCon">
-					  <div class="leftArea">
-							<div class="topTxtwrap">
-								<div class="topTxt mgt40">
-									<img src="/images/content/glamping/glampingTxt.png" alt=""><br>
-									<img src="/images/content/glamping/glampingTxt1.png" alt="">
-								</div>
-							</div>
-						</div>
-						<div class="rightArea">
-							<div class="HotelInfoBoxB mgt20">
-								<div class="HotelBoxTop">
-									<div class="conTitle2 titNew">
-										<h3>이용안내</h3>
-									</div>
-									<div class="introList">
-										<p class="tit">입실/퇴실시간</p>
-										<div class="useIntro">
-											<p>입실 오후 2시<br>
-											퇴실 오전 11시</p>
-										</div>
-									</div>
-									<div class="introList">
-										<p class="tit">예약</p>
-										<div class="useIntro">
-											<p>이용당일 예약가능</p>
-										</div>
-									</div>
-									<div class="introList">
-										<p class="tit">환불규정</p>
-										<div class="useIntro">
-										 <p>이용당일, 1일전 20%환불<br>
-                                         2~3일 50%환불<br>
-                                         4~5일 70%환불<br>
-                                         6~7일 90%환불<br>
-                                         10일이전 100%환불</p>
-										</div>
-									</div>
-							</div><!-- 
-								<ul class="btnSet">
-									<li class="first bTfi"><a href="/jeju/activities/kidsCabin.do" onclick="openCtrlPopup('./notiles/actFloorMapPop.do','actFloorMapPop');  return false;"><img src="/images/content/btnFloorMap.gif" alt="Floor Map"></a></li>
-								</ul> -->
-							</div>
-						</div>
-				  </div> 
-
-
-					  <div class="btmConB">
-						<div>
-							<span><img src="/images/content/glamping/glampingImgA.jpg" alt="" width="662" /></span>
-							<span><img src="/images/content/glamping/glampingImgB.jpg" alt="" width="662" /></span>
-							<span><img src="/images/content/glamping/glampingImgM.jpg" alt="" width="662" /></span>
-							<span><img src="/images/content/glamping/glampingImgC.jpg" alt="" width="662" /></span>
-							<span><img src="/images/content/glamping/glampingImgD.jpg" alt="" width="662" /></span>
-							<span><img src="/images/content/glamping/glampingImgE.jpg" alt="" width="662" /></span>
-							<!-- 
-							<span><img src="/images/content/glamping/glampingImgF.jpg" alt="" width="662" /></span>
-							<span><img src="/images/content/glamping/glampingImgI.jpg" alt="" width="662" /></span>
-							<span><img src="/images/content/glamping/glampingImgJ.jpg" alt="" width="662" /></span>
-							<span><img src="/images/content/glamping/glampingImgK.jpg" alt="" width="662" /></span>
-							<span><img src="/images/content/glamping/glampingImgL.jpg" alt="" width="662" /></span>
-							 -->
-						</div>
-
-					 </div>
-				</div>
-
-			</div>
-
-		</div>
-	
-	</div>
-	
-     						</td>
-  						  </tr>
-						  					  
-						</table>
-					</td>
-				  </tr>
-				</table>
-			</td>
-		</tr>
-	</table>
-	
+<%
+MainBoardVO board = MainDAO.getInstance().getContent("content","glamping");
+out.print(board.getContents());
+%>	
 	<!--bottom-->
 	<jsp:include page="/main/bottom.jsp" />
 	<!--//bottom-->

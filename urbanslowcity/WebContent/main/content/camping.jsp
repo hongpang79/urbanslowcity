@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="admin.MainBoardVO" %>
+<%@ page import="admin.MainDAO" %>
 <HTML>
 <HEAD>
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
@@ -216,108 +218,10 @@
 	<!--menu-->
 	<jsp:include page="/main/menu.jsp" />
 	<!--//menu-->
-	
-	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" id="Table_01" >
-		<tr>
-			<td align="center">
-				<table width="1200" border="0" cellspacing="0" cellpadding="0" >
-				  <tr>
-				    <td align="center">
-    
-						<table width="1100" border="0" cellspacing="0" cellpadding="0">
-  						  <tr height="100px">
-  						  	<td width="80px">&nbsp;</td>
-    						<td style="margin:0 auto; text-align:left;">
-  	<div class="contain">
-	
-		<div class="container">
-		
-			<div class="contents" id="contents">
-				
-				<div class="ctnActivities ctnkids">
-					<div class="headTit">
-						<h4 class="tit"><img src="/images/content/subTitCamping.jpg" alt="camping"></h4>
-					</div>
-					<div class="slidePhotoBox">
-						<a class="fancybox" href="/images/content/g1.jpg" data-fancybox-group="camping" title=""><img src="/images/content/camping/campingmain.jpg" alt="" /></a>
-						<a class="fancybox" href="/images/content/g3.jpg" data-fancybox-group="camping" title=""></a>
-						<a class="fancybox" href="/images/content/g7.jpg" data-fancybox-group="camping" title=""></a>
-						<a class="fancybox" href="/images/content/g8.jpg" data-fancybox-group="camping" title=""></a>
-						<a class="fancybox" href="/images/content/camping/IMG_4925.JPG" data-fancybox-group="camping" title=""></a>
-						<a class="fancybox" href="/images/content/camping/IMG_4926.JPG" data-fancybox-group="camping" title=""></a>
-						<a class="fancybox" href="/images/content/camping/IMG_4929.JPG" data-fancybox-group="camping" title=""></a>
-						<a class="fancybox" href="/images/content/camping/IMG_4930.JPG" data-fancybox-group="camping" title=""></a>
-						<a class="fancybox" href="/images/content/camping/IMG_4932.JPG" data-fancybox-group="camping" title=""></a>
-					</div>
-
-					<div class="btmCon">
-					  <div class="leftArea">
-							<div class="topTxtwrap">
-								<div class="topTxt mgt40">
-									<img src="/images/content/camping/Txt.png" alt="">
-								</div>
-							</div>
-						</div>
-						<div class="rightArea">
-							<div class="HotelInfoBoxB mgt20">
-								<div class="HotelBoxTop">
-									<div class="conTitle2 titNew">
-										<h3>이용안내</h3>
-									</div>
-									<div class="introList">
-										<p class="tit">입실/퇴실시간</p>
-										<div class="useIntro">
-											<p>입실 오후 2시<br>
-											퇴실 오전 11시</p>
-										</div>
-									</div>
-									<div class="introList">
-										<p class="tit">예약</p>
-										<div class="useIntro">
-											<p>이용당일 예약가능</p>
-										</div>
-									</div>
-									<div class="introList">
-										<p class="tit">환불규정</p>
-										<div class="useIntro">
-										 <p>이용당일, 1일전 20%환불<br>
-                                         2~3일 50%환불<br>
-                                         4~5일 70%환불<br>
-                                         6~7일 90%환불<br>
-                                         10일이전 100%환불</p>
-										</div>
-									</div>
-							</div>
-							</div>
-						</div>
-				  </div> 
-
-
-					  <div class="btmConB">
-						<div>
-							<iframe width="560" height="315" src="https://www.youtube.com/embed/7aQAd6TmCBs" frameborder="0" allowfullscreen=""></iframe>
-						</div>
-
-					 </div>
-				</div>
-
-			</div>
-
-		</div>
-	
-	</div>
-	
-     						</td>
-  						  </tr>
-						  					  
-						</table>
-					</td>
-				  </tr>
-				</table>
-			</td>
-		</tr>
-	</table>
-	
+<%
+MainBoardVO board = MainDAO.getInstance().getContent("content","camping");
+out.print(board.getContents());
+%>		
 	<!--bottom-->
 	<jsp:include page="/main/bottom.jsp" />
 	<!--//bottom-->

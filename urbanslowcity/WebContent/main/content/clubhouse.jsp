@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="admin.MainBoardVO" %>
+<%@ page import="admin.MainDAO" %>
 <HTML>
 <HEAD>
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
@@ -216,144 +218,10 @@
 	<!--menu-->
 	<jsp:include page="/main/menu.jsp" />
 	<!--//menu-->
-	
-	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" id="Table_01" >
-		<tr>
-			<td align="center">
-				<table width="1200" border="0" cellspacing="0" cellpadding="0" >
-				  <tr>
-				    <td align="center">
-    
-						<table width="1100" border="0" cellspacing="0" cellpadding="0">
-  						  <tr height="100px">
-  						  	<td width="80px">&nbsp;</td>
-    						<td style="margin:0 auto; text-align:left;">
-  	<div class="contain">
-	
-		<div class="container">
-		
-			<div class="contents" id="contents">
-				
-				<div class="ctnActivities ctnkids">
-					<div class="headTit">
-						<h4 class="tit"><img src="/images/content/subTitClubhouse.jpg" alt="Clubhouse"></h4>
-					</div>
-					
-					<div class="slidePhotoBox">
-						<a class="fancybox" href="/images/content/c1.jpg" data-fancybox-group="clubhouse" title=""><img src="/images/content/clubhouse/subMain.jpg" alt="" /></a>
-						<a class="fancybox" href="/images/content/c2.jpg" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/c3.jpg" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/c4.jpg" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/c5.jpg" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/c6.jpg" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/c7.jpg" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0439.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0440.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0434.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0444.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0445.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0447.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0460.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0437.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0438.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0456.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0458.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0462.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0463.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0466.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0467.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0490.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0477.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0475.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0478.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0484.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0489.JPG" data-fancybox-group="clubhouse" title=""></a>
-						<a class="fancybox" href="/images/content/clubhouse/DSC_0471.JPG" data-fancybox-group="clubhouse" title=""></a>			
-					</div>
-
-					<div class="btmCon">
-					  <div class="leftArea">
-							<div class="topTxtwrap">
-								<div class="topTxt mgt40">
-									<img src="/images/content/clubhouse/clubhouseTxt.png" alt="클럽하우스 소개">
-								</div>
-							</div>
-						</div>
-						<div class="rightArea">
-							<div class="HotelInfoBoxB mgt20">
-								<div class="HotelBoxTop">
-									<div class="conTitle2 titNew">
-										<h3>어반카페 및 매점</h3>
-									</div>
-									<div class="introList">
-										<p class="tit">운영시간</p>
-										<div class="useIntro">
-											<p>08:00 ~ 24:00</p>
-										</div>
-									</div>
-									<div class="introList">
-										<p class="tit">메뉴</p>
-										<div class="useIntro">
-										 <p>커피(아메리카노), 과일쥬스, 토스트,<br> 잉글리쉬머핀(맥모닝)</p>
-                                         <p>과자, 주류, 음료, 라면, 컵라면, 햇반,<br> 아이스크림, 수건, 세면도구, 장작, 숯 등</p>
-										</div>
-									</div>
-							</div><!-- 
-								<ul class="btnSet">
-									<li class="first bTfi"><a href="/jeju/activities/kidsCabin.do" onclick="openCtrlPopup('./notiles/actFloorMapPop.do','actFloorMapPop');  return false;"><img src="/images/content/btnFloorMap.gif" alt="Floor Map"></a></li>
-								</ul>  -->
-							</div>
-						</div>
-				  </div> 
-
-
-					  <div class="btmConB">
-						<h5 class="ActivConTitleA"><img src="/images/content/subTitSsIntro.jpg" alt="시설 안내"></h5>
-
-						<div class="ssIntroWrap">
-							<ul>
-								<li>
-									<span><img src="/images/content/clubhouse/clubhouseImgA.jpg" alt="오두막 사진"></span>
-									<div class="ssIntro">
-								  <img src="/images/content/clubhouse/txtA.png" alt="어반카페및매점"></div>
-							  </li>
-
-								<li>
-									<span><img src="/images/content/clubhouse/clubhouseImgB.jpg" alt="키즈 가든 사진"></span>
-									<div class="ssIntro">
-								  <img src="/images/content/clubhouse/txtB.png" alt="샤워장"></div>
-							  </li>
-
-								<li class="mgr0">
-									<span><img src="/images/content/clubhouse/clubhouseImgC.jpg" alt="숲 속 놀이터 사진"></span>
-									<div class="ssIntro">
-								  <img src="/images/content/clubhouse/txtC.png" alt="개수대"></div>
-							  </li>
-
-								
-							</ul>
-						</div>
-
-					 </div>
-				</div>
-
-			</div>
-
-		</div>
-	
-	</div>
-	
-     						</td>
-  						  </tr>
-						  					  
-						</table>
-					</td>
-				  </tr>
-				</table>
-			</td>
-		</tr>
-	</table>
-	
+<%
+MainBoardVO board = MainDAO.getInstance().getContent("content","clubhouse");
+out.print(board.getContents());
+%>			
 	<!--bottom-->
 	<jsp:include page="/main/bottom.jsp" />
 	<!--//bottom-->

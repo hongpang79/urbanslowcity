@@ -24,7 +24,7 @@ if(day.length() < 2){
 String startDate = request.getParameter("startDate") == null ? year+"-"+month+"-"+day :request.getParameter("startDate");
 String endDate = request.getParameter("endDate") == null ? year+"-"+month+"-"+day :request.getParameter("endDate");
 //periodGubun,searchSite,searchUserName,mode
-String periodGubun = request.getParameter("periodGubun") == null ? "order" : request.getParameter("periodGubun");
+String periodGubun = request.getParameter("periodGubun") == null ? "cancle" : request.getParameter("periodGubun");
 String searchSite = request.getParameter("searchSite") == null ? "" : request.getParameter("searchSite");
 String searchUserName = request.getParameter("searchUserName")  == null ? "" : request.getParameter("searchUserName");
 String mode = request.getParameter("mode") == null ? "" : request.getParameter("mode");
@@ -410,7 +410,8 @@ $(function() {
 	<div class="usage_instruction">
 		<ul class="desc">
 			<li><b class=ol>ㆍ</b>취소/환불 신청 접수 후, 운영자가 금액을 확인한 후 고객의 환불계좌로 입금합니다.
-			<li><b class=ol>ㆍ</b>환불 수수료 조건은 펜션관리>환불설정관리에서 수정 관리하실 수 있습니다.
+			<li><b class=ol>ㆍ</b>환불 수수료 조건은 캠핑장관리>환불설정관리에서 수정 관리하실 수 있습니다.
+			<li><b class=ol>ㆍ</b>각 예약건의 예약상태 클릭 시 운영자메모를 남길 수 있습니다.</li>
 			<li><b class=ol>ㆍ</b>환불금액을 확인하고 입금처리 한 후 환불상태를 환불완료로 변경합니다.
 		</ul>
 	</div>

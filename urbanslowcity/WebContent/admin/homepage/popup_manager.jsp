@@ -181,7 +181,7 @@ function callPopup(layerId){
 			<table border='3' cellpadding='7' cellspacing='0' width='800' bordercolor='ECD08A' style='margin-top:20'>
 				<tr><Td style='color:585858;line-height:180%;padding-left:20'>
 						<b>[사용안내]</b><br>
-						<b class=ol>ㆍ</b> .
+						<b class=ol>ㆍ</b> 메인화면 팝업을 관리하는 페이지 입니다.<br>
 				    </td>
 				</tr>
 			</table>

@@ -1,11 +1,17 @@
 package admin;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Vector;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+
+import reservation.DepositVO;
 import reservation.ReservationVO;
 import util.CommonUtil;
 import util.ConnectionUtil;
@@ -161,7 +167,7 @@ public class ReservationDAO {
 		String SQL = "SELECT RM.zone_name, RM.product_name, RM.site_name, R.* FROM reservation R " +
 	             "LEFT OUTER JOIN (select zone_name, product_no, product_name, site_no, site_name FROM product s, zone_information z WHERE z.zone_no = s.zone_no) RM " +
 			     "ON R.product_no=RM.product_no " +
-			     "WHERE reservation_no IN (SELECT reservation_no FROM reservation_day WHERE reservation_day BETWEEN ? AND ? AND pay_status = 'C' ) " +
+			     "WHERE reservation_no IN (SELECT reservation_no FROM reservation_day WHERE reservation_day BETWEEN ? AND ? AND pay_status IN ('W','C') ) " +
 			     "AND reservation_date NOT BETWEEN DATE_FORMAT(?,'%Y-%m-%d %H:%i:%s') AND DATE_FORMAT(?,'%Y-%m-%d %H:%i:%s') " +
 			     ANDSITE + ANDUSER + ANDMODE +
 			     
@@ -690,6 +696,191 @@ public class ReservationDAO {
 			close(rs,pstmt,conn);
 		}
 		return msg;
+	}
+	
+	public int insertGroupReservation(HttpServletRequest request) throws ServletException,IOException{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		request.setCharacterEncoding("UTF-8");
+		int rtn = 0;
+		
+		String zoneName = "";
+				
+		int night = Integer.parseInt((String)request.getParameter("nights"));
+		String chooseDate = request.getParameter("chooseDate").toString();
+		chooseDate = chooseDate.replaceAll("-", "");
+		Calendar cal = Calendar.getInstance();
+		cal.set(Integer.parseInt(chooseDate.substring(0,4)),Integer.parseInt(chooseDate.substring(4,6))-1,Integer.parseInt(chooseDate.substring(6,8)));
+		cal.add(Calendar.DATE,night-1);
+		
+		String productNos = (String)request.getParameter("productNos");
+		String[] sProductNos = productNos.split(","); 
+		
+		int productNo = 0;
+		String productName = "";
+		String oProductName = "";
+		int siteNo = 0;
+		String startDate = chooseDate;
+		String endDate = cal.get(Calendar.YEAR)+"";
+		String mm = ((cal.get(Calendar.MONTH)+1) < 10) ? "0"+(cal.get(Calendar.MONTH)+1) : (cal.get(Calendar.MONTH)+1)+"";
+		String dd = (cal.get(Calendar.DATE) < 10) ? "0"+cal.get(Calendar.DATE) : cal.get(Calendar.DATE)+"";
+		endDate = endDate + mm + dd;
+		
+		int memberNo = 0;
+		
+		String resDate = chooseDate;
+		int toddler = 0;
+		int child = 0;
+		int users = Integer.parseInt((String)request.getParameter("users"));
+		int price = Integer.parseInt((String)request.getParameter("price"));
+		String payment = "V";
+		String bankName = "",account = "",payYn = "N",depositor="";
+		
+		String reserver = (String) request.getParameter("reserver");
+		String phone1 = (String) request.getParameter("phone1");
+		String phone2 = (String) request.getParameter("phone2");
+		String phone3 = (String) request.getParameter("phone3");
+		String tel1 = (String) request.getParameter("cell1");
+		String tel2 = (String) request.getParameter("cell2");
+		String tel3 = (String) request.getParameter("cell3");
+		String email = (String) request.getParameter("email");
+		String content = (String) request.getParameter("content");
+		
+		int reservationNo = 0;
+
+		String SQL = "select * from deposit";
+		
+		try{
+			conn = ConnectionUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			if( rs.next() ){
+				bankName = rs.getString("bank_name");
+				account = rs.getString("account");
+				depositor = rs.getString("depositor");
+			}
+			
+			String SQL1 = "SELECT p.product_name, p.zone_no, p.site_no, p.site_name, z.zone_name FROM product p, zone_information z WHERE p.zone_no = z.zone_no and product_no = ?";
+			String SQL2 = "SELECT count(*) FROM reservation_day WHERE site_no=? AND reservation_day BETWEEN ? AND ? AND pay_status <> 'R'";
+			String SQL3 = "INSERT INTO reservation (product_no,site_no,member_no,reservation_date,nights,toddler,child,users,price,payment,bank_name,account,pay_status,reserver,phone1,phone2,phone3,cell1,cell2,cell3,email,memo,reg_date)" +
+					" VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,NOW())";
+			String SQL4 = "SELECT max(reservation_no) FROM reservation WHERE site_no=? and reservation_date=? and DATE_FORMAT(reg_date,'%Y%m%d')=DATE_FORMAT(NOW(),'%Y%m%d')";
+			String SQL5 = "INSERT INTO reservation_day (reservation_month,reservation_day,zone_name,site_no,reservation_no,pay_status,reg_date)" +
+					" VALUES(?,?,?,?,?,?,NOW())";
+			int pSize = sProductNos.length;
+//			System.out.println("pSize : " + pSize);
+			for(int x=1; x<pSize; x++){
+				productNo = Integer.parseInt(sProductNos[x]);
+				pstmt = conn.prepareStatement(SQL1);
+				pstmt.setInt(1, productNo);
+				rs = pstmt.executeQuery();
+				
+				if( rs.next() ){
+					productName = rs.getString("product_name");
+					siteNo = rs.getInt("site_no");
+					zoneName = rs.getString("zone_name");
+					if(x==1){
+						oProductName = productName;
+					}
+				}else{
+					productName = "";
+					siteNo = 0;
+				}
+				
+				pstmt = conn.prepareStatement(SQL2);
+				pstmt.setInt(1, siteNo);
+				pstmt.setString(2, startDate);
+				pstmt.setString(3, endDate);
+				rs = pstmt.executeQuery();
+
+//				System.out.println("setReservation - count : "+ rs.getInt(1));
+				
+				if( rs.next() ){
+					if( rs.getInt(1) == 0 ){
+						pstmt = conn.prepareStatement(SQL3);
+						pstmt.setInt(1, productNo);
+						pstmt.setInt(2, siteNo);
+						pstmt.setInt(3, memberNo);
+						pstmt.setString(4, resDate);
+						pstmt.setInt(5, night);
+						pstmt.setInt(6, toddler);
+						pstmt.setInt(7, child);
+						pstmt.setInt(8, users);
+						pstmt.setInt(9, price);
+						pstmt.setString(10, payment);
+						pstmt.setString(11, bankName);
+						pstmt.setString(12, account);
+						pstmt.setString(13, payYn);
+						pstmt.setString(14, reserver);
+						pstmt.setString(15, phone1);
+						pstmt.setString(16, phone2);
+						pstmt.setString(17, phone3);
+						pstmt.setString(18, tel1);
+						pstmt.setString(19, tel2);
+						pstmt.setString(20, tel3);
+						pstmt.setString(21, email);
+						pstmt.setString(22, content);
+						rtn = pstmt.executeUpdate();
+						request.setAttribute("insertResult", rtn);
+//						System.out.println("setReservation - insertResult : "+rtn);
+						
+						if(rtn > 0){
+							users = 0;
+							price = 0;
+							content = "그룹예약건<br>("+oProductName+" 과 동일건 입니다.)";
+						}
+						pstmt = conn.prepareStatement(SQL4);
+						pstmt.setInt(1, siteNo);
+						pstmt.setString(2, resDate);
+						rs = pstmt.executeQuery();
+						if( rs.next() ){
+//							System.out.println("setReservation - reservationNo : "+ rs.getInt(1));
+							reservationNo = rs.getInt(1);
+						}
+						
+						int loop = night;
+						if(loop == 0){
+							loop = loop + 1;
+						}
+						for(int i=0; i<loop; i++){
+							pstmt = conn.prepareStatement(SQL5);
+							if(i==0){
+								pstmt.setString(1, chooseDate.substring(0,6));
+								pstmt.setString(2, chooseDate);
+							}else{
+								cal.set(Integer.parseInt(chooseDate.substring(0,4)),Integer.parseInt(chooseDate.substring(4,6))-1,Integer.parseInt(chooseDate.substring(6,8)));
+								cal.add(Calendar.DATE,i);
+								endDate = cal.get(Calendar.YEAR)+"";
+								mm = ((cal.get(Calendar.MONTH)+1) < 10) ? "0"+(cal.get(Calendar.MONTH)+1) : (cal.get(Calendar.MONTH)+1)+"";
+								dd = (cal.get(Calendar.DATE) < 10) ? "0"+cal.get(Calendar.DATE) : cal.get(Calendar.DATE)+"";
+								endDate = endDate + mm + dd;
+								pstmt.setString(1, endDate.substring(0,6));
+								pstmt.setString(2, endDate);
+							}
+							pstmt.setString(3, zoneName);
+							pstmt.setInt(4, siteNo);
+							pstmt.setInt(5, reservationNo);
+							pstmt.setString(6, "W");
+							pstmt.executeUpdate();
+						}
+					}else{
+						System.out.println("setReservation : rs count is not zero!");
+				}
+			}else{
+				System.out.println("setReservation : rs is null!");
+			}
+		} //end for
+				
+//			System.out.println("[reservationDAO][insertGroupReservation] rtn = " + rtn);
+		} catch(Exception ex) {
+	        ex.printStackTrace();
+	    } finally {
+	    	close(rs,pstmt,conn);
+	    }
+		
+		return rtn;
 	}
 
 }

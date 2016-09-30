@@ -90,6 +90,66 @@ public class ProductDAO {
 		return products;
 	}
 	
+	public Vector<SiteVO> selectProductListForToday(String startDay, String endDay){
+		Vector<SiteVO> products = new Vector<SiteVO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String SQL = "SELECT z.zone_name, z.order_no, s.* FROM zone_information z, product s where z.zone_no = s.zone_no "
+				   + "and s.use_yn = 'Y' and s.display_start_day <= '"+ startDay +"' and s.display_end_day >= '" + endDay +"' "
+				   + "and z.use_start_day <= '"+ startDay +"' and z.use_end_day >= '" + endDay +"' "
+				   + "ORDER BY z.order_no,  s.product_name ASC";
+//			System.out.println("[ProductDAO][selectProductListForToday] SQL = " + SQL);
+		try{
+			conn = ConnectionUtil.getConnection();
+			pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+
+			
+			if( rs.next() ){
+				do{
+					SiteVO product = new SiteVO();
+					product.setProductNo(rs.getInt("product_no"));
+					product.setProductName(rs.getString("product_name"));
+					product.setSiteNo(rs.getInt("site_no"));
+					product.setZoneName(rs.getString("zone_name"));
+					product.setUsers(rs.getInt("users"));
+					product.setMaxUsers(rs.getInt("max_users"));
+					product.setAddChildPrice(rs.getInt("add_child_price"));
+					product.setAddUserPrice(rs.getInt("add_user_price"));
+					product.setLowSeasonWeekday(rs.getInt("low_season_weekday"));
+					product.setLowSeasonWeekend(rs.getInt("low_season_weekend"));
+					product.setLowSeasonPicnic(rs.getInt("low_season_picnic"));
+					product.setMiddleSeasonWeekday(rs.getInt("middle_season_weekday"));
+					product.setMiddleSeasonWeekend(rs.getInt("middle_season_weekend"));
+					product.setMiddleSeasonPicnic(rs.getInt("middle_season_picnic"));
+					product.setHighSeasonWeekday(rs.getInt("high_season_weekday"));
+					product.setHighSeasonWeekend(rs.getInt("high_season_weekend"));
+					product.setHighSeasonPicnic(rs.getInt("high_season_picnic"));
+					product.setDisplayStartDay(rs.getDate("display_start_day"));
+					product.setDisplayEndDay(rs.getDate("display_end_day"));
+					product.setSale(rs.getInt("sale"));
+					product.setSaleStartDay(rs.getDate("sale_start_day"));
+					product.setSaleEndDay(rs.getDate("sale_end_day"));
+					product.setFlatPrice(rs.getInt("flat_price"));
+					product.setFlatPriceStartDay(rs.getDate("flat_price_start_day"));
+					product.setFlatPriceEndDay(rs.getDate("flat_price_end_day"));
+					product.setUseYn(rs.getString("use_yn"));
+					product.setProductMemo(rs.getString("product_memo"));
+					product.setSaleMemo(rs.getString("sale_memo"));
+					products.add(product);
+				}while(rs.next());
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rs,pstmt,conn);
+		}
+		return products;
+	}
+	
 	public SiteVO getProduct(int productNo){
 		SiteVO product = new SiteVO();
 		Connection conn = null;

@@ -77,6 +77,7 @@ if(step.equals("select")){
 	productMemo = product.getProductMemo();
 	 
 }else{
+	System.out.println(request.getParameter("productNos"));
 	rtn = ProductDAO.getInstance().modifyProducts(request);
 	
 	if(rtn == 0){

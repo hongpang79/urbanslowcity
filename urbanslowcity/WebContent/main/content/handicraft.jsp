@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="admin.MainBoardVO" %>
+<%@ page import="admin.MainDAO" %>
 <HTML>
 <HEAD>
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
@@ -216,135 +218,10 @@
 	<!--menu-->
 	<jsp:include page="/main/menu.jsp" />
 	<!--//menu-->
-	
-	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" id="Table_01" >
-		<tr>
-			<td align="center">
-				<table width="1200" border="0" cellspacing="0" cellpadding="0" >
-				  <tr>
-				    <td align="center">
-    
-						<table width="1100" border="0" cellspacing="0" cellpadding="0">
-  						  <tr height="100px">
-  						  	<td width="80px">&nbsp;</td>
-    						<td style="margin:0 auto; text-align:left;">
-  	<div class="contain">
-	
-		<div class="container">
-		
-			<div class="contents" id="contents">
-				
-				<div class="ctnActivities ctnkids">
-					<div class="headTit">
-						<h4 class="tit"><img src="/images/content/subTitHandcraft.jpg" alt="Handicraft"></h4>
-					</div>
-					
-					<div class="slidePhotoBox">
-					    <a class="fancybox" href="/images/content/handicraft/IMG_5449.JPG" data-fancybox-group="handicraft" title=""><img src="/images/content/handicraft/subMain.jpg" alt="" /></a>
-					 	<a class="fancybox" href="/images/content/handicraft/IMG_5450.JPG" data-fancybox-group="handicraft" title=""></a>
-					 	<a class="fancybox" href="/images/content/handicraft/IMG_5452.JPG" data-fancybox-group="handicraft" title=""></a>
-					 	<a class="fancybox" href="/images/content/handicraft/IMG_5456.JPG" data-fancybox-group="handicraft" title=""></a>
-					 	<a class="fancybox" href="/images/content/handicraft/IMG_5457.JPG" data-fancybox-group="handicraft" title=""></a>
-					 	<a class="fancybox" href="/images/content/handicraft/IMG_5458.JPG" data-fancybox-group="handicraft" title=""></a>
-					 	<a class="fancybox" href="/images/content/handicraft/IMG_5459.JPG" data-fancybox-group="handicraft" title=""></a>
-					 	<a class="fancybox" href="/images/content/handicraft/IMG_5461.JPG" data-fancybox-group="handicraft" title=""></a>
-					 	<a class="fancybox" href="/images/content/handicraft/IMG_5462.JPG" data-fancybox-group="handicraft" title=""></a>
-					 	<a class="fancybox" href="/images/content/handicraft/IMG_5463.JPG" data-fancybox-group="handicraft" title=""></a>
-					 	<a class="fancybox" href="/images/content/handicraft/IMG_5467.JPG" data-fancybox-group="handicraft" title=""></a>
-					 	<a class="fancybox" href="/images/content/handicraft/IMG_5470.JPG" data-fancybox-group="handicraft" title=""></a>
-					 	<a class="fancybox" href="/images/content/handicraft/IMG_5471.JPG" data-fancybox-group="handicraft" title=""></a>
-					</div>
-
-					<div class="btmCon">
-					  <div class="leftArea">
-							<div class="topTxtwrap">
-								<div class="topTxt mgt40">
-									<img src="/images/content/handicraft/handiTxt.png" alt="공방소개">
-								</div>
-							</div>
-						</div>
-						<div class="rightArea">
-							<div class="HotelInfoBoxB mgt20">
-								<div class="HotelBoxTop">
-									<div class="conTitle2 titNew">
-										<h3>운영시간 및 대상</h3>
-									</div>
-									<div class="introList">
-										<p class="tit">운영시간</p>
-										<div class="useIntro">
-											<p>10:00 ~ 22:00</p>
-										</div>
-									</div>
-									<div class="introList">
-										<p class="tit">대상</p>
-										<div class="useIntro">
-											<p>4세부터 성인</p>
-										</div>
-									</div>
-									<div class="introList">
-										<p class="tit">이용 요금</p>
-										<div class="useIntro">
-											<p>캔들만들기 - 2만원~3만원<br>
-											  (캔들용기 선택 가능)<br>
-											     석고방향제만들기 - 1만5천원<br>
-											     천연비누만들기  - 1만원5천원</p>
-                                         <p>＊프로그램에 따라 요금이 상이합니다.</p>
-                                         <p>＊해당 내용은 캠핑장 사정에 의해 <br>      
-                                           &nbsp;&nbsp;장소 변경 및 취소 될 수 있습니다.<br>
-										</div>
-									</div>
-							</div>
-							</div>
-						</div>
-				  </div> 
-
-
-					  <div class="btmConB">
-						<h5 class="ActivConTitleA"><img src="/images/content/subTitSsIntro.jpg" alt="시설 안내"></h5>
-
-						<div class="ssIntroWrap">
-							<ul>
-								<li><!-- 274*157 -->
-									<span><img src="/images/content/handicraft/ImgA.jpg" alt="캔들만들기 사진"></span>
-									<div class="ssIntro">
-								  <img src="/images/content/handicraft/txtA.png" alt="캔들만들기"></div>
-							    </li>
-
-								<li>
-									<span><img src="/images/content/handicraft/ImgB.jpg" alt="석고방향제만들기 사진"></span>
-									<div class="ssIntro">
-								  <img src="/images/content/handicraft/txtB.png" alt="석고방향제만들기"></div>
-							  </li>
-
-								<li class="mgr0">
-									<span><img src="/images/content/handicraft/ImgC.jpg" alt="천연비누만들기 사진"></span>
-									<div class="ssIntro">
-								  <img src="/images/content/handicraft/txtC.png" alt="천연비누만들기"></div>
-							  </li>
-							
-							</ul>
-						</div>
-
-					 </div>
-				</div>
-
-			</div>
-
-		</div>
-	
-	</div>
-	
-     						</td>
-  						  </tr>
-						  					  
-						</table>
-					</td>
-				  </tr>
-				</table>
-			</td>
-		</tr>
-	</table>
-	
+<%
+MainBoardVO board = MainDAO.getInstance().getContent("content","handicraft");
+out.print(board.getContents());
+%>			
 	<!--bottom-->
 	<jsp:include page="/main/bottom.jsp" />
 	<!--//bottom-->

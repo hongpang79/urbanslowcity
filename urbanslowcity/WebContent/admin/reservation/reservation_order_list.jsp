@@ -124,7 +124,6 @@ $(function() {
 });
 </script>
 </head>
-
 <body bgcolor='#FFFFFF' topmargin='0' leftmargin='0'>
 
 	<!-- 상단 TOP Menu S -->
@@ -279,6 +278,7 @@ $(function() {
 		<td class='tbcont'>
 			<input type="radio" id="sort" name="sort" value="reg_date" <% if(sort.equals("reg_date")){%>checked<%}%>>접수일자
 			<input type="radio" id="sort" name="sort" value="zone_name,site_name" <% if(sort.equals("zone_name,site_name")){%>checked<%}%>>SITE명
+			<input type="radio" id="sort" name="sort" value="reserver,zone_name,site_name" <% if(sort.equals("reserver,zone_name,site_name")){%>checked<%}%>>예약자명
 		</td>
 	</tr>
 </table>
@@ -289,6 +289,10 @@ $(function() {
 </div>
 
 <!--검색결과-->
+<div id="loadingBar" style="LEFT:'450px'; TOP:expression((document.body.clientHeight/2)); POSITION:absolute; z-index:1">
+	<img src="/admin/img/common/InternetSlowdown_Day.gif" />
+</div>
+<div id="divBody" style="display:none">
 <!-- 
 <div align="right"><img src='/admin/img/reservation/tbtn_bg_022.gif' align='absmiddle' class='imp'><input type='button' value='  일괄예약취소  ' class='bt_a32 tmb22' onclick="cancleAll();">&nbsp;&nbsp;&nbsp;&nbsp;</div>
  -->
@@ -491,7 +495,12 @@ $(function() {
 	}
 %>
 	<br>
-
+<script type="text/javascript" language="JavaScript">
+<!--
+document.getElementById('loadingBar').style.display="none";
+document.getElementById('divBody').style.display="";
+//-->
+</script>
 	<table width=100% border=0 cellspacing=0 cellpadding=10 align=center>
 		<tr>
 			<td align=right>
@@ -510,6 +519,7 @@ $(function() {
 		<ul class="desc">
 			<li><b class=ol>ㆍ</b>현재 접수된 예약 현황 리스트 입니다</li>
 			<li><b class=ol>ㆍ</b>예약상태는 예약대기, 예약완료, 예약취소, 취소/환불신청, 환불완료로 구분됩니다</li>
+			<li><b class=ol>ㆍ</b>각 예약건의 예약상태 클릭 시 운영자메모를 남길 수 있습니다.</li>
 			<li><b class=ol>ㆍ</b>인원은 유아/아동/일반 순 입니다.</li>
 			<li><b class=ol>ㆍ</b>일괄예약취소는 24시간 지난 예약대기 건에 대하여 일괄 취소 처리 됩니다.</li>
 		</ul>
@@ -525,4 +535,5 @@ $(function() {
 	<jsp:include page="/admin/footer.jsp" />
 	<!--//footer-->			
 </body>
+</div>
 </html>

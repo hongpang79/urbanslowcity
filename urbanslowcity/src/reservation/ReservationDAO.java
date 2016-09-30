@@ -732,9 +732,11 @@ public class ReservationDAO {
 							pstmt = conn.prepareStatement(SQL);
 							rs = pstmt.executeQuery();
 							if( rs.next() ){
-								phoneNumber = rs.getString(1);
-								//System.out.println(reservationNo+","+msgNo+","+phoneNumber+","+msg);
-								util.CallSMS.callSMS(reservationNo, msgNo, phoneNumber, msg);
+								do{
+									phoneNumber = rs.getString(1);
+									//System.out.println(reservationNo+","+msgNo+","+phoneNumber+","+msg);
+									util.CallSMS.callSMS(reservationNo, msgNo, phoneNumber, msg);
+								}while(rs.next());
 							}
 						}
 					}
@@ -945,9 +947,11 @@ public class ReservationDAO {
 				pstmt = conn.prepareStatement(SQL);
 				rs = pstmt.executeQuery();
 				if( rs.next() ){
-					phoneNumber = rs.getString(1);
-					//System.out.println(reservationNo+","+msgNo+","+phoneNumber+","+msg);
-					util.CallSMS.callSMS(Integer.parseInt(reservationNo), msgNo, phoneNumber, msg);
+					do{
+						phoneNumber = rs.getString(1);
+						//System.out.println(reservationNo+","+msgNo+","+phoneNumber+","+msg);
+						util.CallSMS.callSMS(Integer.parseInt(reservationNo), msgNo, phoneNumber, msg);
+					 }while(rs.next());
 				}
 			}
 			

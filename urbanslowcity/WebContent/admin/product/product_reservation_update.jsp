@@ -7,7 +7,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	NumberFormat nf = NumberFormat.getInstance();
-	SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
+	SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 %>
 <html>
 <head>

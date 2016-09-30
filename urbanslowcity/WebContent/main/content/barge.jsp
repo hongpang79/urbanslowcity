@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="admin.MainBoardVO" %>
+<%@ page import="admin.MainDAO" %>
 <HTML>
 <HEAD>
 	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
@@ -216,146 +218,10 @@
 	<!--menu-->
 	<jsp:include page="/main/menu.jsp" />
 	<!--//menu-->
-	
-	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" id="Table_01" >
-		<tr>
-			<td align="center">
-				<table width="1200" border="0" cellspacing="0" cellpadding="0" >
-				  <tr>
-				    <td align="center">
-    
-						<table width="1100" border="0" cellspacing="0" cellpadding="0">
-  						  <tr height="100px">
-  						  	<td width="80px">&nbsp;</td>
-    						<td style="margin:0 auto; text-align:left;">
-  	<div class="contain">
-	
-		<div class="container">
-		
-			<div class="contents" id="contents">
-				
-				<div class="ctnActivities ctnkids">
-					<div class="headTit">
-						<h4 class="tit"><img src="/images/content/subTitBarge.jpg" alt="Barge"></h4>
-					</div>
-					
-					<div class="slidePhotoBox">
-						<a class="fancybox" href="/images/content/barge/DSC_0611.JPG" data-fancybox-group="barge" title=""><img src="/images/content/barge/subMain.jpg" alt="" /></a>
-						<a class="fancybox" href="/images/content/barge/DSC_0617.JPG" data-fancybox-group="barge" title="">
-						<a class="fancybox" href="/images/content/barge/DSC_0628.JPG" data-fancybox-group="barge" title="">
-						<a class="fancybox" href="/images/content/barge/DSC_0633.JPG" data-fancybox-group="barge" title="">
-						<a class="fancybox" href="/images/content/barge/DSC_0637.JPG" data-fancybox-group="barge" title="">
-						<a class="fancybox" href="/images/content/barge/DSC_0641.JPG" data-fancybox-group="barge" title="">
-						<a class="fancybox" href="/images/content/barge/DSC_0644.JPG" data-fancybox-group="barge" title="">
-						<a class="fancybox" href="/images/content/barge/DSC_0650.JPG" data-fancybox-group="barge" title="">
-						<a class="fancybox" href="/images/content/barge/DSC_0654.JPG" data-fancybox-group="barge" title="">
-						<a class="fancybox" href="/images/content/barge/DSC_0658.JPG" data-fancybox-group="barge" title="">
-						<a class="fancybox" href="/images/content/barge/DSC_0660.JPG" data-fancybox-group="barge" title="">
-						<a class="fancybox" href="/images/content/barge/DSC_0513.JPG" data-fancybox-group="barge" title="">
-						<a class="fancybox" href="/images/content/barge/DSC_0515.JPG" data-fancybox-group="barge" title="">
-						<a class="fancybox" href="/images/content/barge/DSC_0519.JPG" data-fancybox-group="barge" title="">
-						<a class="fancybox" href="/images/content/barge/DSC_0524.JPG" data-fancybox-group="barge" title="">
-						<a class="fancybox" href="/images/content/barge/DSC_0526.JPG" data-fancybox-group="barge" title="">
-						<a class="fancybox" href="/images/content/barge/DSC_0527.JPG" data-fancybox-group="barge" title="">				
-					</div>
-
-					<div class="btmCon">
-					  <div class="leftArea">
-							<div class="topTxtwrap">
-								<div class="topTxt mgt40">
-									<img src="/images/content/barge/bargeTxt.png" alt="바지소개">
-								</div>
-							</div>
-						</div>
-						<div class="rightArea">
-							<div class="HotelInfoBoxB mgt20">
-								<div class="HotelBoxTop">
-									<div class="conTitle2 titNew">
-										<h3>운영시간 및 메뉴</h3>
-									</div>
-									<div class="introList">
-										<p class="tit">운영시간</p>
-										<div class="useIntro">
-											<p>10:00 ~ 24:00</p>
-										</div>
-									</div>
-									<div class="introList">
-										<p class="tit">메뉴</p>
-										<div class="useIntro">
-										 <p>각종 수입맥주, 칵테일, 주류</p>
-										</div>
-									</div>
-							</div>
-							</div>
-						</div>
-				  </div> 
-
-
-					  <div class="btmConB">
-						<h5 class="ActivConTitleA"><img src="/images/content/subTitSsIntro.jpg" alt="시설 안내"></h5>
-
-						<div class="ssIntroWrap">
-							<ul>
-								<li>
-									<span><img src="/images/content/barge/bargeImgA.jpg" alt=""></span>
-									<div class="ssIntro">
-								  
-							  	</li>
-
-								<li>
-									<span><img src="/images/content/barge/bargeImgB.jpg" alt=""></span>
-									<div class="ssIntro">
-								  
-							  	</li>
-
-								<li class="mgr0">
-									<span><img src="/images/content/barge/bargeImgC.jpg" alt=""></span>
-									<div class="ssIntro">
-								  
-							  	</li>
-							  
-							  	<li>
-									<span><img src="/images/content/barge/bargeImgD.jpg" alt=""></span>
-									<div class="ssIntro">
-								  
-							  	</li>
-							  
-							  <li>
-									<span><img src="/images/content/barge/bargeImgE.jpg" alt=""></span>
-									<div class="ssIntro">
-								  
-							  </li>
-							  
-							  <li class="mgr0">
-									<span><img src="/images/content/barge/bargeImgF.jpg" alt=""></span>
-									<div class="ssIntro">
-								  
-							  </li>
-
-								
-							</ul>
-						</div>
-
-					 </div>
-				</div>
-
-			</div>
-
-		</div>
-	
-	</div>
-	
-     						</td>
-  						  </tr>
-						  					  
-						</table>
-					</td>
-				  </tr>
-				</table>
-			</td>
-		</tr>
-	</table>
-	
+<%
+MainBoardVO board = MainDAO.getInstance().getContent("content","barge");
+out.print(board.getContents());
+%>		
 	<!--bottom-->
 	<jsp:include page="/main/bottom.jsp" />
 	<!--//bottom-->

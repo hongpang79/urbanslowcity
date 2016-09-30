@@ -130,18 +130,21 @@ $(document).ready(
 </ul>
 
 <!--본문---------------------------------------------------------------------->
+<table border=0 cellpadding=0 cellspacing=0 width=800>
+	<tr height='20'><td></td></tr>
+</table>
 <form name="msgForm">
 	<input type="hidden" id="msg" name="msg" value="<%=msg%>">
 </form>
 <table id="listing_table" class="product_table">
 	<thead>
 		<tr>
-			<th rownum="2">NO</th>
-			<th rownum="2">Banner명</th>
+			<th>NO</th>
+			<th>Banner명</th>
 			<th>image path<br>[링크공지제목]</th> 
-			<!-- <th rownum="2">Display<br>기간</th> -->
-			<th rownum="2">사용여부</th>
-			<th rownum="2">선택</th>
+			<!-- <th>Display<br>기간</th> -->
+			<th>사용여부</th>
+			<th>선택</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -194,13 +197,20 @@ $(document).ready(
 	</tbody>
 </table>
 
-<br>
-
-<center>
+<div style='width:800' align='center'>
 	<img src="/admin/img/reservation/tbtn_bg_022.gif" align="absmiddle" class="imp"><input type="button" value="Banner추가하기" class="bt_a32 tmb22" onclick="location.href='/admin/homepage/main_banner_modify.jsp';">
-</center>
-<br>
+</div>
 
+<table border='3' cellpadding='7' cellspacing='0' width='800' bordercolor='ECD08A' style='margin-top:20'>
+	<tr><Td style='color:585858;line-height:180%;padding-left:20'>
+			<b>[사용안내]</b><br>
+			<b class=ol>ㆍ</b>메인화면의 배너를 관리합니다.<br>
+	    </td>
+	</tr>
+</table>
+<table border=0 cellpadding=0 cellspacing=0>
+	<tr><td height=50></td></tr>
+</table>
 <!--본문 끝---------------------------------------------------------------------------------------->
 			</td>
 	</tr>
