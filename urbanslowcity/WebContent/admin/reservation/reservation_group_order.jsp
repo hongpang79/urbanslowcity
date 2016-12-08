@@ -102,8 +102,13 @@
 <%
 	Date today = new Date(); 
 	String currentDay = transFormat.format(today).toString();
-	//System.out.println("currentDay : " + currentDay);
-	Vector<SiteVO> vProduct = ProductDAO.getInstance().selectProductListForToday(currentDay,currentDay);
+	Calendar cal = Calendar.getInstance();
+	cal.setTime(today);
+	cal.add(Calendar.MONTH, 1);
+	String nextMonthToDay = transFormat.format(cal.getTime()).toString();
+	System.out.println("currentDay : " + currentDay);
+	System.out.println("nextMonthToDay : " + nextMonthToDay);
+	Vector<SiteVO> vProduct = ProductDAO.getInstance().selectProductListForToday(currentDay,nextMonthToDay);
 	if( vProduct == null ){
 %>
 		<tr><td colspan="10"> <br/>등록된 상품이 없습니다<br/><br/></td></tr>

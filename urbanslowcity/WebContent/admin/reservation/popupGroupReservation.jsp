@@ -55,7 +55,7 @@ $(document).ready(
 			if($("#rtn").val() == 0){
 				history.go(-1);
 			}else{
-				opener.parent.window.location.reload();
+				opener.parent.window.location="/admin/reservation/reservation_order_list.jsp";
 				self.close();
 			}
 		}

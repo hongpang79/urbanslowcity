@@ -68,12 +68,21 @@
 	<!--menu-->
 	<jsp:include page="/main/menu.jsp" />
 	<!--//menu-->
-	<table width="1200" border="0" align="center" cellpadding="0" cellspacing="0">
-		<tr>
-			<td align="center"><img src="/images/main/safecamping.jpg"/></td>
-		</tr>
+   
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td align="center" bgcolor="#3b3b3b">
+	    	
+	    	<table width="1200" border="0" cellspacing="0" cellpadding="0">
+	  			<tr>
+    			  <td align="center"><img src="/images/main/safecamping.jpg" width="980" height="38" border="0"/></td>
+	  			</tr>
+			</table>
+		</td>
+	  </tr>
 	</table>
-	<div id="container">
+
+<div id="container">
 		<div id="contents">
 			<div id="m_visu" class="section">
 				<div class="gallery_wrap" id="sliderImg01">
@@ -97,11 +106,9 @@ if( count > 0 ){
 		boardNo = board.getBoardNo();	
 		%>
 							<li>
-								<a href="/main/board/view.jsp?num=<%=boardNo %>&pageNum=1&category=notice">
-									<img src="<%=imagePath %>" alt="<%=bannerName %>" width="1200" height="390"/>
-								</a>
-							</li>
-		<%
+								<a href="/main/board/view.jsp?num=<%=boardNo %>&pageNum=1&category=notice"><img src="<%=imagePath %>" alt="<%=bannerName %>" width="1200" height="390"/></a>
+                            </li>
+                            <%
 	}
 }
 %>						
@@ -118,7 +125,26 @@ if( count > 0 ){
 			</div>
 		</div>
 	</div>
-
+<!--어반갤러리시작-->
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td align="center">
+	    	
+	    	<table width="1200" border="0" cellspacing="0" cellpadding="0">
+	  			<tr>
+    			  <td height="20"></td>
+	  			</tr>
+	  			<tr>
+    			  <td style="padding-left:115px;"><img src="/images/main/view_title.jpg" border="0"/></td>
+	  			</tr>
+	  			<tr>
+	  			  <td style="padding-left:115px;"><a href="http://www.urbanslowcity.com/main/board/view.jsp?num=1099&pageNum=1&category=photo"><img src="/images/main/view.jpg" border="0"/></a></td>
+  			  </tr>
+			</table>
+		</td>
+	  </tr>
+	</table>
+<!--어반갤러리끝-->
 <%
 MainBoardVO board = MainDAO.getInstance().getContent("main");
 out.print(board.getContents());

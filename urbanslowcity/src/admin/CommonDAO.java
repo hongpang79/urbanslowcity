@@ -695,6 +695,7 @@ public class CommonDAO {
 				int orderNo = Integer.parseInt((String) request.getParameter("orderNoOrg"));
 				String useStartDay = request.getParameter("useStartDay");
 				String useEndDay = request.getParameter("useEndDay");
+				String orgZoneName = request.getParameter("orgZoneName");
 				
 				SQL = "UPDATE zone_information SET order_no = order_no+1 WHERE order_no >= ?";
 				pstmt = conn.prepareStatement(SQL);
@@ -708,6 +709,13 @@ public class CommonDAO {
 				pstmt.setString(3, useStartDay);
 				pstmt.setString(4, useEndDay);
 				pstmt.setInt(5, zoneNo);
+				
+				if(!orgZoneName.equals(zoneName)){
+					SQL = "UPDATE reservation_day SET zone_name=? WHERE zone_name=?";
+					pstmt = conn.prepareStatement(SQL);
+					pstmt.setString(1, zoneName);
+					pstmt.setString(2, orgZoneName);
+				}
 				
 				msg = "수정되었습니다.";
 			

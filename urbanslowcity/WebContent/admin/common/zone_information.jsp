@@ -122,7 +122,7 @@ function editZone(zoneNo,zoneName,orderNo,useStartDay,useEndDay)
 	document.getElementsByName( 'orderNoOrg' )[0].value = orderNo;
 	document.getElementsByName( 'useStartDay' )[0].value = useStartDay;
 	document.getElementsByName( 'useEndDay' )[0].value = useEndDay;
-	
+	document.getElementsByName( 'orgZoneName' )[0].value = zoneName;
 }
 
 $(function() {
@@ -225,6 +225,7 @@ $(function() {
 					<form name='addform' method='post' action='/admin/common/zone_information.jsp' onSubmit='return formCheck()'>
 					<input type='hidden' name='cmd' value='insert'>
 					<input type='hidden' id='zoneNoOrg' name='zoneNoOrg'>
+					<input type='hidden' id='orgZoneName' name='orgZoneName'>
 						<tr height='28'>
 							<td class='tbsbj' width='140'>ZONE NAME</td>
 							<td class='tbcont'>

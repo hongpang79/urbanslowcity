@@ -204,7 +204,7 @@
 													return false;
 												}
 												
-												alert("성수기(6월~10월) 예약취소시 위약금 안내\r\n-이용당일, 7일전 환불불가\r\n-8~10일 90% 환불\r\n-10일이전 100% 환불");
+												//alert("성수기(6월~10월) 예약취소시 위약금 안내\r\n-이용당일, 7일전 환불불가\r\n-8~10일 90% 환불\r\n-10일이전 100% 환불");
 											
 												
 											}
@@ -272,7 +272,7 @@
 																			<option value=''>-- SELECT --</option>																			
 																			<% String yoil = days[0];
 																			   if(yoil.equals("금")||yoil.equals("토")){
-																			   }else if(chooseZone.equals("스파하우스")){
+																			   }else if(chooseZone.equals("어반하우스")){
 																			   }else if(picnicYn.equals("N")){
 																			   }else{
 																			%>
@@ -387,7 +387,7 @@
 																<tr>
 																	<th><strong>무통장입금<br/>계좌안내</strong></th>
 																	<td>
-																		<p class="p1"><strong>국민 037601-04-039667 / 예금주  (주)우아한사람들</strong><br/>
+																		<p class="p1"><strong>국민 037601-04-039667 / 예금주  (주)우아한사람들<br>농협 351-0782-6363-83 / 예금주 오연주(어반슬로우시티)</strong><br/>
 																		※ 예약을 신청하신 후 24시간 이내에 무통장입금을 하시면 예약이 완료되며, 미입금시 예약이 취소 됩니다.
 																		</p>
 																	</td>

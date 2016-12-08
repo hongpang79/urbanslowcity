@@ -11,12 +11,12 @@
 								<td>
 									<table border="0" cellspacing="0" cellpadding="0">
 	  									<tr>
-										    <td><a href="/main/about/about.jsp"><img src="/images/menu_02.png" alt="home" border="0" onMouseOver="this.src='/images/menu_over_02.png'"onmouseout="this.src='/images/menu_02.png'"></a></td>
-										    <td><a href="/main/site/site.jsp"><img src="/images/menu_03.png" alt="home" border="0" onMouseOver="this.src='/images/menu_over_03.png'"onmouseout="this.src='/images/menu_03.png'"></a></td>
-										    <td><a href="/main/content/content.jsp"><img src="/images/menu_08.png" alt="home" border="0" onMouseOver="this.src='/images/menu_over_08.png'"onmouseout="this.src='/images/menu_08.png'"></a></td>
-										    <td><a href="/Reservation.do"><img src="/images/menu_04.png" alt="home" border="0" onMouseOver="this.src='/images/menu_over_04.png'"onmouseout="this.src='/images/menu_04.png'"></a></td>
-										    <td><a href="/main/board/gallerylist.jsp?category=photo"><img src="/images/menu_09.png" alt="home" border="0" onMouseOver="this.src='/images/menu_over_09.png'"onmouseout="this.src='/images/menu_09.png'"></a></td>
-										    <td><a href="/main/contact/contact.jsp"><img src="/images/menu_07.png" alt="home" border="0" onMouseOver="this.src='/images/menu_over_07.png'"onmouseout="this.src='/images/menu_07.png'"></a></td>
+										    <td><a href="/main/about/about.jsp"><img src="/images/menu_02.png" alt="이용안내" border="0" onMouseOver="this.src='/images/menu_over_02.png'"onmouseout="this.src='/images/menu_02.png'"></a></td>
+										    <td><a href="/main/site/site.jsp"><img src="/images/menu_03.png" alt="글램핑" border="0" onMouseOver="this.src='/images/menu_over_03.png'"onmouseout="this.src='/images/menu_03.png'"></a></td>
+										    <td><a href="/main/content/content.jsp"><img src="/images/menu_08.png" alt="이용시설" border="0" onMouseOver="this.src='/images/menu_over_08.png'"onmouseout="this.src='/images/menu_08.png'"></a></td>
+										    <td><a href="/Reservation.do"><img src="/images/menu_04.png" alt="예약하기" border="0" onMouseOver="this.src='/images/menu_over_04.png'"onmouseout="this.src='/images/menu_04.png'"></a></td>
+										    <td><a href="/main/board/list.jsp?category=notice"><img src="/images/menu_09.png" alt="게시판" border="0" onMouseOver="this.src='/images/menu_over_09.png'"onmouseout="this.src='/images/menu_09.png'"></a></td>
+										    <td><a href="/main/contact/contact.jsp"><img src="/images/menu_07.png" alt="오시는길" border="0" onMouseOver="this.src='/images/menu_over_07.png'"onmouseout="this.src='/images/menu_07.png'"></a></td>
 										</tr>
 									</table>
 	 
